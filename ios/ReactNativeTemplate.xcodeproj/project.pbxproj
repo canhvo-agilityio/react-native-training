@@ -13,6 +13,17 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		967443F4E028AC7014074C36 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 9D6B2C4B0F15CC88CE07654E /* PrivacyInfo.xcprivacy */; };
+		7970F3F7289A4489AE1D19DF /* Gelasio-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5744E442B2E4D348F2E4459 /* Gelasio-Bold.ttf */; };
+		AF85E43383AF465D9116C29A /* Gelasio-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FEBD2F57AC564396A7875568 /* Gelasio-Medium.ttf */; };
+		4A0F3B5E10BE4BFFAA0C0503 /* Gelasio-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0AB07F1370BA421F8EFAD5D3 /* Gelasio-Regular.ttf */; };
+		215F99553A274DEEB145B3AD /* Gelasio-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB5B6E3B08B5479CB2CB8B97 /* Gelasio-SemiBold.ttf */; };
+		D10331D00E3F4DA79B2CB390 /* Merriweather-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A0BAE836CF214191905DFD2A /* Merriweather-Bold.ttf */; };
+		33C8EC6DD2A54174B796D1BD /* Merriweather-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B394C0A1C2B4AC8B138843B /* Merriweather-Regular.ttf */; };
+		2CCDF37F66544402BF3562C5 /* NunitoSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 329D5F3C6B744D63AAF54842 /* NunitoSans-Bold.ttf */; };
+		6A972D50CCAD41249A8896B2 /* NunitoSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4DB0E5D5363247F4B81ED1E6 /* NunitoSans-Light.ttf */; };
+		1B27C8EEF9C74239A3973676 /* NunitoSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7BE827AA3DE4B81BEF180BB /* NunitoSans-Medium.ttf */; };
+		6B4FBC719F744162B2A86EE5 /* NunitoSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B5E3CEA795EC41999A145A7C /* NunitoSans-Regular.ttf */; };
+		1446F23D2A4141E9A35BFED0 /* NunitoSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 16B026E163A645C7B0B9106B /* NunitoSans-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +43,17 @@
 		89C6BE57DB24E9ADA2F236DE /* Pods-ReactNativeTemplate-ReactNativeTemplateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeTemplate-ReactNativeTemplateTests.release.xcconfig"; path = "Target Support Files/Pods-ReactNativeTemplate-ReactNativeTemplateTests/Pods-ReactNativeTemplate-ReactNativeTemplateTests.release.xcconfig"; sourceTree = "<group>"; };
 		9D6B2C4B0F15CC88CE07654E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = ReactNativeTemplate/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		B5744E442B2E4D348F2E4459 /* Gelasio-Bold.ttf */ = {isa = PBXFileReference; name = "Gelasio-Bold.ttf"; path = "../src/assets/fonts/Gelasio-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FEBD2F57AC564396A7875568 /* Gelasio-Medium.ttf */ = {isa = PBXFileReference; name = "Gelasio-Medium.ttf"; path = "../src/assets/fonts/Gelasio-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0AB07F1370BA421F8EFAD5D3 /* Gelasio-Regular.ttf */ = {isa = PBXFileReference; name = "Gelasio-Regular.ttf"; path = "../src/assets/fonts/Gelasio-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AB5B6E3B08B5479CB2CB8B97 /* Gelasio-SemiBold.ttf */ = {isa = PBXFileReference; name = "Gelasio-SemiBold.ttf"; path = "../src/assets/fonts/Gelasio-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A0BAE836CF214191905DFD2A /* Merriweather-Bold.ttf */ = {isa = PBXFileReference; name = "Merriweather-Bold.ttf"; path = "../src/assets/fonts/Merriweather-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8B394C0A1C2B4AC8B138843B /* Merriweather-Regular.ttf */ = {isa = PBXFileReference; name = "Merriweather-Regular.ttf"; path = "../src/assets/fonts/Merriweather-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		329D5F3C6B744D63AAF54842 /* NunitoSans-Bold.ttf */ = {isa = PBXFileReference; name = "NunitoSans-Bold.ttf"; path = "../src/assets/fonts/NunitoSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4DB0E5D5363247F4B81ED1E6 /* NunitoSans-Light.ttf */ = {isa = PBXFileReference; name = "NunitoSans-Light.ttf"; path = "../src/assets/fonts/NunitoSans-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B7BE827AA3DE4B81BEF180BB /* NunitoSans-Medium.ttf */ = {isa = PBXFileReference; name = "NunitoSans-Medium.ttf"; path = "../src/assets/fonts/NunitoSans-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		B5E3CEA795EC41999A145A7C /* NunitoSans-Regular.ttf */ = {isa = PBXFileReference; name = "NunitoSans-Regular.ttf"; path = "../src/assets/fonts/NunitoSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		16B026E163A645C7B0B9106B /* NunitoSans-SemiBold.ttf */ = {isa = PBXFileReference; name = "NunitoSans-SemiBold.ttf"; path = "../src/assets/fonts/NunitoSans-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +108,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				144F039369B1464597594682 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -110,6 +133,25 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		144F039369B1464597594682 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				B5744E442B2E4D348F2E4459 /* Gelasio-Bold.ttf */,
+				FEBD2F57AC564396A7875568 /* Gelasio-Medium.ttf */,
+				0AB07F1370BA421F8EFAD5D3 /* Gelasio-Regular.ttf */,
+				AB5B6E3B08B5479CB2CB8B97 /* Gelasio-SemiBold.ttf */,
+				A0BAE836CF214191905DFD2A /* Merriweather-Bold.ttf */,
+				8B394C0A1C2B4AC8B138843B /* Merriweather-Regular.ttf */,
+				329D5F3C6B744D63AAF54842 /* NunitoSans-Bold.ttf */,
+				4DB0E5D5363247F4B81ED1E6 /* NunitoSans-Light.ttf */,
+				B7BE827AA3DE4B81BEF180BB /* NunitoSans-Medium.ttf */,
+				B5E3CEA795EC41999A145A7C /* NunitoSans-Regular.ttf */,
+				16B026E163A645C7B0B9106B /* NunitoSans-SemiBold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -174,6 +216,17 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				967443F4E028AC7014074C36 /* PrivacyInfo.xcprivacy in Resources */,
+				7970F3F7289A4489AE1D19DF /* Gelasio-Bold.ttf in Resources */,
+				AF85E43383AF465D9116C29A /* Gelasio-Medium.ttf in Resources */,
+				4A0F3B5E10BE4BFFAA0C0503 /* Gelasio-Regular.ttf in Resources */,
+				215F99553A274DEEB145B3AD /* Gelasio-SemiBold.ttf in Resources */,
+				D10331D00E3F4DA79B2CB390 /* Merriweather-Bold.ttf in Resources */,
+				33C8EC6DD2A54174B796D1BD /* Merriweather-Regular.ttf in Resources */,
+				2CCDF37F66544402BF3562C5 /* NunitoSans-Bold.ttf in Resources */,
+				6A972D50CCAD41249A8896B2 /* NunitoSans-Light.ttf in Resources */,
+				1B27C8EEF9C74239A3973676 /* NunitoSans-Medium.ttf in Resources */,
+				6B4FBC719F744162B2A86EE5 /* NunitoSans-Regular.ttf in Resources */,
+				1446F23D2A4141E9A35BFED0 /* NunitoSans-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,3 +19,17 @@ export const lineHeights = {
   xxl: 36,
   '3xl': 38,
 };
+
+export const fontFamilies = {
+  GelasioBold: 'Gelasio-Bold',
+  GelasioMedium: 'Gelasio-Medium',
+  GelasioRegular: 'Gelasio-Regular',
+  GelasioSemiBold: 'Gelasio-SemiBold',
+  MerriweatherBold: 'Merriweather-Bold',
+  MerriweatherRegular: 'Merriweather-Regular',
+  NunitoSansSemiBold: 'NunitoSans-SemiBold',
+  NunitoSansRegular: 'NunitoSans-Regular',
+  NunitoSansMedium: 'NunitoSans-Medium',
+  NunitoSansLight: 'NunitoSans-Light',
+  NunitoSansBold: 'NunitoSans-Bold',
+};

@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text should render text component with default props 1`] = `
+<Text
+  style={
+    [
+      {
+        "color": "#606060",
+        "fontFamily": "NunitoSans-Regular",
+      },
+      {
+        "fontSize": 14,
+      },
+      undefined,
+      {},
+    ]
+  }
+>
+  Text content
+</Text>
+`;
+
+exports[`Text should render text component with variant heading 1`] = `
+<Text
+  style={
+    [
+      {
+        "color": "#303030",
+        "fontFamily": "Merriweather-Bold",
+      },
+      {
+        "fontSize": 30,
+      },
+      undefined,
+      {},
+    ]
+  }
+>
+  Text content
+</Text>
+`;
