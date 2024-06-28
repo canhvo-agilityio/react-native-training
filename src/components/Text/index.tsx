@@ -1,11 +1,5 @@
 import { ReactNode, memo } from 'react';
-import {
-  ColorValue,
-  Text as RNText,
-  TextProps as RNTextProps,
-  StyleProp,
-  TextStyle,
-} from 'react-native';
+import { ColorValue, Text as RNText, StyleProp, TextStyle } from 'react-native';
 
 // Themes
 import { textSizes, textVariants } from '@/themes';
@@ -13,7 +7,7 @@ import { textSizes, textVariants } from '@/themes';
 // Types
 import { TextSizeTypes, TextVariantTypes } from '@/types';
 
-export interface TextProps extends RNTextProps {
+export interface TextProps {
   value: string | ReactNode;
   variant?: TextVariantTypes;
   size?: TextSizeTypes;
@@ -27,7 +21,6 @@ const Text = ({
   size = 'sm',
   color,
   style,
-  ...props
 }: TextProps) => (
   <RNText
     style={[
@@ -35,8 +28,7 @@ const Text = ({
       textSizes[size],
       style,
       { ...(color && { color }) },
-    ]}
-    {...props}>
+    ]}>
     {value}
   </RNText>
 );
