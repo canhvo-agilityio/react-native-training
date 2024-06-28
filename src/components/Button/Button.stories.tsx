@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { Button } from './index';
+import Button from '.';
 
 const meta = {
   title: 'components/Button',
@@ -13,6 +12,27 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    children: 'Hello World',
+    text: 'Hello World',
+  },
+};
+
+export const Text: Story = {
+  args: {
+    text: 'Hello World',
+    variant: 'text',
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    text: 'Hello World',
+    isLoading: true,
+  },
+};
+
+export const disabled: Story = {
+  args: {
+    text: 'Hello World',
+    disabled: true,
   },
 };

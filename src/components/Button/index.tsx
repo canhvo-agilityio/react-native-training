@@ -1,24 +1,55 @@
-import { PropsWithChildren } from 'react';
-import { Pressable, PressableProps, Text, StyleSheet } from 'react-native';
+import { memo } from 'react';
+import { ActivityIndicator, TouchableOpacity, Text } from 'react-native';
 
-export const Button = ({
-  children,
-  ...rest
-}: PropsWithChildren<PressableProps>) => {
+//Type
+import { ButtonSizeTypes, ButtonVariantTypes } from '@/types';
+import {
+  buttonSizes,
+  buttonTextSize,
+  buttonTextStyle,
+  buttonVariants,
+  colors,
+} from '@/themes';
+export interface ButtonProps {
+  text: string;
+  disabled?: boolean;
+  variant?: ButtonVariantTypes;
+  size?: ButtonSizeTypes;
+  isLoading?: boolean;
+  onPress?: () => void;
+}
+
+const Button = ({
+  text,
+  variant = 'solid',
+  size = 'md',
+  disabled,
+  isLoading,
+  onPress,
+}: ButtonProps) => {
   return (
-    <Pressable style={styles.button} {...rest}>
-      <Text style={styles.text}>{children}</Text>
-    </Pressable>
+    <TouchableOpacity
+      style={[
+        buttonSizes[size],
+        buttonVariants[variant],
+        (disabled || isLoading) && { opacity: 0.7 },
+        { alignSelf: 'flex-start' },
+      ]}
+      onPress={onPress}
+      disabled={disabled || isLoading}>
+      <Text
+        style={[
+          buttonTextStyle.baseStyle,
+          buttonTextStyle[variant],
+          buttonTextSize[size],
+        ]}>
+        {text}
+      </Text>
+      {isLoading && (
+        <ActivityIndicator size="small" color={colors.common.white} />
+      )}
+    </TouchableOpacity>
   );
 };
 
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: 'blue',
-    padding: 10,
-  },
-  text: {
-    color: 'white',
-    textAlign: 'center',
-  },
-});
+export default memo(Button);
