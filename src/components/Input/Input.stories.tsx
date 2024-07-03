@@ -32,3 +32,11 @@ export const HasLabel: Story = {
     label: 'Label',
   },
 };
+
+export const HasIcon: Story = {
+  args: {
+    value: '',
+    onChangeText: () => {},
+    label: 'Label',
+  },
+};

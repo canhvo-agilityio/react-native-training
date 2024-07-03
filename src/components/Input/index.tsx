@@ -1,8 +1,8 @@
+import React, { memo } from 'react';
+import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 import { InputVariantTypes } from '@/types';
-import { TextInput, View } from 'react-native';
 import Text from '../Text';
 import { colors, inputBaseStyle, inputVariants } from '@/themes';
-import { memo } from 'react';
 
 export interface InputProps {
   value: string;
@@ -11,7 +11,9 @@ export interface InputProps {
   errorMessage?: string;
   variant?: InputVariantTypes;
   disabled?: boolean;
+  icon?: React.JSX.Element;
   onChangeText: (text: string) => void;
+  onPressIcon?: () => void;
 }
 
 const Input = ({
@@ -21,25 +23,49 @@ const Input = ({
   variant = 'flushed',
   errorMessage,
   disabled,
+  icon,
   onChangeText,
-}: InputProps) => (
-  <View style={[inputVariants[variant]]}>
-    {label && (
-      <Text
-        value={label}
-        variant="description"
-        color={colors.text.quaternary}
-      />
-    )}
-    <TextInput
-      value={value}
-      placeholder={placeholder}
-      editable={!disabled}
-      onChangeText={onChangeText}
-      style={[inputBaseStyle]}
-    />
-    {errorMessage && <Text value={errorMessage} />}
-  </View>
-);
+  onPressIcon,
+}: InputProps) => {
+  return (
+    <View style={[inputVariants[variant]]}>
+      {label && (
+        <Text
+          value={label}
+          variant="description"
+          color={colors.text.quaternary}
+        />
+      )}
+      <View style={styles.flex}>
+        <TextInput
+          value={value}
+          placeholder={placeholder}
+          editable={!disabled}
+          onChangeText={onChangeText}
+          style={[inputBaseStyle]}
+        />
+        {icon && onPressIcon ? (
+          <TouchableOpacity testID="icon" onPress={onPressIcon}>
+            {icon}
+          </TouchableOpacity>
+        ) : (
+          icon
+        )}
+      </View>
+      {errorMessage && <Text value={errorMessage} />}
+    </View>
+  );
+};
 
 export default memo(Input);
+
+const styles = StyleSheet.create({
+  flex: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingRight: 27,
+    alignItems: 'center',
+    gap: 14,
+  },
+});

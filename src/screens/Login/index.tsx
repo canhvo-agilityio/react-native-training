@@ -1,20 +1,20 @@
-import Config from 'react-native-config';
-import { StyleSheet, Text, View } from 'react-native';
+import { View } from 'react-native';
+import Input from '@/components/Input';
+import { Show } from '@/components/icons';
 
 export const LoginScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>{`We are running on ${Config.ENVIRONMENT}`}</Text>
+    <View>
+      <Input value="" onChangeText={() => {}} />
+      <Input variant="filled" value="" onChangeText={() => {}} />
+      <Input
+        label="Label"
+        onPressIcon={() => {}}
+        value=""
+        onChangeText={() => {}}
+        icon={<Show />}
+        // placeholder="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    gap: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#f5fcff',
-  },
-});
