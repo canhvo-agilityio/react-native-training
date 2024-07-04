@@ -22,6 +22,7 @@ export const buttonVariants = StyleSheet.create({
     backgroundColor: 'transparent',
     paddingHorizontal: 0,
     paddingVertical: 0,
+    alignSelf: 'baseline',
   },
 });
 
@@ -39,7 +40,7 @@ export const buttonSizes = StyleSheet.create({
   },
 
   xl: {
-    width: '100%',
+    flex: 1,
     paddingVertical: 16,
     borderRadius: 8,
   },

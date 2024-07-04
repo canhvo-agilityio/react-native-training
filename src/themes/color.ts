@@ -14,13 +14,17 @@ export const colors = {
     secondary: '#E0E0E0',
     tertiary: '#909090',
     quaternary: '#F0F0F0',
+    quinary: '#999999',
   },
   background: {
     primary: '#242424',
-    Secondary: '#4F4F4F',
+    secondary: '#4F4F4F',
     tertiary: '#F5F5F5',
     quaternary: '#B4916C',
     quinary: '#E4CBAD',
     senary: '#E0E0E0',
+  },
+  error: {
+    primary: '#FF4747',
   },
 };

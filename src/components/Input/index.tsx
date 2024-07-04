@@ -28,31 +28,35 @@ const Input = ({
   onPressIcon,
 }: InputProps) => {
   return (
-    <View style={[inputVariants[variant]]}>
-      {label && (
-        <Text
-          value={label}
-          variant="description"
-          color={colors.text.quaternary}
-        />
-      )}
-      <View style={styles.flex}>
-        <TextInput
-          value={value}
-          placeholder={placeholder}
-          editable={!disabled}
-          onChangeText={onChangeText}
-          style={[inputBaseStyle]}
-        />
-        {icon && onPressIcon ? (
-          <TouchableOpacity testID="icon" onPress={onPressIcon}>
-            {icon}
-          </TouchableOpacity>
-        ) : (
-          icon
+    <View>
+      <View style={[inputVariants[variant]]}>
+        {label && (
+          <Text
+            value={label}
+            variant="description"
+            color={colors.text.quaternary}
+          />
         )}
+        <View style={styles.flex}>
+          <TextInput
+            value={value}
+            placeholder={placeholder}
+            editable={!disabled}
+            onChangeText={onChangeText}
+            style={[inputBaseStyle]}
+          />
+          {icon && onPressIcon && (
+            <TouchableOpacity
+              testID="icon"
+              style={styles.icon}
+              onPress={onPressIcon}>
+              {icon}
+            </TouchableOpacity>
+          )}
+          {icon && <View style={styles.icon}>{icon}</View>}
+        </View>
       </View>
-      {errorMessage && <Text value={errorMessage} />}
+      {errorMessage && <Text value={errorMessage} style={styles.error} />}
     </View>
   );
 };
@@ -61,11 +65,16 @@ export default memo(Input);
 
 const styles = StyleSheet.create({
   flex: {
-    width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingRight: 27,
     alignItems: 'center',
     gap: 14,
+  },
+  icon: {
+    marginRight: 25,
+  },
+  error: {
+    position: 'absolute',
+    bottom: -20,
+    color: colors.error.primary,
   },
 });

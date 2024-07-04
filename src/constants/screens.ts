@@ -1,4 +1,9 @@
 export const SCREENS = {
   LOGIN: 'Login',
-  REGISTER: 'Register',
+  BOARDING: 'Boarding',
+  HOME: 'Home',
+  FAVORITE: 'Favorite',
+  NOTIFICATION: 'Notification',
+  PROFILE: 'Profile',
+  BOTTOM_TAB: 'Bottom Tap',
 } as const;

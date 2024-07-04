@@ -16,8 +16,9 @@ export const lineHeights = {
   md: 20,
   lg: 24,
   xl: 28,
-  xxl: 36,
+  '2xl': 36,
   '3xl': 38,
+  '4xl': 45,
 };
 
 export const fontWeights = {

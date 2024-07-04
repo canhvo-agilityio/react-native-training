@@ -1,5 +1,11 @@
 // Text
-export type TextVariantTypes = 'heading' | 'title' | 'description' | 'default';
+export type TextVariantTypes =
+  | 'heading'
+  | 'subHeading'
+  | 'title'
+  | 'subTitle'
+  | 'description'
+  | 'default';
 export type TextSizeTypes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
 // Button
 export type ButtonVariantTypes = 'solid' | 'text';

@@ -8,6 +8,7 @@ export const inputBaseStyle: TextStyle = {
   fontWeight: fontWeights.regular,
   fontSize: fontSizes.xmd,
   paddingVertical: 11,
+  flex: 1,
 };
 
 export const inputVariants = StyleSheet.create({

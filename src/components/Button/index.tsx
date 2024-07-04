@@ -1,5 +1,10 @@
 import { memo } from 'react';
-import { ActivityIndicator, TouchableOpacity, Text } from 'react-native';
+import {
+  ActivityIndicator,
+  TouchableOpacity,
+  Text,
+  TouchableOpacityProps,
+} from 'react-native';
 
 //Type
 import { ButtonSizeTypes, ButtonVariantTypes } from '@/types';
@@ -16,6 +21,7 @@ export interface ButtonProps {
   variant?: ButtonVariantTypes;
   size?: ButtonSizeTypes;
   isLoading?: boolean;
+  style?: TouchableOpacityProps['style'];
   onPress?: () => void;
 }
 
@@ -25,6 +31,7 @@ const Button = ({
   size = 'md',
   disabled,
   isLoading,
+  style,
   onPress,
 }: ButtonProps) => {
   return (
@@ -33,7 +40,7 @@ const Button = ({
         buttonSizes[size],
         buttonVariants[variant],
         (disabled || isLoading) && { opacity: 0.7 },
-        { alignSelf: 'flex-start' },
+        style,
       ]}
       onPress={onPress}
       disabled={disabled || isLoading}>

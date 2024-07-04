@@ -1,16 +1,28 @@
 import { StyleSheet } from 'react-native';
-import { fontSizes, fontFamilies } from '../typography';
+import { fontSizes, fontFamilies, lineHeights } from '../typography';
 import { colors } from '../color';
 
 export const textVariants = StyleSheet.create({
   heading: {
     fontFamily: fontFamilies.MerriweatherBold,
     color: colors.text.primary,
+    lineHeight: lineHeights['4xl'],
+  },
+
+  subHeading: {
+    fontFamily: fontFamilies.MerriweatherRegular,
+    color: colors.text.quaternary,
+    lineHeight: lineHeights['4xl'],
   },
 
   title: {
-    fontFamily: fontFamilies.NunitoSansSemiBold,
+    fontFamily: fontFamilies.GelasioBold,
     color: colors.text.primary,
+  },
+
+  subTitle: {
+    fontFamily: fontFamilies.GelasioSemiBold,
+    color: colors.text.secondary,
   },
 
   description: {
