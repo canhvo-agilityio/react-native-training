@@ -1,80 +1,39 @@
-import { Text } from '@/components';
-import { Cart, Search } from '@/components/icons';
-import { colors, fontFamilies } from '@/themes';
 import { useCallback, useState } from 'react';
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
 
-interface CategoryItemType {
-  id: string;
-  label: string;
-  image: string;
-}
+// Components
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { CategoryItem, ProductList, Text } from '@/components';
 
-export const CATEGORIES: CategoryItemType[] = [
-  {
-    id: '01',
-    label: 'Polular',
-    image: '@/assets/icons/star.png',
-  },
-  {
-    id: '02',
-    label: 'Chair',
-    image: '@/assets/icons/chair.png',
-  },
-  {
-    id: '03',
-    label: 'Table',
-    image: '@/assets/icons/table.png',
-  },
-  {
-    id: '04',
-    label: 'ArmChair',
-    image: '@/assets/icons/armchair.png',
-  },
-  {
-    id: '05',
-    label: 'Bed',
-    image: '@/assets/icons/bed.png',
-  },
-  {
-    id: '06',
-    label: 'Lamp',
-    image: '@/assets/icons/lamp.png',
-  },
-];
+// Icons
+import { Cart, Search } from '@/components/icons';
 
-export const HomeScreen = () => {
+// Themes
+import { colors, fontFamilies, lineHeights } from '@/themes';
+
+// Types
+import { CategoryItemType } from '@/types';
+import { RootTabScreenProps } from '@/interfaces';
+
+// Mocks
+import { CATEGORIES, PRODUCTS } from '@/mocks';
+import { SCREENS } from '@/constants';
+
+type HomeScreenProps = RootTabScreenProps<typeof SCREENS.HOME>;
+
+export const HomeScreen = ({ navigation }: HomeScreenProps) => {
   const [categoryActiveId, setCategoryActiveId] = useState(CATEGORIES[0].id);
 
   const handlePressCategory = useCallback((id: string) => {
     setCategoryActiveId(id);
   }, []);
 
-  const renderCategoryItem = (
-    item: CategoryItemType,
-    isActive: boolean,
-    onPress: (id: string) => void,
-  ) => (
-    <TouchableOpacity
-      testID="category"
-      activeOpacity={1}
-      style={{ ...styles.wrapper }}
-      onPress={() => onPress(item.id)}>
-      <View style={{ ...styles.image, ...(isActive && styles.imageActive) }}>
-        <Image source={require('@/assets/icons/star.png')} alt={item.label} />
-      </View>
-      <Text
-        color={isActive ? colors.background.primary : colors.border.quinary}
-        value={item.label}
-      />
-    </TouchableOpacity>
-  );
+  const handlePressProduct = (id: string) => {
+    navigation.navigate(SCREENS.PRODUCT_DETAILS, { id });
+  };
+
+  const handlePressCartIcon = () => {
+    navigation.navigate(SCREENS.CART);
+  };
 
   return (
     <View style={styles.container}>
@@ -94,20 +53,26 @@ export const HomeScreen = () => {
             color={colors.text.primary}
           />
         </View>
-        <Cart />
+        <Cart onPress={handlePressCartIcon} />
       </View>
       <ScrollView
         horizontal
         contentContainerStyle={styles.categoryList}
         showsHorizontalScrollIndicator={false}>
-        {CATEGORIES.map((item: any) =>
-          renderCategoryItem(
-            item,
-            categoryActiveId === item.id,
-            handlePressCategory,
-          ),
-        )}
+        {CATEGORIES.map((item: CategoryItemType) => (
+          <CategoryItem
+            key={item.id}
+            item={item}
+            isActive={categoryActiveId === item.id}
+            onPress={handlePressCategory}
+          />
+        ))}
       </ScrollView>
+      <ProductList
+        data={PRODUCTS}
+        onLoadMore={() => {}}
+        onPress={handlePressProduct}
+      />
     </View>
   );
 };
@@ -129,27 +94,10 @@ const styles = StyleSheet.create({
   subTitle: {
     fontFamily: fontFamilies.GelasioRegular,
     color: colors.text.quaternary,
-  },
-  wrapper: {
-    rowGap: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingVertical: 8,
-    paddingHorizontal: 8,
-    borderRadius: 12,
-    width: 44,
-    height: 44,
-    backgroundColor: colors.background.tertiary,
-  },
-  imageActive: {
-    backgroundColor: colors.background.secondary,
+    lineHeight: lineHeights.lg,
   },
   categoryList: {
-    columnGap: 25,
+    gap: 25,
     paddingLeft: 20,
   },
 });

@@ -6,7 +6,15 @@ export type TextVariantTypes =
   | 'subTitle'
   | 'description'
   | 'default';
-export type TextSizeTypes = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl';
+export type TextSizeTypes =
+  | 'xs'
+  | 'sm'
+  | 'xmd'
+  | 'md'
+  | 'lg'
+  | 'xl'
+  | '2xl'
+  | '3xl';
 // Button
 export type ButtonVariantTypes = 'solid' | 'text';
 export type ButtonSizeTypes = 'md' | 'lg' | 'xl';

@@ -1,18 +1,16 @@
 import { StyleSheet } from 'react-native';
-import { fontSizes, fontFamilies, lineHeights } from '../typography';
+import { fontSizes, fontFamilies } from '../typography';
 import { colors } from '../color';
 
 export const textVariants = StyleSheet.create({
   heading: {
     fontFamily: fontFamilies.MerriweatherBold,
     color: colors.text.primary,
-    lineHeight: lineHeights['4xl'],
   },
 
   subHeading: {
     fontFamily: fontFamilies.MerriweatherRegular,
     color: colors.text.quaternary,
-    lineHeight: lineHeights['4xl'],
   },
 
   title: {
@@ -47,6 +45,10 @@ export const textSizes = StyleSheet.create({
 
   md: {
     fontSize: fontSizes.md,
+  },
+
+  xmd: {
+    fontSize: fontSizes.xmd,
   },
 
   lg: {

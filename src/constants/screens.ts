@@ -6,4 +6,6 @@ export const SCREENS = {
   NOTIFICATION: 'Notification',
   PROFILE: 'Profile',
   BOTTOM_TAB: 'Bottom Tap',
+  PRODUCT_DETAILS: 'Product Details',
+  CART: 'Cart',
 } as const;

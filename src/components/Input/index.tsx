@@ -1,5 +1,11 @@
 import React, { memo } from 'react';
-import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
+import {
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+  ViewProps,
+} from 'react-native';
 import { InputVariantTypes } from '@/types';
 import Text from '../Text';
 import { colors, inputBaseStyle, inputVariants } from '@/themes';
@@ -12,6 +18,7 @@ export interface InputProps {
   variant?: InputVariantTypes;
   disabled?: boolean;
   icon?: React.JSX.Element;
+  style?: ViewProps['style'];
   onChangeText: (text: string) => void;
   onPressIcon?: () => void;
 }
@@ -24,12 +31,13 @@ const Input = ({
   errorMessage,
   disabled,
   icon,
+  style,
   onChangeText,
   onPressIcon,
 }: InputProps) => {
   return (
     <View>
-      <View style={[inputVariants[variant]]}>
+      <View style={[inputVariants[variant], style]}>
         {label && (
           <Text
             value={label}

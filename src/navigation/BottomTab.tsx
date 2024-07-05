@@ -4,8 +4,9 @@ import { Favorite, Home, Notification, User } from '@/components/icons';
 
 import { HomeScreen, ComingSoonScreen } from '@/screens';
 import { SCREENS } from '@/constants';
+import { BottomTabParamList } from '@/interfaces';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<BottomTabParamList>();
 
 const BottomTab = () => (
   <Tab.Navigator
