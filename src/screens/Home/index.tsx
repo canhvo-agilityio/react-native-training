@@ -79,8 +79,8 @@ export const HomeScreen = ({ navigation }: HomeScreenProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 44,
-    gap: 20,
+    paddingTop: 40,
+    gap: 16,
   },
   header: {
     flexDirection: 'row',
@@ -99,5 +99,6 @@ const styles = StyleSheet.create({
   categoryList: {
     gap: 25,
     paddingLeft: 20,
+    paddingVertical: 10,
   },
 });

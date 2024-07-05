@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
   icon: {
     position: 'absolute',
   },
-
   overlay: {
     ...StyleSheet.absoluteFillObject,
     backgroundColor: colors.text.secondary,

@@ -19,7 +19,6 @@ const ProductList = ({ data, onLoadMore, onPress }: ProductListProps) => {
       const handleNavigateProductDetail = () => {
         onPress(item.id);
       };
-      // navigation.navigate(SCREENS.PRODUCT_DETAIL, { product: item });
 
       return <ProductCard item={item} onPress={handleNavigateProductDetail} />;
     },
@@ -36,6 +35,12 @@ const ProductList = ({ data, onLoadMore, onPress }: ProductListProps) => {
       numColumns={2}
       columnWrapperStyle={styles.columnProduct}
       showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.space}
+      getItemLayout={(data, index) => ({
+        length: 157,
+        offset: 157 * index,
+        index,
+      })}
     />
   );
 };
@@ -45,6 +50,9 @@ const styles = StyleSheet.create({
     columnGap: 20,
     paddingBottom: 20,
     paddingHorizontal: 20,
+  },
+  space: {
+    paddingBottom: 140,
   },
 });
 
