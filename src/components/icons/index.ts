@@ -13,3 +13,4 @@ export * from './Decrease';
 export * from './Increase';
 export * from './Star';
 export * from './TimesCircle';
+export * from './Logout';

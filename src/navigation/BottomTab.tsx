@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { Favorite, Home, Notification, User } from '@/components/icons';
 
-import { HomeScreen, ComingSoonScreen } from '@/screens';
+import { HomeScreen, ComingSoonScreen, ProfileScreen } from '@/screens';
 import { SCREENS } from '@/constants';
 import { BottomTabParamList } from '@/interfaces';
 
@@ -43,7 +43,7 @@ const BottomTab = () => (
     />
     <Tab.Screen
       name={SCREENS.PROFILE}
-      component={ComingSoonScreen}
+      component={ProfileScreen}
       options={{
         tabBarIcon: ({ focused }) => <User isActive={focused} />,
       }}

@@ -6,3 +6,4 @@ export { default as ProductList } from './ProductList';
 export { default as CategoryItem } from './CategoryItem';
 export { default as Quantity } from './Quantity';
 export { default as CartItem } from './CartItem';
+export { default as ProfileCard } from './ProfileCard';
