@@ -9,7 +9,10 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    Montserrat: require('../assets/fonts/Montserrat-Regular.ttf'),
+    'Montserrat-Medium': require('../assets/fonts/Montserrat-Medium.ttf'),
+    'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
+    'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
   });
 
   useEffect(() => {
