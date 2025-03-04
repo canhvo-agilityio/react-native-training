@@ -3,8 +3,8 @@ import { ExpoConfig, ConfigContext } from '@expo/config';
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: 'expo-grocery-app',
-  slug: 'expo-grocery-app',
+  name: 'Grocery',
+  slug: 'grocery',
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/images/icon.png',
@@ -16,8 +16,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: './assets/images/adaptive-icon.png',
-      backgroundColor: '#ffffff',
+      foregroundImage: './assets/images/icon.png',
+      backgroundColor: '#FFFFFF',
     },
     package: 'com.duccanh2810.expo_grocery_app',
   },
@@ -32,9 +32,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       'expo-splash-screen',
       {
         image: './assets/images/splash-icon.png',
-        imageWidth: 200,
         resizeMode: 'contain',
-        backgroundColor: '#ffffff',
+        backgroundColor: '#33907C',
       },
     ],
   ],
