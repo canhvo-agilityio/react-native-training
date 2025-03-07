@@ -1,5 +1,5 @@
 import React, { forwardRef, LegacyRef } from 'react';
-import { TextInput, View } from 'react-native';
+import { TextInput, TouchableOpacity, View } from 'react-native';
 import { styles, inputVariants, placeHolderTextColors } from './styles';
 import { InputVariants } from '@/interfaces';
 import { Text } from '@/components/Text';
@@ -9,10 +9,13 @@ interface InputProps {
   placeholder?: string;
   variant?: InputVariants;
   label?: string;
-  icon?: React.JSX.Element;
+  leftIcon?: React.JSX.Element;
+  rightIcon?: React.JSX.Element;
   disabled?: boolean;
   errorMessage?: string;
   ref?: LegacyRef<TextInput>;
+  secureTextEntry?: boolean;
+  onPressRightIcon?: () => void;
   onChangeText?: (text: string) => void;
   onSubmitEditing?: () => void;
 }
@@ -24,9 +27,12 @@ const Input = forwardRef(
       placeholder,
       variant = 'filled',
       label,
-      icon,
+      leftIcon,
+      rightIcon,
       errorMessage,
       disabled,
+      secureTextEntry = false,
+      onPressRightIcon,
       onChangeText,
       onSubmitEditing,
     }: InputProps,
@@ -50,10 +56,24 @@ const Input = forwardRef(
           ref={ref}
           editable={!disabled}
           placeholderTextColor={placeHolderTextColors[variant]}
+          secureTextEntry={secureTextEntry}
           onChangeText={onChangeText}
           onSubmitEditing={onSubmitEditing}
         />
-        {icon && <View style={styles.icon}>{icon}</View>}
+        {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
+        {rightIcon &&
+          (onPressRightIcon ? (
+            <TouchableOpacity
+              testID="icon"
+              style={styles.rightIcon}
+              onPress={onPressRightIcon}
+            >
+              {rightIcon}
+            </TouchableOpacity>
+          ) : (
+            <View style={styles.rightIcon}>{rightIcon}</View>
+          ))}
+
         {errorMessage && (
           <Text size="base" style={styles.errorMessage}>
             {errorMessage}

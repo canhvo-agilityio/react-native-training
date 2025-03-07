@@ -1,27 +1,23 @@
-import {
-  colors,
-  fontsFamily,
-  fontSizes,
-  fontWeights,
-  lineHeights,
-  radius,
-  spacing,
-} from '@/themes';
+import { colors, fontsFamily, fontSizes, radius, spacing } from '@/themes';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   inputBase: {
-    paddingVertical: spacing[3],
+    paddingVertical: spacing[4],
   },
-  icon: {
+  leftIcon: {
     position: 'absolute',
     left: spacing[3],
+    top: spacing[4],
+  },
+  rightIcon: {
+    position: 'absolute',
+    right: spacing[3],
     top: spacing[4],
   },
   errorMessage: {
     color: colors.text.error,
     position: 'absolute',
-    bottom: -spacing[4],
     marginLeft: spacing[2],
   },
   disabled: {

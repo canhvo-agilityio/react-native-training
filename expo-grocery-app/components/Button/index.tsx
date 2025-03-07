@@ -3,7 +3,9 @@ import {
   ActivityIndicator,
   Pressable,
   PressableProps,
+  StyleProp,
   Text,
+  ViewStyle,
 } from 'react-native';
 
 import {
@@ -22,6 +24,7 @@ type ButtonProps = PropsWithChildren<PressableProps> & {
   isLoading?: boolean;
   disabled?: boolean;
   icon?: ReactNode;
+  style?: StyleProp<ViewStyle>;
 };
 
 const Button = ({
@@ -31,6 +34,7 @@ const Button = ({
   title,
   disabled = false,
   icon,
+  style,
   ...rest
 }: ButtonProps) => {
   return (
@@ -40,6 +44,7 @@ const Button = ({
         buttonVariants[variant],
         buttonSizes[size],
         (disabled || isLoading) && styles.disabled,
+        style,
       ]}
       disabled={disabled || isLoading}
       {...rest}

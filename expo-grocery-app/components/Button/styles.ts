@@ -75,6 +75,7 @@ export const buttonTextStyle = StyleSheet.create({
 
 export const buttonTextSize = StyleSheet.create({
   full: {
+    fontFamily: fontsFamily.semiBold,
     fontWeight: fontWeights.semiBold,
     fontSize: fontSizes.md,
     lineHeight: lineHeights.md,
@@ -84,6 +85,7 @@ export const buttonTextSize = StyleSheet.create({
   },
   md: {
     fontSize: fontSizes.md,
+    fontFamily: fontsFamily.semiBold,
     fontWeight: fontWeights.semiBold,
   },
 });

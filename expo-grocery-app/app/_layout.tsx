@@ -1,9 +1,12 @@
+import { colors } from '@/themes';
 import * as Font from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import 'react-native-reanimated';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -40,11 +43,17 @@ export default function RootLayout() {
     return null;
   }
 
+  const queryClient = new QueryClient();
+
   return (
-    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaView style={{ flex: 1 }} onLayout={onLayoutRootView}>
+        <Stack>
+          <Stack.Screen name="(auths)" options={{ headerShown: false }} />
+          <StatusBar backgroundColor={colors.primary} barStyle="default" />
+          {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
+        </Stack>
+      </SafeAreaView>
+    </QueryClientProvider>
   );
 }
