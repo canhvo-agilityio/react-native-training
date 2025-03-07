@@ -41,6 +41,6 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     typedRoutes: true,
   },
   extra: {
-    storybookEnabled: process.env.EXPO_PUBLIC_STORYBOOK_ENABLED === 'true',
+    storybookEnabled: process.env.EXPO_PUBLIC_STORYBOOK_ENABLED,
   },
 });

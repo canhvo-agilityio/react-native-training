@@ -7,6 +7,7 @@ const SearchIcon = ({
   color = '#4F4F4F',
 }: IconProps) => (
   <Svg
+    testID="search-icon"
     width={width}
     height={height}
     viewBox={`0 0 ${width} ${height}`}

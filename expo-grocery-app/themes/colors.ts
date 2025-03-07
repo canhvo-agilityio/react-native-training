@@ -7,6 +7,7 @@ const gray = {
   gray1: '#DCDDDF',
   gray2: '#4F4F4F',
   gray3: '#4A4A4A',
+  gray4: '#DBDBDE',
 };
 
 const white = {
@@ -31,14 +32,18 @@ const baseColors = {
 } as const;
 
 const text = {
-  primary: baseColors.gray2,
+  default: baseColors.gray2,
+  primary: baseColors.green1,
   secondary: baseColors.gray3,
   tertiary: baseColors.black1,
   error: baseColors.red1,
+  light: baseColors.white1,
+  dark: baseColors.black1,
 };
 
 const border = {
   borderPrimary: baseColors.gray1,
+  borderSecondary: baseColors.gray4,
 };
 
 const background = {
@@ -53,6 +58,7 @@ const button = {
 };
 
 export const colors = {
+  ...baseColors,
   transparent: 'transparent',
   primary: baseColors.green2,
   secondary: baseColors.green1,

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Text Component renders correctly with default props 1`] = `
+<Text
+  style={
+    [
+      {
+        "color": "#4F4F4F",
+        "fontFamily": "Montserrat",
+        "fontWeight": "400",
+      },
+      {
+        "fontSize": 18,
+        "lineHeight": 20,
+      },
+      undefined,
+      {},
+    ]
+  }
+>
+  Hello World
+</Text>
+`;

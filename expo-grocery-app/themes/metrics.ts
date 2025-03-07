@@ -38,5 +38,7 @@ export const radius = {
   '3': 12,
   '3.5': 14,
   '4': 16,
+  '5': 20,
+  '6': 24,
   circle: '50%',
 } as const;
