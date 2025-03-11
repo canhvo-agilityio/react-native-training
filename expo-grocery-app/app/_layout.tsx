@@ -48,11 +48,11 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <SafeAreaView style={{ flex: 1 }} onLayout={onLayoutRootView}>
-        <Stack>
-          <Stack.Screen name="(auths)" options={{ headerShown: false }} />
-          <StatusBar backgroundColor={colors.primary} barStyle="default" />
-          {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
-        </Stack>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+          }}
+        />
       </SafeAreaView>
     </QueryClientProvider>
   );

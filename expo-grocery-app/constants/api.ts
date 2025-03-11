@@ -4,4 +4,7 @@ export const API_URL = {
 
 export const ENDPOINTS = {
   USERS: '/users',
+  PRODUCTS: '/products',
+  NEW_PRODUCTS: '/new-products',
+  POPULAR_PRODUCTS: '/popular-products',
 };

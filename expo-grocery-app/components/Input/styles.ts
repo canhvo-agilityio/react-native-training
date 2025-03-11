@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   leftIcon: {
     position: 'absolute',
     left: spacing[3],
-    top: spacing[4],
+    top: spacing[5],
   },
   rightIcon: {
     position: 'absolute',
@@ -54,52 +54,7 @@ export const inputVariants = StyleSheet.create({
 });
 
 export const placeHolderTextColors = {
-  filled: colors.gray2,
+  filled: colors.gray1,
   outlined: colors.white1,
   flushed: colors.gray2,
 };
-
-// export const buttonSizes = StyleSheet.create({
-//   full: {
-//     width: '100%',
-//     paddingVertical: spacing[4],
-//   },
-//   sm: {
-//     paddingHorizontal: spacing[8],
-//     paddingVertical: spacing[2],
-//   },
-//   md: {
-//     paddingHorizontal: spacing[14],
-//     paddingVertical: spacing[4],
-//   },
-// });
-
-// export const buttonTextStyle = StyleSheet.create({
-//   primary: {
-//     color: colors.text.light,
-//   },
-//   secondary: {
-//     color: colors.text.primary,
-//   },
-//   outlined: {
-//     color: colors.text.light,
-//   },
-//   reversal: {
-//     color: colors.text.primary,
-//   },
-// });
-
-// export const buttonTextSize = StyleSheet.create({
-//   full: {
-//     fontWeight: fontWeights.semiBold,
-//     fontSize: fontSizes.md,
-//     lineHeight: lineHeights.md,
-//   },
-//   sm: {
-//     fontSize: fontSizes.xs,
-//   },
-//   md: {
-//     fontSize: fontSizes.md,
-//     fontWeight: fontWeights.semiBold,
-//   },
-// });

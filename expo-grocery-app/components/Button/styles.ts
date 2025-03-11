@@ -22,6 +22,9 @@ export const styles = StyleSheet.create({
   disabled: {
     opacity: 0.7,
   },
+  pressed: {
+    opacity: 0.5,
+  },
 });
 
 export const buttonVariants = StyleSheet.create({
@@ -53,8 +56,12 @@ export const buttonSizes = StyleSheet.create({
     paddingVertical: spacing[2],
   },
   md: {
-    paddingHorizontal: spacing[14],
-    paddingVertical: spacing[4],
+    paddingHorizontal: spacing[5],
+    paddingVertical: spacing[2.5],
+  },
+  lg: {
+    paddingHorizontal: spacing[5],
+    paddingVertical: spacing[1],
   },
 });
 
@@ -84,6 +91,12 @@ export const buttonTextSize = StyleSheet.create({
     fontSize: fontSizes.xs,
   },
   md: {
+    fontSize: fontSizes.base,
+    lineHeight: lineHeights.base,
+    fontFamily: fontsFamily.medium,
+    fontWeight: fontWeights.medium,
+  },
+  lg: {
     fontSize: fontSizes.md,
     fontFamily: fontsFamily.semiBold,
     fontWeight: fontWeights.semiBold,

@@ -39,11 +39,12 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <Pressable
-      style={[
+      style={({ pressed }) => [
         styles.button,
         buttonVariants[variant],
         buttonSizes[size],
         (disabled || isLoading) && styles.disabled,
+        pressed && styles.pressed, // Thêm hiệu ứng khi nhấn
         style,
       ]}
       disabled={disabled || isLoading}
