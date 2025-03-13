@@ -61,7 +61,7 @@ export const buttonSizes = StyleSheet.create({
   },
   lg: {
     paddingHorizontal: spacing[5],
-    paddingVertical: spacing[1],
+    paddingVertical: spacing[3],
   },
 });
 

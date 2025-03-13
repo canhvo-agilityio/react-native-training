@@ -1,3 +1,11 @@
+export const INIT_STORE = [
+  {
+    id: '',
+    userId: '',
+    name: '',
+  },
+];
+
 export const STORES = [
   {
     id: 'bn1',

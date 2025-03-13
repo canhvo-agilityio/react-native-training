@@ -7,4 +7,5 @@ export const ENDPOINTS = {
   PRODUCTS: '/products',
   NEW_PRODUCTS: '/new-products',
   POPULAR_PRODUCTS: '/popular-products',
+  STORES: '/stores',
 };

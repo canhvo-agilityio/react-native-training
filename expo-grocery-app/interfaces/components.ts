@@ -13,7 +13,7 @@ export type TextFontSizes = 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl';
 
 // Button
 export type ButtonVariants = 'primary' | 'secondary' | 'outlined' | 'reversal';
-export type ButtonSizes = 'full' | 'sm' | 'md';
+export type ButtonSizes = 'full' | 'sm' | 'md' | 'lg';
 
 //Input
 export type InputVariants = 'filled' | 'outlined' | 'flushed';

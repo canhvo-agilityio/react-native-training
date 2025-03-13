@@ -28,3 +28,12 @@ export const useFetchProductDetail = (id: string) => {
     initialData: INIT_PRODUCT[0],
   });
 };
+
+export const useFetchProductsByStoreId = (id: string) => {
+  return useQuery<Product[]>({
+    queryKey: [ENDPOINTS.STORES + 'products'],
+    queryFn: () =>
+      get(`${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}?storeId=${id}`),
+    initialData: [],
+  });
+};

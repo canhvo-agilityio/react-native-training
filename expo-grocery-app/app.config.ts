@@ -36,6 +36,14 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
         backgroundColor: '#33907C',
       },
     ],
+    [
+      'expo-camera',
+      {
+        cameraPermission: 'Allow $(PRODUCT_NAME) to access your camera',
+        microphonePermission: 'Allow $(PRODUCT_NAME) to access your microphone',
+        recordAudioAndroid: true,
+      },
+    ],
   ],
   experiments: {
     typedRoutes: true,

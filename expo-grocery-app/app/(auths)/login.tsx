@@ -8,16 +8,16 @@ import { colors, fontsFamily, fontSizes, fontWeights, spacing } from '@/themes';
 import { useAuth } from '@/hooks';
 import { useState } from 'react';
 
-export interface ILoginForm {
+export interface LoginForm {
   email: string;
   password: string;
 }
 
-export type LoginFormField = Exclude<keyof ILoginForm, ''>;
+export type LoginFormField = Exclude<keyof LoginForm, ''>;
 
 export default function HomeScreen() {
   const [isShowPassword, setIsShowPassword] = useState(false);
-  const { control, clearErrors, handleSubmit } = useForm<ILoginForm>({
+  const { control, clearErrors, handleSubmit } = useForm<LoginForm>({
     defaultValues: {
       email: '',
       password: '',
@@ -34,7 +34,7 @@ export default function HomeScreen() {
    * Handle login
    * @param data email and password value
    */
-  const handleLogin = (data: ILoginForm) => {
+  const handleLogin = (data: LoginForm) => {
     signIn(
       { email: data.email, password: data.password },
       {

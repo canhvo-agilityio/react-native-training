@@ -14,3 +14,6 @@ export { default as ChevronLeftIcon } from './ChevronLeft';
 export { default as ShareIcon } from './Share';
 export { default as HeartOutlineIcon } from './HeartOutline';
 export { default as MoreIcon } from './More';
+export { default as PlushIcon } from './Plush';
+export { default as CloseIcon } from './Close';
+export { default as ReverseCameraIcon } from './ReverseCamera';

@@ -1,10 +1,10 @@
 import React, { forwardRef, LegacyRef } from 'react';
-import { TextInput, TouchableOpacity, View } from 'react-native';
+import { TextInput, TouchableOpacity, View, ViewProps } from 'react-native';
 import { styles, inputVariants, placeHolderTextColors } from './styles';
 import { InputVariants } from '@/interfaces';
 import { Text } from '@/components/Text';
 
-interface InputProps {
+interface InputProps extends ViewProps {
   value: string;
   placeholder?: string;
   variant?: InputVariants;
@@ -35,11 +35,12 @@ const Input = forwardRef(
       onPressRightIcon,
       onChangeText,
       onSubmitEditing,
+      style,
     }: InputProps,
     ref?: LegacyRef<TextInput>,
   ) => {
     return (
-      <View>
+      <View style={style}>
         {label && (
           <Text size="base" style={{ opacity: 0.5 }}>
             {label}

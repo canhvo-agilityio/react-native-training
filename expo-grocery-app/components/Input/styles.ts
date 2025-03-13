@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   errorMessage: {
     color: colors.text.error,
     position: 'absolute',
-    marginLeft: spacing[2],
+    bottom: -spacing[5],
   },
   disabled: {
     opacity: 0.7,
