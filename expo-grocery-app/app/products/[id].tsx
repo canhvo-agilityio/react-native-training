@@ -7,13 +7,13 @@ import {
   Text,
 } from '@/components';
 import { useFetchProductDetail } from '@/hooks';
-import { colors, fontWeights, spacing } from '@/themes';
-import { useLocalSearchParams } from 'expo-router';
+import { colors, spacing } from '@/themes';
+import { router, useLocalSearchParams } from 'expo-router';
+import { Image } from 'expo-image';
 import { useRef, useState } from 'react';
 import {
   View,
   FlatList,
-  Image,
   TouchableOpacity,
   StyleSheet,
   Dimensions,
@@ -38,7 +38,13 @@ export default function ProductDetails() {
   };
 
   const renderItem = ({ item }: { item: string }) => {
-    return <Image source={{ uri: item }} style={styles.image} />;
+    return (
+      <Image source={{ uri: item }} style={styles.image} contentFit="contain" />
+    );
+  };
+
+  const handlePressBack = () => {
+    router.back();
   };
 
   return (
@@ -58,7 +64,7 @@ export default function ProductDetails() {
         />
 
         <View style={styles.topBar}>
-          <TouchableOpacity style={styles.iconButton}>
+          <TouchableOpacity style={styles.iconButton} onPress={handlePressBack}>
             <ChevronLeftIcon />
           </TouchableOpacity>
           <View style={styles.iconGroup}>
@@ -106,6 +112,9 @@ export default function ProductDetails() {
       </View>
       <View style={styles.description}>
         <Text size="xs">{description}</Text>
+      </View>
+      <View style={styles.addToCartBtn}>
+        <Button title="Add Product" />
       </View>
     </View>
   );
@@ -213,5 +222,14 @@ const styles = StyleSheet.create({
     paddingTop: spacing[15],
     paddingHorizontal: spacing[3],
     backgroundColor: colors.white1,
+  },
+  addToCartBtn: {
+    paddingHorizontal: spacing[8],
+    paddingVertical: spacing[3],
+    backgroundColor: colors.white1,
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
 });

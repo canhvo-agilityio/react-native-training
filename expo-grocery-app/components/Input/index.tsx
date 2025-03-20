@@ -1,10 +1,18 @@
 import React, { forwardRef, LegacyRef } from 'react';
-import { TextInput, TouchableOpacity, View, ViewProps } from 'react-native';
+import {
+  TextInput,
+  TextInputProps,
+  TouchableOpacity,
+  View,
+  ViewProps,
+} from 'react-native';
 import { styles, inputVariants, placeHolderTextColors } from './styles';
 import { InputVariants } from '@/interfaces';
 import { Text } from '@/components/Text';
 
-interface InputProps extends ViewProps {
+interface InputProps
+  extends Omit<TextInputProps, 'style'>,
+    Pick<ViewProps, 'style'> {
   value: string;
   placeholder?: string;
   variant?: InputVariants;
@@ -36,6 +44,7 @@ const Input = forwardRef(
       onChangeText,
       onSubmitEditing,
       style,
+      ...props
     }: InputProps,
     ref?: LegacyRef<TextInput>,
   ) => {
@@ -60,6 +69,7 @@ const Input = forwardRef(
           secureTextEntry={secureTextEntry}
           onChangeText={onChangeText}
           onSubmitEditing={onSubmitEditing}
+          {...props}
         />
         {leftIcon && <View style={styles.leftIcon}>{leftIcon}</View>}
         {rightIcon &&

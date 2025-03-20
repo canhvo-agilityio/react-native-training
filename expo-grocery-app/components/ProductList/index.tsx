@@ -4,14 +4,28 @@ import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 import isEqual from 'react-fast-compare';
 import ProductCard from '../ProductCard';
 import { spacing } from '@/themes';
+import { router } from 'expo-router';
+import { ROUTES } from '@/constants';
 
 interface ProductListProps {
   data: Product[];
   isGrid?: boolean;
-  onPress: (id: string) => void;
+  isEditing?: boolean;
+  onEdit?: (id: string) => void;
+  onDelete?: (id: string) => void;
 }
 
-const ProductList = ({ data, isGrid = false, onPress }: ProductListProps) => {
+const ProductList = ({
+  data,
+  isGrid = false,
+  isEditing = false,
+  onEdit,
+  onDelete,
+}: ProductListProps) => {
+  const handlePressProduct = (id: string) => {
+    router.push(ROUTES.PRODUCT_DETAILS(id));
+  };
+
   const getKeyExtractor = useCallback((item: Product) => item.id, []);
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<Product>) => (
@@ -22,10 +36,13 @@ const ProductList = ({ data, isGrid = false, onPress }: ProductListProps) => {
         newPrice={item.newPrice}
         storeName={item.storeName}
         oldPrice={item.oldPrice}
-        onPress={onPress}
+        isEditing={isEditing}
+        onEdit={onEdit}
+        onDelete={onDelete}
+        onPress={handlePressProduct}
       />
     ),
-    [onPress],
+    [],
   );
   return (
     <FlatList

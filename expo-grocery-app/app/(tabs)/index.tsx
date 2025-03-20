@@ -16,7 +16,7 @@ import { colors, fontsFamily, fontWeights, spacing } from '@/themes';
 import { router } from 'expo-router';
 import { BANNERS, CATEGORIES, STORES } from '@/mocks';
 import { useFetchProducts } from '@/hooks';
-import { ENDPOINTS } from '@/constants';
+import { ENDPOINTS, ROUTES } from '@/constants';
 
 export default function HomeScreen() {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -37,11 +37,7 @@ export default function HomeScreen() {
   };
 
   const handlePressCategoryItem = (id: number) => {
-    router.push(`/categories/${id}`);
-  };
-
-  const handlePressProduct = (id: string) => {
-    router.push(`/products/${id}`);
+    router.push(ROUTES.CATEGORY(id));
   };
 
   return (
@@ -83,7 +79,7 @@ export default function HomeScreen() {
           {isLoadingNewProduct ? (
             <ActivityIndicator />
           ) : (
-            <ProductList data={newProductData} onPress={handlePressProduct} />
+            <ProductList data={newProductData} />
           )}
         </View>
         {/* Popular products */}
@@ -98,10 +94,7 @@ export default function HomeScreen() {
           {isLoadingPopularProduct ? (
             <ActivityIndicator />
           ) : (
-            <ProductList
-              data={popularProductData}
-              onPress={handlePressProduct}
-            />
+            <ProductList data={popularProductData} />
           )}
         </View>
         {/* Stores */}

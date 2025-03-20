@@ -17,3 +17,5 @@ export { default as MoreIcon } from './More';
 export { default as PlushIcon } from './Plush';
 export { default as CloseIcon } from './Close';
 export { default as ReverseCameraIcon } from './ReverseCamera';
+export { default as TrashIcon } from './Trash';
+export { default as PenIcon } from './Pen';

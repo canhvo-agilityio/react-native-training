@@ -9,3 +9,5 @@ export const ENDPOINTS = {
   POPULAR_PRODUCTS: '/popular-products',
   STORES: '/stores',
 };
+
+export const IMAGE_SERVICE_KEY = process.env.EXPO_PUBLIC_IMAGES_SERVICE_API_KEY;

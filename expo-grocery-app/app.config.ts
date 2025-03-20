@@ -8,11 +8,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/images/icon.png',
-  scheme: 'myapp',
+  scheme: 'groceryapp',
   userInterfaceStyle: 'automatic',
   newArchEnabled: true,
   ios: {
     supportsTablet: true,
+    infoPlist: {
+      NSCameraUsageDescription:
+        'This app uses the camera to scan barcodes on event tickets.',
+    },
   },
   android: {
     adaptiveIcon: {

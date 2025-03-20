@@ -1,12 +1,19 @@
 import { colors, spacing } from '@/themes';
 import { useClickOutside } from 'react-native-click-outside';
 import { useState } from 'react';
-import { View, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  FlatList,
+  StyleSheet,
+  Modal,
+  Pressable,
+} from 'react-native';
 
 import { Text } from '@/components';
 
 interface DropdownProps {
-  data: string[];
+  data: { title: string; value: string }[];
   value?: string;
   placeholder?: string;
   errorMessage?: string;
@@ -22,51 +29,65 @@ const Select = ({
 }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleCloseDropdown = () => {
+    setIsOpen(false);
+  };
+
+  const handleOpenDropdown = () => {
+    setIsOpen(true);
+  };
+
   const handleSelect = (item: string) => {
     onSelect(item);
-    setIsOpen(false);
+    handleCloseDropdown();
   };
 
   const ref = useClickOutside<View>(() => setIsOpen(false));
 
   return (
-    <View style={styles.container} ref={ref}>
-      {/* Dropdown Button */}
-      <TouchableOpacity
-        style={styles.dropdownButton}
-        onPress={() => setIsOpen(!isOpen)}
-      >
-        <Text size="sm">{value || placeholder}</Text>
-        <Text>{isOpen ? '▲' : '▼'}</Text>
-      </TouchableOpacity>
+    <>
+      <View style={styles.container} ref={ref}>
+        {/* Dropdown Button */}
+        <TouchableOpacity
+          style={styles.dropdownButton}
+          onPress={handleOpenDropdown}
+        >
+          <Text size="sm">{value || placeholder}</Text>
+          <Text>{isOpen ? '▲' : '▼'}</Text>
+        </TouchableOpacity>
 
-      {/* Error Message */}
-      {errorMessage && (
-        <Text variant="error" size="base" style={styles.errorMessage}>
-          {errorMessage}
-        </Text>
-      )}
-
+        {/* Error Message */}
+        {errorMessage && (
+          <Text variant="error" size="base" style={styles.errorMessage}>
+            {errorMessage}
+          </Text>
+        )}
+      </View>
       {/* Dropdown List */}
-      {isOpen && (
-        <View style={styles.dropdown}>
-          <FlatList
-            data={data}
-            keyExtractor={(item) => item}
-            scrollEnabled={true}
-            style={styles.list}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={styles.dropdownItem}
-                onPress={() => handleSelect(item)}
-              >
-                <Text size="sm">{item}</Text>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
-      )}
-    </View>
+      <Modal
+        visible={isOpen}
+        transparent
+        animationType="fade"
+        style={{ justifyContent: 'center', backgroundColor: '#000' }}
+      >
+        <Pressable style={styles.overlay} onPress={handleCloseDropdown}>
+          <View style={styles.list}>
+            <FlatList
+              data={data}
+              keyExtractor={(item) => item.value}
+              renderItem={({ item }) => (
+                <TouchableOpacity
+                  style={styles.dropdownItem}
+                  onPress={() => handleSelect(item.value)}
+                >
+                  <Text size="sm">{item.title}</Text>
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+        </Pressable>
+      </Modal>
+    </>
   );
 };
 
@@ -84,17 +105,24 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: colors.border.borderPrimary,
   },
-  dropdown: {
-    maxHeight: 150,
-    marginTop: spacing[1],
-    backgroundColor: colors.white1,
-    borderRadius: spacing[2],
-    borderWidth: 1,
-    borderColor: colors.border.borderPrimary,
-    overflow: 'hidden',
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#000',
+    paddingTop: 20,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   list: {
-    maxHeight: 150, // Đảm bảo danh sách cuộn được
+    width: '80%',
+    borderRadius: spacing[2],
+    backgroundColor: colors.white1,
+    maxHeight: 300,
   },
   dropdownItem: {
     padding: spacing[3],

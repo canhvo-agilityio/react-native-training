@@ -3,11 +3,11 @@ import * as Font from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useCallback, useEffect, useState } from 'react';
-import { StatusBar, View } from 'react-native';
+import { StatusBar } from 'react-native';
 import { ClickOutsideProvider } from 'react-native-click-outside';
-import 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Toast from 'react-native-toast-message';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -49,12 +49,21 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <ClickOutsideProvider>
-        <SafeAreaView style={{ flex: 1 }} onLayout={onLayoutRootView}>
+        <SafeAreaView
+          style={{ flex: 1, backgroundColor: colors.primary }}
+          onLayout={onLayoutRootView}
+        >
+          <StatusBar
+            backgroundColor={colors.primary}
+            barStyle="light-content"
+            translucent
+          />
           <Stack
             screenOptions={{
               headerShown: false,
             }}
           />
+          <Toast />
         </SafeAreaView>
       </ClickOutsideProvider>
     </QueryClientProvider>

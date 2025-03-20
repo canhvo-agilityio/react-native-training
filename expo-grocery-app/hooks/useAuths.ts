@@ -1,15 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { get } from '@/utils';
 import { API_URL, ENDPOINTS, ERROR_MESSAGES } from '@/constants';
-
-export interface UserBase {
-  email: string;
-  password: string;
-}
-
-export interface User extends UserBase {
-  id: string;
-}
+import { User, UserBase } from '@/interfaces';
 
 export const useAuth = () => {
   const {
@@ -21,7 +13,7 @@ export const useAuth = () => {
       const response = await get<User[]>(
         `${API_URL.BASE_URL}${ENDPOINTS.USERS}?email=${email}&password=${password}`,
       );
-      const user = response.find((user: UserBase) => user.email === email);
+      const user = response.find((user: User) => user.email === email);
       if (!user) {
         throw new Error(ERROR_MESSAGES.AUTH_INCORRECT);
       }

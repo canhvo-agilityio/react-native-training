@@ -1,12 +1,22 @@
 import { Button, Hidden, Input, Show, Text } from '@/components';
-import { Link } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
+import { Link, router } from 'expo-router';
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  StyleSheet,
+  TextInput,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import { useForm, Controller } from 'react-hook-form';
-import { ERROR_MESSAGES } from '@/constants';
+import { ERROR_MESSAGES, ROUTES } from '@/constants';
 import { checkEmail } from '@/utils';
 import { colors, fontsFamily, fontSizes, fontWeights, spacing } from '@/themes';
 import { useAuth } from '@/hooks';
-import { useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import { useAuthStore } from '@/stores';
+import Toast from 'react-native-toast-message';
 
 export interface LoginForm {
   email: string;
@@ -24,110 +34,128 @@ export default function HomeScreen() {
     },
   });
 
-  const { signIn, isLoading, error } = useAuth();
+  const { signIn, isLoading } = useAuth();
+  const { setUser } = useAuthStore();
 
   const handleToggleShowPassword = () => {
     setIsShowPassword((prev) => !prev);
   };
 
-  /**
-   * Handle login
-   * @param data email and password value
-   */
+  const passwordInputRef = useRef<TextInput | null>(null);
+
+  const handleSubmitEditingEmail = useCallback(() => {
+    if (passwordInputRef.current) {
+      passwordInputRef.current.focus();
+    }
+  }, []);
+
   const handleLogin = (data: LoginForm) => {
     signIn(
       { email: data.email, password: data.password },
       {
         onSuccess: (user) => {
-          //TODO
-          console.log('success: ', user);
+          setUser(user);
+          router.push(ROUTES.HOME);
         },
         onError: (err) => {
-          //TODO
-          console.log('error: ', err);
+          Toast.show({
+            type: 'error',
+            text1: 'Login failed',
+            text2: err.message,
+          });
         },
       },
     );
   };
 
   return (
-    <View style={styles.container}>
-      <Text variant="title" size="xl" style={styles.title}>
-        Welcome to tradly
-      </Text>
-      <Text size="sm" style={styles.description}>
-        Login to your account
-      </Text>
-      <View style={styles.inputGroup}>
-        {error && (
-          <Text size="base" variant="error" style={styles.errorMessages}>
-            {error}
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <Text variant="title" size="xl" style={styles.title}>
+            Welcome to tradly
           </Text>
-        )}
-        <Controller
-          key="email"
-          control={control}
-          name="email"
-          rules={{
-            required: ERROR_MESSAGES.FIELD_REQUIRED,
-            validate: (value: string) => checkEmail(value),
-          }}
-          render={({ field: { value, onChange }, fieldState: { error } }) => (
-            <Input
-              variant="outlined"
-              placeholder="Email/Mobile Number"
-              value={value}
-              disabled={isLoading}
-              errorMessage={error?.message}
-              onChangeText={(data) => {
-                clearErrors('email');
-                onChange(data);
+          <Text size="sm" style={styles.description}>
+            Login to your account
+          </Text>
+          <View style={styles.inputGroup}>
+            <Controller
+              key="email"
+              control={control}
+              name="email"
+              rules={{
+                required: ERROR_MESSAGES.FIELD_REQUIRED,
+                validate: (value: string) => checkEmail(value),
               }}
+              render={({
+                field: { value, onChange },
+                fieldState: { error },
+              }) => (
+                <Input
+                  variant="outlined"
+                  placeholder="Email/Mobile Number"
+                  value={value}
+                  disabled={isLoading}
+                  errorMessage={error?.message}
+                  onSubmitEditing={handleSubmitEditingEmail}
+                  onChangeText={(data) => {
+                    clearErrors('email');
+                    onChange(data);
+                  }}
+                />
+              )}
             />
-          )}
-        />
-        <Controller
-          key="password"
-          control={control}
-          name="password"
-          rules={{
-            required: ERROR_MESSAGES.FIELD_REQUIRED,
-          }}
-          render={({ field: { value, onChange }, fieldState: { error } }) => (
-            <Input
-              variant="outlined"
-              placeholder="Password"
-              value={value}
-              disabled={isLoading}
-              rightIcon={isShowPassword ? <Hidden /> : <Show />}
-              errorMessage={error?.message}
-              secureTextEntry={!isShowPassword}
-              onPressRightIcon={handleToggleShowPassword}
-              onChangeText={(data) => {
-                clearErrors('password');
-                onChange(data);
+            <Controller
+              key="password"
+              control={control}
+              name="password"
+              rules={{
+                required: ERROR_MESSAGES.FIELD_REQUIRED,
               }}
+              render={({
+                field: { value, onChange },
+                fieldState: { error },
+              }) => (
+                <Input
+                  variant="outlined"
+                  placeholder="Password"
+                  value={value}
+                  disabled={isLoading}
+                  ref={passwordInputRef}
+                  rightIcon={isShowPassword ? <Hidden /> : <Show />}
+                  errorMessage={error?.message}
+                  secureTextEntry={!isShowPassword}
+                  onPressRightIcon={handleToggleShowPassword}
+                  onChangeText={(data) => {
+                    clearErrors('password');
+                    onChange(data);
+                  }}
+                />
+              )}
             />
-          )}
-        />
-      </View>
-      <Button
-        variant="secondary"
-        title="Login"
-        isLoading={isLoading}
-        disabled={isLoading}
-        onPress={handleSubmit(handleLogin)}
-      />
-      <Link style={styles.forgotPassword} href="/login">
-        Forgot your password?
-      </Link>
-      <View style={styles.signUpGroup}>
-        <Text style={styles.signUpDes}>Don’t have an account?</Text>
-        <Link href="/login" style={styles.signUpLink}>
-          Sign up
-        </Link>
-      </View>
-    </View>
+          </View>
+          <Button
+            variant="secondary"
+            title="Login"
+            isLoading={isLoading}
+            disabled={isLoading}
+            onPress={handleSubmit(handleLogin)}
+          />
+          <Link style={styles.forgotPassword} href="/login">
+            Forgot your password?
+          </Link>
+          <View style={styles.signUpGroup}>
+            <Text style={styles.signUpDes}>Don’t have an account?</Text>
+            <Link href="/login" style={styles.signUpLink}>
+              Sign up
+            </Link>
+          </View>
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -176,9 +204,5 @@ const styles = StyleSheet.create({
     fontSize: fontSizes.md,
     fontWeight: fontWeights.bold,
     fontFamily: fontsFamily.bold,
-  },
-  errorMessages: {
-    position: 'absolute',
-    top: -spacing[5],
   },
 });

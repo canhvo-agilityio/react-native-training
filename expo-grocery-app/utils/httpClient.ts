@@ -12,7 +12,7 @@ export const get = async <T>(url: string): Promise<T> => {
   return responseData;
 };
 
-export const post = async <T>(url: string, data: T): Promise<T> => {
+export const post = async <Req, Res>(url: string, data: Req): Promise<Res> => {
   const response = await fetch(url, {
     method: 'POST',
     headers: {
@@ -22,12 +22,11 @@ export const post = async <T>(url: string, data: T): Promise<T> => {
   });
 
   const responseData = await response.json();
-
   if (!response.ok) {
     throw new Error(`Request failed with status ${responseData.status}`);
   }
 
-  return responseData;
+  return responseData as Res;
 };
 
 export const put = async <T>(url: string, data: T): Promise<void> => {
@@ -43,6 +42,24 @@ export const put = async <T>(url: string, data: T): Promise<void> => {
     const responseData = await response.json();
     throw new Error(`Request failed with status ${responseData.status}`);
   }
+};
+
+export const patch = async <Req, Res>(url: string, data: Req): Promise<Res> => {
+  const response = await fetch(url, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw new Error(`Request failed with status ${responseData.status}`);
+  }
+
+  return responseData;
 };
 
 export const remove = async (url: string): Promise<void> => {

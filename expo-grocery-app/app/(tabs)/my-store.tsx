@@ -1,29 +1,77 @@
-import { Button, CartIcon, HeartIcon, Text } from '@/components';
-import { useFetchProductsByStoreId, useFetchStoreByUserId } from '@/hooks';
-import { colors, fontsFamily, fontSizes, fontWeights, spacing } from '@/themes';
+import { Button, CartIcon, HeartIcon, ProductList, Text } from '@/components';
+import { ROUTES } from '@/constants';
+import { useDeleteProduct, useFetchProductsByStoreId } from '@/hooks';
+import { useAuthStore } from '@/stores';
+import { colors, fontsFamily, fontWeights, spacing } from '@/themes';
 import { router } from 'expo-router';
 import {
   View,
   StyleSheet,
   TouchableOpacity,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 export default function MyStore() {
-  const { data, isFetching, error } = useFetchStoreByUserId('qwe6868');
-  const { id, name } = data[0] || {};
+  const { user } = useAuthStore();
+  const { storeId, storeName } = user || {};
   const {
     data: productsData,
     isFetching: isLoadingProducts,
     error: fetchProductsError,
-  } = useFetchProductsByStoreId(id);
+  } = useFetchProductsByStoreId(storeId);
+  const { mutate: deleteProduct, isPending: deletingProduct } =
+    useDeleteProduct();
 
   const handlePressAddProduct = () => {
-    router.push('/my-store/add-product');
+    router.push(ROUTES.ADD_PRODUCT);
+  };
+
+  const handlePressEditIcon = (id: string) => {
+    router.push({
+      pathname: ROUTES.EDIT_PRODUCT,
+      params: { id: id },
+    });
+  };
+
+  const handleDeleteProduct = (id: string) => {
+    deleteProduct(id, {
+      onSuccess: () => {
+        router.push(ROUTES.MY_STORE);
+        Toast.show({ type: 'success', text1: 'Product is deleted' });
+      },
+      onError: (error) => {
+        Toast.show({
+          type: 'error',
+          text1: 'Delete fail failed',
+          text2: error.message,
+        });
+      },
+    });
+  };
+
+  const handlePressDeleteIcon = (id: string) => {
+    Alert.alert(
+      'Delete confirm',
+      'Are you sure you want to delete this product?',
+      [
+        {
+          text: 'Delete',
+          onPress: () => handleDeleteProduct(id),
+        },
+        { text: 'Cancel', style: 'cancel' },
+      ],
+    );
   };
 
   return (
     <View style={styles.container}>
+      {deletingProduct && (
+        <View style={styles.overlay}>
+          <ActivityIndicator size="large" color={colors.primary} />
+        </View>
+      )}
       <View style={styles.header}>
         <Text variant="heading" size="xl">
           My Store
@@ -33,34 +81,51 @@ export default function MyStore() {
           <CartIcon />
         </View>
       </View>
-      {error && <Text>Error when load store</Text>}
-      {isFetching ? (
-        <ActivityIndicator />
-      ) : (
-        <View>
-          <View style={styles.store}>
-            <View style={styles.storeLogo}>
-              <Text variant="heading" size="lg">
-                {name.charAt(0).toUpperCase()}
-              </Text>
-            </View>
-            <Text variant="heading" size="xl" style={styles.storeName}>
-              {name}
+      <View>
+        <View style={styles.store}>
+          <View style={styles.storeLogo}>
+            <Text variant="heading" size="lg">
+              {storeName.charAt(0).toUpperCase()}
             </Text>
-            <View style={styles.buttonGroup}>
-              <Button variant="reversal" title="Edit Store" size="sm" />
-              <Button title="View Store" size="sm" />
-            </View>
           </View>
-          <TouchableOpacity style={styles.removeButton}>
-            <Text size="sm" style={styles.removeButtonText}>
-              Remove Store
-            </Text>
-          </TouchableOpacity>
+          <Text variant="heading" size="xl" style={styles.storeName}>
+            {storeName}
+          </Text>
+          <View style={styles.buttonGroup}>
+            <Button variant="reversal" title="Edit Store" size="sm" />
+            <Button title="View Store" size="sm" />
+          </View>
         </View>
-      )}
-      {productsData.length > 0 ? (
-        <Text>product</Text>
+        <TouchableOpacity style={styles.removeButton}>
+          <Text size="sm" style={styles.removeButtonText}>
+            Remove Store
+          </Text>
+        </TouchableOpacity>
+      </View>
+      {fetchProductsError && <Text>Error when load product</Text>}
+
+      {isLoadingProducts ? (
+        <ActivityIndicator />
+      ) : productsData.length > 0 ? (
+        <View style={styles.productContainer}>
+          <View style={styles.productHeading}>
+            <Text variant="title" size="xl">
+              Products
+            </Text>
+            <Button
+              title="Add Product"
+              size="sm"
+              onPress={handlePressAddProduct}
+            />
+          </View>
+          <ProductList
+            data={productsData}
+            isEditing
+            isGrid
+            onEdit={handlePressEditIcon}
+            onDelete={handlePressDeleteIcon}
+          />
+        </View>
       ) : (
         <View style={styles.noProduct}>
           <Text variant="title" size="md" style={styles.noProductText}>
@@ -82,6 +147,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background.tertiary,
+    paddingBottom: 300,
   },
   header: {
     backgroundColor: colors.background.primary,
@@ -130,6 +196,17 @@ const styles = StyleSheet.create({
   removeButtonText: {
     opacity: 0.5,
   },
+  productHeading: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  productContainer: {
+    marginTop: spacing[3],
+    justifyContent: 'center',
+    gap: spacing[4],
+    paddingHorizontal: spacing[4],
+  },
   noProduct: {
     alignItems: 'center',
     paddingTop: spacing[15],
@@ -139,5 +216,12 @@ const styles = StyleSheet.create({
     color: colors.black1,
     fontWeight: fontWeights.semiBold,
     fontFamily: fontsFamily.semiBold,
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    zIndex: 100,
   },
 });

@@ -1,15 +1,19 @@
 import { Product } from '@/interfaces';
-import { Text } from '@/components';
+import { PenIcon, Text, TrashIcon } from '@/components';
 import { colors, fontsFamily, fontWeights, spacing } from '@/themes';
 import React, { memo } from 'react';
-import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image } from 'expo-image';
 
 type ProductCardProps = Pick<
   Product,
   'id' | 'name' | 'storeName' | 'oldPrice' | 'newPrice'
 > & {
   imageUrl: string;
+  isEditing?: boolean;
   onPress: (id: string) => void;
+  onEdit?: (id: string) => void;
+  onDelete?: (id: string) => void;
 };
 
 const ProductCard = ({
@@ -19,13 +23,39 @@ const ProductCard = ({
   newPrice,
   storeName,
   oldPrice,
+  isEditing = false,
   onPress,
+  onEdit,
+  onDelete,
 }: ProductCardProps) => {
   const handlePress = () => onPress(id);
+  const handleEdit = () => {
+    onEdit && onEdit(id);
+  };
+  const handleDelete = () => {
+    onDelete && onDelete(id);
+  };
 
   return (
     <TouchableOpacity style={styles.card} onPress={handlePress}>
-      <Image source={{ uri: imageUrl }} style={styles.image} />
+      <View style={styles.imageContainer}>
+        <Image
+          source={{ uri: imageUrl }}
+          style={styles.image}
+          contentFit="cover"
+        />
+        {isEditing && (
+          <View style={styles.iconContainer}>
+            <TouchableOpacity style={styles.iconButton} onPress={handleEdit}>
+              <PenIcon />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.iconButton} onPress={handleDelete}>
+              <TrashIcon />
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
+
       <View style={styles.content}>
         <Text variant="title" size="base">
           {name}
@@ -35,7 +65,7 @@ const ProductCard = ({
             <View style={styles.storeLogo}>
               <Text variant="heading">{storeName.charAt(0).toUpperCase()}</Text>
             </View>
-            <Text size="base" style={styles.storeName}>
+            <Text size="base" numberOfLines={1} style={styles.storeName}>
               {storeName}
             </Text>
           </View>
@@ -62,6 +92,9 @@ const styles = StyleSheet.create({
     width: spacing[40],
     marginRight: spacing[2],
   },
+  imageContainer: {
+    position: 'relative',
+  },
   image: {
     width: '100%',
     height: 160,
@@ -77,6 +110,8 @@ const styles = StyleSheet.create({
   },
   storeName: {
     opacity: 0.5,
+    width: spacing[10],
+    overflow: 'visible',
   },
   storeGroup: {
     flexDirection: 'row',
@@ -104,6 +139,22 @@ const styles = StyleSheet.create({
     fontWeight: fontWeights.semiBold,
     fontFamily: fontsFamily.semiBold,
     color: colors.primary,
+  },
+  iconContainer: {
+    position: 'absolute',
+    flexDirection: 'row',
+    gap: spacing[10],
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: '-50%' }, { translateY: '-50%' }],
+  },
+  iconButton: {
+    width: spacing[8],
+    height: spacing[8],
+    borderRadius: spacing[4],
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

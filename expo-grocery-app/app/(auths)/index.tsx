@@ -11,6 +11,7 @@ import {
 import { useRouter } from 'expo-router';
 import { Button, Text } from '@/components';
 import { colors, radius, spacing } from '@/themes';
+import { ROUTES } from '@/constants';
 
 const { width } = Dimensions.get('window');
 
@@ -41,7 +42,7 @@ const Onboarding = () => {
     if (currentIndex < slides.length - 1) {
       flatListRef.current?.scrollToIndex({ index: currentIndex + 1 });
     } else {
-      router.replace('/(auths)/login');
+      router.replace(ROUTES.LOGIN);
     }
   };
 

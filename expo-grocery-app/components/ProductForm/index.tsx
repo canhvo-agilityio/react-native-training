@@ -1,17 +1,18 @@
-import React, { useRef, useState } from 'react';
+import { useState } from 'react';
 import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
   View,
-  Image,
   Alert,
-  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
-import { CameraView, CameraType, useCameraPermissions } from 'expo-camera';
+import { Image } from 'expo-image';
+import { CameraView } from 'expo-camera';
 import { Controller, useForm } from 'react-hook-form';
 import { colors, fontsFamily, fontWeights, spacing } from '@/themes';
+// import isEqual from '';
 import {
   Button,
   CloseIcon,
@@ -21,7 +22,9 @@ import {
   Input,
   Select,
 } from '@/components';
-import { CATEGORIES, ERROR_MESSAGES } from '@/constants';
+import { PRODUCT_FORM_FIELDS } from '@/constants';
+import { useImageHandler } from '@/hooks';
+import isEqual from 'react-fast-compare';
 
 export interface ProductFormType {
   name: string;
@@ -32,152 +35,57 @@ export interface ProductFormType {
   description: string;
   priceType: string;
   additionalDetails: string;
+  images: string[];
 }
 
 interface ProductFormProps {
-  onSubmit: () => void;
+  isLoading: boolean;
+  isEdit?: boolean;
+  data?: ProductFormType;
+  onSubmit: (data: ProductFormType) => void;
 }
 
-const formFields: {
-  key: keyof ProductFormType;
-  label: string;
-  type: string;
-  name: keyof ProductFormType;
-  option?: string[];
-  rules: { required: string };
-}[] = [
-  {
-    key: 'name',
-    label: 'Product Name',
-    name: 'name',
-    type: 'input',
-    rules: { required: ERROR_MESSAGES.FIELD_REQUIRED },
-  },
-  {
-    key: 'price',
-    label: 'Price',
-    name: 'price',
-    type: 'input',
-    rules: { required: ERROR_MESSAGES.FIELD_REQUIRED },
-  },
-  {
-    key: 'offerPrice',
-    label: 'Offer Price',
-    name: 'offerPrice',
-    type: 'input',
-    rules: { required: ERROR_MESSAGES.FIELD_REQUIRED },
-  },
-  {
-    key: 'category',
-    label: 'Category Product',
-    name: 'category',
-    type: 'select',
-    option: Object.values(CATEGORIES),
-    rules: { required: ERROR_MESSAGES.FIELD_REQUIRED },
-  },
-  {
-    key: 'location',
-    label: 'Location Details',
-    name: 'location',
-    type: 'input',
-    rules: { required: ERROR_MESSAGES.FIELD_REQUIRED },
-  },
-  {
-    key: 'description',
-    label: 'Product Description',
-    name: 'description',
-    type: 'input',
-    rules: { required: ERROR_MESSAGES.FIELD_REQUIRED },
-  },
-  {
-    key: 'priceType',
-    label: 'Price Type',
-    name: 'priceType',
-    type: 'select',
-    option: ['Fixed', 'Absolute'],
-    rules: { required: ERROR_MESSAGES.FIELD_REQUIRED },
-  },
-  {
-    key: 'additionalDetails',
-    label: 'Additional Details',
-    name: 'additionalDetails',
-    type: 'select',
-    option: ['Cash on delivery', 'Available'],
-    rules: { required: ERROR_MESSAGES.FIELD_REQUIRED },
-  },
-];
+const INIT_FORM_VALUES = {
+  name: '',
+  category: '',
+  price: '',
+  offerPrice: '',
+  location: '',
+  description: '',
+  priceType: '',
+  additionalDetails: '',
+  images: [],
+};
 
-const ProductForm = ({ onSubmit }: ProductFormProps) => {
-  const [images, setImages] = useState<string[]>([]);
-  const [cameraPermission, requestCameraPermission] = useCameraPermissions();
-  const cameraRef = useRef<CameraView>(null);
-  const [facing, setFacing] = useState<CameraType>('back');
-  const [showCamera, setShowCamera] = useState(false);
-  const { control, clearErrors, handleSubmit } = useForm<ProductFormType>({
-    defaultValues: {
-      name: '',
-      category: '',
-      price: '',
-      offerPrice: '',
-      location: '',
-      description: '',
-      priceType: '',
-      additionalDetails: '',
-    },
-  });
-
-  if (!cameraPermission) {
-    return null;
-  }
-
-  const toggleCamera = () => {
-    setShowCamera((prev) => !prev);
-  };
-
-  const openCamera = async () => {
-    if (!cameraPermission.granted) {
-      const { granted } = await requestCameraPermission();
-
-      if (granted) {
-        setShowCamera(true);
-      }
-    } else {
-      setShowCamera(true);
-    }
-  };
-
-  const takePicture = async () => {
-    if (cameraRef.current) {
-      const photo = await cameraRef.current.takePictureAsync();
-      if (photo) {
-        setImages((prev) => [...prev, photo.uri]);
-        setShowCamera(false);
-      }
-    }
-  };
-
-  function toggleCameraFacing() {
-    setFacing((current) => (current === 'back' ? 'front' : 'back'));
-  }
-
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
+const ProductForm = ({
+  isLoading = false,
+  isEdit = false,
+  data = INIT_FORM_VALUES,
+  onSubmit,
+}: ProductFormProps) => {
+  const [error, setError] = useState<string | null>(null);
+  const { control, clearErrors, handleSubmit, watch } =
+    useForm<ProductFormType>({
+      defaultValues: data,
     });
-    if (!result.canceled) {
-      setImages((prev) => [
-        ...prev,
-        ...result.assets.map((asset) => asset.uri),
-      ]);
-    }
-  };
 
-  const removeImage = (uri: string) => {
-    setImages((prevImages) => prevImages.filter((image) => image !== uri));
-  };
+  const {
+    images,
+    cameraRef,
+    facing,
+    showCamera,
+    openCamera,
+    takePicture,
+    pickImage,
+    removeImage,
+    toggleCamera,
+    toggleCameraFacing,
+  } = useImageHandler(data.images);
+
+  const isUnchanged = isEqual(
+    { ...watch(), images },
+    { ...data, images: data.images },
+  );
 
   const handlePressAddProduct = () => {
     Alert.alert(
@@ -197,26 +105,16 @@ const ProductForm = ({ onSubmit }: ProductFormProps) => {
     );
   };
 
-  const renderItem = ({ item }: { item: string }) => (
-    <View style={styles.imageWrapper}>
-      <Image source={{ uri: item }} style={styles.image} />
-      <TouchableOpacity
-        style={styles.removeIcon}
-        onPress={() => removeImage(item)}
-      >
-        <CloseIcon width={12} height={12} />
-      </TouchableOpacity>
-    </View>
-  );
-
-  const handleSubmitProductForm = (data: ProductFormType) => {
-    console.log(data);
-
-    // onSubmit(data);
+  const handleSubmitProductForm = (formData: ProductFormType) => {
+    if (!images.length) {
+      setError('Please add at least one image');
+      return;
+    }
+    onSubmit({ ...formData, images });
   };
 
-  return (
-    <ScrollView style={styles.container}>
+  const renderItem = () => (
+    <View style={styles.container}>
       {/* Image Upload Section */}
       <View style={styles.imageSection}>
         {images.length < 4 && (
@@ -240,7 +138,95 @@ const ProductForm = ({ onSubmit }: ProductFormProps) => {
             </TouchableOpacity>
           </View>
         ))}
+        {error && (
+          <Text variant="error" size="base" style={styles.errorMessage}>
+            {error}
+          </Text>
+        )}
       </View>
+
+      {/* Form Field Section */}
+      <View style={styles.formField}>
+        {PRODUCT_FORM_FIELDS.map((field) =>
+          field.option ? (
+            <Controller
+              key={field.key}
+              control={control}
+              name={field.name as keyof ProductFormType}
+              rules={field.rules}
+              render={({
+                field: { value, onChange },
+                fieldState: { error },
+              }) => (
+                <Select
+                  value={String(value)}
+                  data={field.option}
+                  placeholder={field.label}
+                  errorMessage={error?.message}
+                  onSelect={(data) => {
+                    clearErrors(field.name as keyof ProductFormType);
+                    onChange(data);
+                  }}
+                />
+              )}
+            />
+          ) : (
+            <Controller
+              key={field.key}
+              control={control}
+              name={field.name as keyof ProductFormType}
+              rules={field.rules}
+              render={({
+                field: { value, onChange },
+                fieldState: { error },
+              }) => (
+                <Input
+                  label={field.label}
+                  variant="flushed"
+                  value={String(value)}
+                  disabled={isLoading}
+                  keyboardType={
+                    field.key === 'price' || field.name === 'offerPrice'
+                      ? 'numeric'
+                      : 'default'
+                  }
+                  errorMessage={error?.message}
+                  onChangeText={(data) => {
+                    clearErrors(field.name as keyof ProductFormType);
+                    onChange(data);
+                  }}
+                />
+              )}
+            />
+          ),
+        )}
+      </View>
+
+      <View style={styles.addBtn}>
+        <Button
+          title={isEdit ? 'Edit Product' : 'Add Product'}
+          isLoading={isLoading}
+          disabled={isUnchanged}
+          onPress={handleSubmit(handleSubmitProductForm)}
+        />
+      </View>
+    </View>
+  );
+
+  return (
+    <>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        style={{ flex: 1 }}
+      >
+        <FlatList
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={true}
+          data={[{ key: 'form' }]}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.key}
+        />
+      </KeyboardAvoidingView>
       {showCamera && (
         <CameraView style={styles.camera} facing={facing} ref={cameraRef}>
           <View style={styles.cameraIconGroup}>
@@ -257,63 +243,7 @@ const ProductForm = ({ onSubmit }: ProductFormProps) => {
           />
         </CameraView>
       )}
-      <View style={styles.formField}>
-        {formFields.map((field) =>
-          field.type === 'input' ? (
-            <Controller
-              key={field.key}
-              control={control}
-              name={field.name}
-              rules={field.rules}
-              render={({
-                field: { value, onChange },
-                fieldState: { error },
-              }) => (
-                <Input
-                  label={field.label}
-                  variant="flushed"
-                  value={value}
-                  errorMessage={error?.message}
-                  // style={field.style}
-                  onChangeText={(data) => {
-                    clearErrors(field.name);
-                    onChange(data);
-                  }}
-                />
-              )}
-            />
-          ) : (
-            <Controller
-              key={field.key}
-              control={control}
-              name={field.name}
-              rules={field.rules}
-              render={({
-                field: { value, onChange },
-                fieldState: { error },
-              }) => (
-                <Select
-                  value={value}
-                  data={field.option || []}
-                  placeholder={field.label}
-                  errorMessage={error?.message}
-                  onSelect={(data) => {
-                    clearErrors(field.name);
-                    onChange(data);
-                  }}
-                />
-              )}
-            />
-          ),
-        )}
-      </View>
-      <View style={styles.addBtn}>
-        <Button
-          title="Add Product"
-          onPress={handleSubmit(handleSubmitProductForm)}
-        />
-      </View>
-    </ScrollView>
+    </>
   );
 };
 
@@ -425,9 +355,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing[8],
     paddingVertical: spacing[3],
     backgroundColor: colors.white1,
+  },
+  errorMessage: {
     position: 'absolute',
     bottom: 0,
-    left: 0,
-    right: 0,
+    left: spacing[6],
   },
 });

@@ -10,3 +10,11 @@ export interface Product {
   storeId: string;
   categoryId: number;
 }
+
+export interface ProductDetails extends Product {
+  location?: string;
+  additionalDetails?: string;
+  priceType?: string;
+}
+
+export type ProductRequest = Omit<ProductDetails, 'id'>;
