@@ -54,5 +54,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   extra: {
     storybookEnabled: process.env.EXPO_PUBLIC_STORYBOOK_ENABLED,
+    eas: {
+      projectId: 'ce9c3a05-4740-4611-9d82-a95f8594d29b',
+    },
   },
 });
