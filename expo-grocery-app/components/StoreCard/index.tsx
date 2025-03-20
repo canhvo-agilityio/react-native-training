@@ -1,6 +1,6 @@
 import { colors, spacing } from '@/themes';
 import { Text } from '../Text';
-import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Image, StyleSheet } from 'react-native';
 import Button from '../Button';
 
 interface StoreCardProps {

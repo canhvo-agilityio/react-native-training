@@ -7,6 +7,7 @@ const TrashIcon = ({
   color = '#FFFFFF',
 }: IconProps) => (
   <Svg
+    testID="trash-icon"
     width={width}
     height={width}
     viewBox={`0 0 ${width} ${height}`}

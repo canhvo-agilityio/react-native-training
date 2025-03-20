@@ -31,7 +31,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'np02',
-    name: 'Coca-Cola',
+    name: 'dghdfertt',
     newPrice: 50,
     oldPrice: 25,
     discount: 20,
@@ -44,7 +44,7 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'np03',
-    name: 'Coca-Cola',
+    name: 'fghdvbser',
     newPrice: 50,
     oldPrice: 25,
     discount: 20,

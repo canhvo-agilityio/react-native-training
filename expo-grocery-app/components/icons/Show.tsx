@@ -2,7 +2,13 @@ import Svg, { Path } from 'react-native-svg';
 import { IconProps } from '@/interfaces';
 
 const Show = ({ width = 20, height = 20, color = '#ffffff' }: IconProps) => (
-  <Svg width={width} height={height} viewBox="0 0 20 20" fill="none">
+  <Svg
+    testID="show-icon"
+    width={width}
+    height={height}
+    viewBox="0 0 20 20"
+    fill="none"
+  >
     <Path
       d="M2 9.5C2 9.5 4.90909 4 10 4C15.0909 4 18 9.5 18 9.5C18 9.5 15.0909 15 10 15C4.90909 15 2 9.5 2 9.5Z"
       stroke={color}

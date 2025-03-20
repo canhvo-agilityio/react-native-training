@@ -4,7 +4,10 @@ import { CATEGORIES, NOTIFICATION_ACTION_KEYS, ROUTES } from '@/constants';
 import { useAddProduct, useUploadToImgBB } from '@/hooks';
 import { ProductRequest } from '@/interfaces';
 import { colors, spacing } from '@/themes';
-import { scheduleNotification } from '@/utils';
+import {
+  checkAndRequestNotificationPermission,
+  scheduleNotification,
+} from '@/utils';
 import { router } from 'expo-router';
 import Toast from 'react-native-toast-message';
 
@@ -22,6 +25,7 @@ export default function AddProduct() {
   };
 
   const handleSubmit = async (data: ProductFormType) => {
+    await checkAndRequestNotificationPermission();
     uploadImages(data.images, {
       onSuccess: (uploadedUrls) => {
         const dataConvert: ProductRequest = {

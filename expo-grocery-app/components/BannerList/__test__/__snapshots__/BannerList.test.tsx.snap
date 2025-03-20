@@ -1,0 +1,321 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BannerList Component renders correctly with data 1`] = `
+<RCTScrollView
+  horizontal={true}
+  showsHorizontalScrollIndicator={false}
+  style={
+    {
+      "maxHeight": 170,
+    }
+  }
+>
+  <View>
+    <View
+      style={
+        {
+          "flexDirection": "row",
+          "gap": 16,
+        }
+      }
+    >
+      <View
+        accessibilityIgnoresInvertColors={true}
+        style={
+          {
+            "borderRadius": 10,
+            "height": 165,
+            "overflow": "hidden",
+            "width": 300,
+          }
+        }
+      >
+        <Image
+          source={
+            {
+              "uri": "https://i.pinimg.com/474x/ba/b3/18/bab31873cf89cde0aae2635159ca508a.jpg",
+            }
+          }
+          style={
+            [
+              {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              {
+                "height": 165,
+                "width": 300,
+              },
+              {
+                "borderRadius": 10,
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flex": 1,
+              "gap": 20,
+              "justifyContent": "center",
+              "paddingHorizontal": 20,
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "backgroundColor": "rgba(0, 0, 0, 0.4)",
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <Text
+            style={
+              [
+                {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontWeight": "700",
+                },
+                {
+                  "fontSize": 14,
+                  "lineHeight": 14,
+                },
+                {
+                  "fontFamily": "Montserrat-SemiBold",
+                  "fontWeight": "600",
+                  "lineHeight": 20,
+                  "width": 200,
+                },
+                {},
+              ]
+            }
+          >
+            READY TO DELIVER TO YOUR HOME
+          </Text>
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={false}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "borderColor": "#FFFFFF",
+                "borderRadius": 20,
+                "borderWidth": 1,
+                "opacity": 1,
+                "paddingHorizontal": 20,
+                "paddingVertical": 8,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4F4F4F",
+                    "fontFamily": "Montserrat",
+                    "fontWeight": "400",
+                  },
+                  {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontSize": 14,
+                    "fontWeight": "bold",
+                  },
+                  {},
+                ]
+              }
+            >
+              START SHOPPING
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        accessibilityIgnoresInvertColors={true}
+        style={
+          {
+            "borderRadius": 10,
+            "height": 165,
+            "overflow": "hidden",
+            "width": 300,
+          }
+        }
+      >
+        <Image
+          source={
+            {
+              "uri": "https://i.pinimg.com/474x/79/65/43/7965432a0dc8ed8ad5944ba5091dc07b.jpg",
+            }
+          }
+          style={
+            [
+              {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              {
+                "height": 165,
+                "width": 300,
+              },
+              {
+                "borderRadius": 10,
+              },
+            ]
+          }
+        />
+        <View
+          style={
+            {
+              "alignItems": "flex-start",
+              "flex": 1,
+              "gap": 20,
+              "justifyContent": "center",
+              "paddingHorizontal": 20,
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "backgroundColor": "rgba(0, 0, 0, 0.4)",
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+          <Text
+            style={
+              [
+                {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontWeight": "700",
+                },
+                {
+                  "fontSize": 14,
+                  "lineHeight": 14,
+                },
+                {
+                  "fontFamily": "Montserrat-SemiBold",
+                  "fontWeight": "600",
+                  "lineHeight": 20,
+                  "width": 200,
+                },
+                {},
+              ]
+            }
+          >
+            READY TO DELIVER TO YOUR HOME
+          </Text>
+          <View
+            accessibilityState={
+              {
+                "busy": undefined,
+                "checked": undefined,
+                "disabled": undefined,
+                "expanded": undefined,
+                "selected": undefined,
+              }
+            }
+            accessibilityValue={
+              {
+                "max": undefined,
+                "min": undefined,
+                "now": undefined,
+                "text": undefined,
+              }
+            }
+            accessible={true}
+            collapsable={false}
+            focusable={false}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              {
+                "borderColor": "#FFFFFF",
+                "borderRadius": 20,
+                "borderWidth": 1,
+                "opacity": 1,
+                "paddingHorizontal": 20,
+                "paddingVertical": 8,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4F4F4F",
+                    "fontFamily": "Montserrat",
+                    "fontWeight": "400",
+                  },
+                  {
+                    "fontSize": 18,
+                    "lineHeight": 20,
+                  },
+                  {
+                    "color": "#FFFFFF",
+                    "fontSize": 14,
+                    "fontWeight": "bold",
+                  },
+                  {},
+                ]
+              }
+            >
+              START SHOPPING
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

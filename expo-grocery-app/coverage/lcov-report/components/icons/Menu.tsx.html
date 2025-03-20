@@ -1,0 +1,142 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for components/icons/Menu.tsx</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/icons</a> Menu.tsx</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">50% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>1/2</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/3</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/1</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">50% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>1/2</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line medium'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Svg, { Path } from 'react-native-svg';
+import { IconProps } from '@/interfaces';
+&nbsp;
+const MenuIcon = <span class="fstat-no" title="function not covered" >({</span>
+  width = <span class="branch-0 cbranch-no" title="branch not covered" >15,</span>
+  height = <span class="branch-0 cbranch-no" title="branch not covered" >12,</span>
+  color = <span class="branch-0 cbranch-no" title="branch not covered" >'#ffffff',</span>
+}: IconProps) =&gt; (
+<span class="cstat-no" title="statement not covered" >  &lt;Svg width={width} height={height} viewBox="0 0 15 12" fill="none"&gt;</span>
+    &lt;Path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M4.75007 7.07143C4.75007 7.42647 4.45626 7.71429 4.09382 7.71429H1.323C0.960557 7.71429 0.666748 7.42647 0.666748 7.07143V4.92857C0.666748 4.57353 0.960557 4.28571 1.323 4.28571H4.09382C4.45626 4.28571 4.75007 4.57353 4.75007 4.92857V7.07143ZM0.666748 11.3571C0.666748 11.7122 0.960557 12 1.323 12H4.09382C4.45626 12 4.75007 11.7122 4.75007 11.3571V9.21429C4.75007 8.85924 4.45626 8.57143 4.09382 8.57143H1.323C0.960557 8.57143 0.666748 8.85924 0.666748 9.21429V11.3571ZM1.323 0C0.960557 0 0.666748 0.287813 0.666748 0.642857V2.78571C0.666748 3.14076 0.960557 3.42857 1.323 3.42857H4.09382C4.45626 3.42857 4.75007 3.14076 4.75007 2.78571V0.642857C4.75007 0.287813 4.45626 0 4.09382 0H1.323ZM14.0105 12C14.3729 12 14.6667 11.7122 14.6667 11.3571V9.21429C14.6667 8.85924 14.3729 8.57143 14.0105 8.57143H6.28132C5.91888 8.57143 5.62507 8.85924 5.62507 9.21429V11.3571C5.62507 11.7122 5.91888 12 6.28132 12H14.0105ZM5.62507 2.78571C5.62507 3.14076 5.91888 3.42857 6.28132 3.42857H14.0105C14.3729 3.42857 14.6667 3.14076 14.6667 2.78571V0.642857C14.6667 0.287813 14.3729 0 14.0105 0H6.28132C5.91888 0 5.62507 0.287813 5.62507 0.642857V2.78571ZM14.0105 7.71429C14.3729 7.71429 14.6667 7.42647 14.6667 7.07143V4.92857C14.6667 4.57353 14.3729 4.28571 14.0105 4.28571H6.28132C5.91888 4.28571 5.62507 4.57353 5.62507 4.92857V7.07143C5.62507 7.42647 5.91888 7.71429 6.28132 7.71429H14.0105Z"
+      fill={color}
+    /&gt;
+  &lt;/Svg&gt;
+);
+&nbsp;
+export default MenuIcon;
+&nbsp;</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2025-03-20T08:44:48.534Z
+            </div>
+        <script src="../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
+    </body>
+</html>
+    

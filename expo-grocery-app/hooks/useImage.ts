@@ -2,8 +2,9 @@ import { useState, useRef } from 'react';
 import * as ImagePicker from 'expo-image-picker';
 import { CameraType, CameraView, useCameraPermissions } from 'expo-camera';
 import { useMutation } from '@tanstack/react-query';
-import { Platform } from 'react-native';
+import { Alert, Platform } from 'react-native';
 import { IMAGE_SERVICE_KEY } from '@/constants';
+import * as Linking from 'expo-linking';
 
 export const useImageHandler = (data: string[]) => {
   const [images, setImages] = useState<string[]>(data);
@@ -16,10 +17,24 @@ export const useImageHandler = (data: string[]) => {
   const openCamera = async () => {
     if (!cameraPermission?.granted) {
       const { granted } = await requestCameraPermission();
-      if (granted) setShowCamera(true);
-    } else {
-      setShowCamera(true);
+
+      if (!granted) {
+        Alert.alert(
+          'You have not granted camera access',
+          'Please go to Settings to re-grant permissions.',
+          [
+            { text: 'Cancel', style: 'cancel' },
+            {
+              text: 'Open Settings',
+              onPress: () => Linking.openSettings(),
+            },
+          ],
+        );
+        return;
+      }
     }
+
+    setShowCamera(true);
   };
 
   const takePicture = async () => {

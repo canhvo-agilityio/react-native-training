@@ -11,7 +11,7 @@ import {
   StoreList,
   Text,
 } from '@/components';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { colors, fontsFamily, fontWeights, spacing } from '@/themes';
 import { router } from 'expo-router';
 import { BANNERS, CATEGORIES, STORES } from '@/mocks';
@@ -32,12 +32,19 @@ export default function HomeScreen() {
     error: popularProductError,
   } = useFetchProducts(ENDPOINTS.POPULAR_PRODUCTS);
 
-  const handleChangeSearchInput = (value: string) => {
-    setSearchValue(value);
-  };
+  const handleChangeSearchInput = useCallback(
+    () => (value: string) => {
+      setSearchValue(value);
+    },
+    [],
+  );
 
   const handlePressCategoryItem = (id: number) => {
     router.push(ROUTES.CATEGORY(id));
+  };
+
+  const handlePressProduct = (id: string) => {
+    router.push(ROUTES.PRODUCT_DETAILS(id));
   };
 
   return (
@@ -79,7 +86,7 @@ export default function HomeScreen() {
           {isLoadingNewProduct ? (
             <ActivityIndicator />
           ) : (
-            <ProductList data={newProductData} />
+            <ProductList data={newProductData} onPress={handlePressProduct} />
           )}
         </View>
         {/* Popular products */}
@@ -94,7 +101,10 @@ export default function HomeScreen() {
           {isLoadingPopularProduct ? (
             <ActivityIndicator />
           ) : (
-            <ProductList data={popularProductData} />
+            <ProductList
+              data={popularProductData}
+              onPress={handlePressProduct}
+            />
           )}
         </View>
         {/* Stores */}

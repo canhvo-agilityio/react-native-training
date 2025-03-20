@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductCard Component renders correctly with default props 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onClick={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    {
+      "backgroundColor": "#FFFFFF",
+      "borderRadius": 10,
+      "elevation": 1,
+      "marginRight": 8,
+      "opacity": 1,
+      "overflow": "hidden",
+      "shadowOpacity": 0.1,
+      "shadowRadius": 4,
+      "width": 160,
+    }
+  }
+  testID="product-card"
+>
+  <View
+    style={
+      {
+        "position": "relative",
+      }
+    }
+  >
+    <ViewManagerAdapter_ExpoImage
+      containerViewRef={"[React.ref]"}
+      contentFit="cover"
+      contentPosition={
+        {
+          "left": "50%",
+          "top": "50%",
+        }
+      }
+      height={160}
+      nativeViewRef={"[React.ref]"}
+      onError={[Function]}
+      onLoad={[Function]}
+      onLoadStart={[Function]}
+      onProgress={[Function]}
+      placeholder={[]}
+      source={
+        [
+          {
+            "uri": "https://example.com/image.jpg",
+          },
+        ]
+      }
+      style={
+        {
+          "height": 160,
+          "width": "100%",
+        }
+      }
+      transition={null}
+      width="100%"
+    />
+  </View>
+  <View
+    style={
+      {
+        "padding": 12,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#4A4A4A",
+            "fontFamily": "Montserrat-Medium",
+            "fontWeight": "500",
+          },
+          {
+            "fontSize": 14,
+            "lineHeight": 14,
+          },
+          undefined,
+          {},
+        ]
+      }
+    >
+      Product Name
+    </Text>
+    <View
+      style={
+        {
+          "alignItems": "center",
+          "flexDirection": "row",
+          "justifyContent": "space-between",
+          "marginTop": 8,
+        }
+      }
+    >
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "gap": 8,
+          }
+        }
+      >
+        <View
+          style={
+            {
+              "alignItems": "center",
+              "backgroundColor": "#33907C",
+              "borderRadius": 12,
+              "height": 24,
+              "justifyContent": "center",
+              "width": 24,
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#FFFFFF",
+                  "fontFamily": "Montserrat-Bold",
+                  "fontWeight": "700",
+                },
+                {
+                  "fontSize": 18,
+                  "lineHeight": 20,
+                },
+                undefined,
+                {},
+              ]
+            }
+          >
+            S
+          </Text>
+        </View>
+        <Text
+          numberOfLines={1}
+          style={
+            [
+              {
+                "color": "#4F4F4F",
+                "fontFamily": "Montserrat",
+                "fontWeight": "400",
+              },
+              {
+                "fontSize": 14,
+                "lineHeight": 14,
+              },
+              {
+                "opacity": 0.5,
+                "overflow": "visible",
+                "width": 40,
+              },
+              {},
+            ]
+          }
+        >
+          Store Name
+        </Text>
+      </View>
+      <View
+        style={
+          {
+            "alignItems": "center",
+            "flexDirection": "row",
+            "gap": 8,
+          }
+        }
+      >
+        <Text
+          style={
+            [
+              {
+                "color": "#4F4F4F",
+                "fontFamily": "Montserrat",
+                "fontWeight": "400",
+              },
+              {
+                "fontSize": 18,
+                "lineHeight": 20,
+              },
+              {
+                "fontSize": 10,
+                "textDecorationLine": "line-through",
+              },
+              {},
+            ]
+          }
+        >
+          $
+          30
+        </Text>
+        <Text
+          style={
+            [
+              {
+                "color": "#4F4F4F",
+                "fontFamily": "Montserrat",
+                "fontWeight": "400",
+              },
+              {
+                "fontSize": 14,
+                "lineHeight": 14,
+              },
+              {
+                "color": "#33907C",
+                "fontFamily": "Montserrat-SemiBold",
+                "fontWeight": "600",
+              },
+              {},
+            ]
+          }
+        >
+          $
+          20
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;

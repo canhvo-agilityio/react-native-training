@@ -4,13 +4,12 @@ exports[`Input Component renders correctly with default props 1`] = `
 <View>
   <TextInput
     editable={true}
-    onChangeText={[Function]}
-    placeholder="Enter text"
-    placeholderTextColor="#4F4F4F"
+    placeholderTextColor="#DCDDDF"
+    secureTextEntry={false}
     style={
       [
         {
-          "paddingVertical": 12,
+          "paddingVertical": 16,
         },
         {
           "backgroundColor": "#FFFFFF",
@@ -23,7 +22,7 @@ exports[`Input Component renders correctly with default props 1`] = `
         undefined,
       ]
     }
-    value=""
+    value="Test Value"
   />
 </View>
 `;

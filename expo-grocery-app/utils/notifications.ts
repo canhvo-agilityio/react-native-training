@@ -1,6 +1,7 @@
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
-import { Platform } from 'react-native';
+import { Alert, Platform } from 'react-native';
+import * as Linking from 'expo-linking';
 
 export const registerForPushNotificationsAsync = async () => {
   if (Platform.OS === 'android') {
@@ -16,16 +17,11 @@ export const registerForPushNotificationsAsync = async () => {
   if (!Device.isDevice) return;
 
   const { status: existingStatus } = await Notifications.getPermissionsAsync();
-  let finalStatus = existingStatus;
-
   if (existingStatus !== 'granted') {
     const { status } = await Notifications.requestPermissionsAsync();
-    finalStatus = status;
-  }
-
-  if (finalStatus !== 'granted') {
-    alert('Failed to get push token for push notification!');
-    return;
+    if (status !== 'granted') {
+      return;
+    }
   }
 };
 
@@ -61,3 +57,28 @@ export async function scheduleNotification(
     },
   });
 }
+
+export const checkAndRequestNotificationPermission = async () => {
+  const { status } = await Notifications.getPermissionsAsync();
+
+  if (status !== 'granted') {
+    return new Promise((resolve) => {
+      Alert.alert(
+        'You have not granted permission to receive notifications',
+        'Please go to Settings to re-enable permissions.',
+        [
+          { text: 'Cancel', style: 'cancel', onPress: () => resolve(false) },
+          {
+            text: 'Open Settings',
+            onPress: () => {
+              Linking.openSettings();
+              resolve(false);
+            },
+          },
+        ],
+      );
+    });
+  }
+
+  return true;
+};

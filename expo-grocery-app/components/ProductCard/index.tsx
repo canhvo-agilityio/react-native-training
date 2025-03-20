@@ -37,7 +37,11 @@ const ProductCard = ({
   };
 
   return (
-    <TouchableOpacity style={styles.card} onPress={handlePress}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={handlePress}
+      testID="product-card"
+    >
       <View style={styles.imageContainer}>
         <Image
           source={{ uri: imageUrl }}

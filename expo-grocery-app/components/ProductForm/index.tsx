@@ -119,6 +119,7 @@ const ProductForm = ({
       <View style={styles.imageSection}>
         {images.length < 4 && (
           <TouchableOpacity
+            testID="add-photo-button"
             style={styles.addPhoto}
             onPress={handlePressAddProduct}
           >
@@ -131,6 +132,7 @@ const ProductForm = ({
           <View key={item} style={styles.imageWrapper}>
             <Image source={{ uri: item }} style={styles.image} />
             <TouchableOpacity
+              testID={`remove-image-button-${item}`}
               style={styles.removeIcon}
               onPress={() => removeImage(item)}
             >
@@ -181,6 +183,7 @@ const ProductForm = ({
                 fieldState: { error },
               }) => (
                 <Input
+                  testID={field.label}
                   label={field.label}
                   variant="flushed"
                   value={String(value)}
@@ -204,6 +207,7 @@ const ProductForm = ({
 
       <View style={styles.addBtn}>
         <Button
+          testID="submit-button"
           title={isEdit ? 'Edit Product' : 'Add Product'}
           isLoading={isLoading}
           disabled={isUnchanged}

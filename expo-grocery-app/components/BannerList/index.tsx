@@ -12,7 +12,7 @@ interface BannerListProps {
   data: Banner[];
 }
 
-const CategoryList = ({ data }: BannerListProps) => {
+const BannerList = ({ data }: BannerListProps) => {
   return (
     <ScrollView
       horizontal
@@ -28,7 +28,7 @@ const CategoryList = ({ data }: BannerListProps) => {
   );
 };
 
-export default CategoryList;
+export default BannerList;
 
 const styles = StyleSheet.create({
   scrollView: {

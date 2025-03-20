@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Component renders correctly with default props 1`] = `
+<View
+  accessibilityState={
+    {
+      "busy": undefined,
+      "checked": undefined,
+      "disabled": undefined,
+      "expanded": undefined,
+      "selected": undefined,
+    }
+  }
+  accessibilityValue={
+    {
+      "max": undefined,
+      "min": undefined,
+      "now": undefined,
+      "text": undefined,
+    }
+  }
+  accessible={true}
+  collapsable={false}
+  focusable={true}
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    [
+      {
+        "alignItems": "center",
+        "borderRadius": 24,
+        "flexDirection": "row",
+        "gap": 8,
+        "justifyContent": "center",
+      },
+      {
+        "backgroundColor": "#33907C",
+      },
+      {
+        "paddingVertical": 16,
+        "width": "100%",
+      },
+      undefined,
+      false,
+      undefined,
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "fontFamily": "Montserrat",
+        },
+        {
+          "color": "#FFFFFF",
+        },
+        {
+          "fontFamily": "Montserrat-SemiBold",
+          "fontSize": 18,
+          "fontWeight": "600",
+          "lineHeight": 20,
+        },
+      ]
+    }
+  >
+    Click Me
+  </Text>
+</View>
+`;

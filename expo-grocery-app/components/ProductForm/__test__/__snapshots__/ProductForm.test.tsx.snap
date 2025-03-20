@@ -1,0 +1,816 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductForm Component should render the ProductForm component correctly 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    [
+      {
+        "flex": 1,
+      },
+      {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <RCTScrollView
+    data={
+      [
+        {
+          "key": "form",
+        },
+      ]
+    }
+    getItem={[Function]}
+    getItemCount={[Function]}
+    keyExtractor={[Function]}
+    keyboardShouldPersistTaps="handled"
+    onContentSizeChange={[Function]}
+    onLayout={[Function]}
+    onMomentumScrollBegin={[Function]}
+    onMomentumScrollEnd={[Function]}
+    onScroll={[Function]}
+    onScrollBeginDrag={[Function]}
+    onScrollEndDrag={[Function]}
+    removeClippedSubviews={false}
+    renderItem={[Function]}
+    scrollEventThrottle={0.0001}
+    showsVerticalScrollIndicator={true}
+    stickyHeaderIndices={[]}
+    viewabilityConfigCallbackPairs={[]}
+  >
+    <View>
+      <View
+        onFocusCapture={[Function]}
+        onLayout={[Function]}
+        style={null}
+      >
+        <View
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "flex": 1,
+              "paddingBottom": 80,
+            }
+          }
+        >
+          <View
+            style={
+              {
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "gap": 12,
+                "paddingHorizontal": 28,
+                "paddingVertical": 32,
+              }
+            }
+          >
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onClick={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                {
+                  "alignItems": "center",
+                  "borderColor": "#DBDBDE",
+                  "borderRadius": 8,
+                  "borderStyle": "dashed",
+                  "borderWidth": 1,
+                  "gap": 8,
+                  "height": 124,
+                  "justifyContent": "center",
+                  "opacity": 1,
+                  "width": 140,
+                }
+              }
+              testID="add-photo-button"
+            >
+              <RNSVGSvgView
+                align="xMidYMid"
+                bbHeight={19}
+                bbWidth={19}
+                fill="none"
+                focusable={false}
+                height={19}
+                meetOrSlice={0}
+                minX={0}
+                minY={0}
+                style={
+                  [
+                    {
+                      "backgroundColor": "transparent",
+                      "borderWidth": 0,
+                    },
+                    {
+                      "flex": 0,
+                      "height": 19,
+                      "width": 19,
+                    },
+                  ]
+                }
+                vbHeight={19}
+                vbWidth={19}
+                width={19}
+              >
+                <RNSVGGroup
+                  fill={null}
+                  propList={
+                    [
+                      "fill",
+                    ]
+                  }
+                >
+                  <RNSVGPath
+                    d="M10.8516 10.8443V19H8.1763V10.8443H0.277832V8.20047H8.1763V0H10.8516V8.20047H18.7501V10.8443H10.8516Z"
+                    fill={
+                      {
+                        "payload": 4278190080,
+                        "type": 0,
+                      }
+                    }
+                    fillOpacity={0.2}
+                    propList={
+                      [
+                        "fill",
+                        "fillOpacity",
+                      ]
+                    }
+                  />
+                </RNSVGGroup>
+              </RNSVGSvgView>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                    },
+                    {
+                      "color": "#000000",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontWeight": "600",
+                      "opacity": 0.4,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Add photos
+              </Text>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                    },
+                    {
+                      "color": "#000000",
+                      "fontSize": 10,
+                      "opacity": 0.2,
+                    },
+                    {},
+                  ]
+                }
+              >
+                1600 x 1200 for hi res
+              </Text>
+            </View>
+          </View>
+          <View
+            style={
+              {
+                "backgroundColor": "#FFFFFF",
+                "flex": 1,
+                "gap": 28,
+                "padding": 20,
+              }
+            }
+          >
+            <View>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "opacity": 0.5,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Product Name
+              </Text>
+              <TextInput
+                editable={true}
+                keyboardType="default"
+                onChangeText={[Function]}
+                placeholderTextColor="#4F4F4F"
+                secureTextEntry={false}
+                style={
+                  [
+                    {
+                      "paddingVertical": 16,
+                    },
+                    {
+                      "borderBottomColor": "#DBDBDE",
+                      "borderBottomWidth": 1,
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontSize": 16,
+                    },
+                    false,
+                  ]
+                }
+                testID="Product Name"
+                value=""
+              />
+            </View>
+            <View>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "opacity": 0.5,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Price
+              </Text>
+              <TextInput
+                editable={true}
+                keyboardType="numeric"
+                onChangeText={[Function]}
+                placeholderTextColor="#4F4F4F"
+                secureTextEntry={false}
+                style={
+                  [
+                    {
+                      "paddingVertical": 16,
+                    },
+                    {
+                      "borderBottomColor": "#DBDBDE",
+                      "borderBottomWidth": 1,
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontSize": 16,
+                    },
+                    false,
+                  ]
+                }
+                testID="Price"
+                value=""
+              />
+            </View>
+            <View>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "opacity": 0.5,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Offer Price
+              </Text>
+              <TextInput
+                editable={true}
+                keyboardType="numeric"
+                onChangeText={[Function]}
+                placeholderTextColor="#4F4F4F"
+                secureTextEntry={false}
+                style={
+                  [
+                    {
+                      "paddingVertical": 16,
+                    },
+                    {
+                      "borderBottomColor": "#DBDBDE",
+                      "borderBottomWidth": 1,
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontSize": 16,
+                    },
+                    false,
+                  ]
+                }
+                testID="Offer Price"
+                value=""
+              />
+            </View>
+            <View
+              style={
+                {
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderBottomWidth": 1,
+                    "borderColor": "#DCDDDF",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingVertical": 12,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 16,
+                        "lineHeight": 22,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  Category Product
+                </Text>
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  ▼
+                </Text>
+              </View>
+            </View>
+            <View>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "opacity": 0.5,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Location Details
+              </Text>
+              <TextInput
+                editable={true}
+                keyboardType="default"
+                onChangeText={[Function]}
+                placeholderTextColor="#4F4F4F"
+                secureTextEntry={false}
+                style={
+                  [
+                    {
+                      "paddingVertical": 16,
+                    },
+                    {
+                      "borderBottomColor": "#DBDBDE",
+                      "borderBottomWidth": 1,
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontSize": 16,
+                    },
+                    false,
+                  ]
+                }
+                testID="Location Details"
+                value=""
+              />
+            </View>
+            <View>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "opacity": 0.5,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Product Description
+              </Text>
+              <TextInput
+                editable={true}
+                keyboardType="default"
+                onChangeText={[Function]}
+                placeholderTextColor="#4F4F4F"
+                secureTextEntry={false}
+                style={
+                  [
+                    {
+                      "paddingVertical": 16,
+                    },
+                    {
+                      "borderBottomColor": "#DBDBDE",
+                      "borderBottomWidth": 1,
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontSize": 16,
+                    },
+                    false,
+                  ]
+                }
+                testID="Product Description"
+                value=""
+              />
+            </View>
+            <View
+              style={
+                {
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderBottomWidth": 1,
+                    "borderColor": "#DCDDDF",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingVertical": 12,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 16,
+                        "lineHeight": 22,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  Price Type
+                </Text>
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  ▼
+                </Text>
+              </View>
+            </View>
+            <View
+              style={
+                {
+                  "width": "100%",
+                }
+              }
+            >
+              <View
+                accessibilityState={
+                  {
+                    "busy": undefined,
+                    "checked": undefined,
+                    "disabled": undefined,
+                    "expanded": undefined,
+                    "selected": undefined,
+                  }
+                }
+                accessibilityValue={
+                  {
+                    "max": undefined,
+                    "min": undefined,
+                    "now": undefined,
+                    "text": undefined,
+                  }
+                }
+                accessible={true}
+                collapsable={false}
+                focusable={true}
+                onClick={[Function]}
+                onResponderGrant={[Function]}
+                onResponderMove={[Function]}
+                onResponderRelease={[Function]}
+                onResponderTerminate={[Function]}
+                onResponderTerminationRequest={[Function]}
+                onStartShouldSetResponder={[Function]}
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#FFFFFF",
+                    "borderBottomWidth": 1,
+                    "borderColor": "#DCDDDF",
+                    "flexDirection": "row",
+                    "justifyContent": "space-between",
+                    "opacity": 1,
+                    "paddingVertical": 12,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 16,
+                        "lineHeight": 22,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  Additional Details
+                </Text>
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  ▼
+                </Text>
+              </View>
+            </View>
+          </View>
+          <View
+            style={
+              {
+                "backgroundColor": "#FFFFFF",
+                "paddingHorizontal": 32,
+                "paddingVertical": 12,
+              }
+            }
+          >
+            <View
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": true,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              accessibilityValue={
+                {
+                  "max": undefined,
+                  "min": undefined,
+                  "now": undefined,
+                  "text": undefined,
+                }
+              }
+              accessible={true}
+              collapsable={false}
+              focusable={true}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onFocus={[Function]}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                [
+                  {
+                    "alignItems": "center",
+                    "borderRadius": 24,
+                    "flexDirection": "row",
+                    "gap": 8,
+                    "justifyContent": "center",
+                  },
+                  {
+                    "backgroundColor": "#33907C",
+                  },
+                  {
+                    "paddingVertical": 16,
+                    "width": "100%",
+                  },
+                  {
+                    "opacity": 0.7,
+                  },
+                  false,
+                  undefined,
+                ]
+              }
+              testID="submit-button"
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "fontFamily": "Montserrat",
+                    },
+                    {
+                      "color": "#FFFFFF",
+                    },
+                    {
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontSize": 18,
+                      "fontWeight": "600",
+                      "lineHeight": 20,
+                    },
+                  ]
+                }
+              >
+                Add Product
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </RCTScrollView>
+</View>
+`;

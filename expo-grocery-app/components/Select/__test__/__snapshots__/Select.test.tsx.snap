@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select Component renders correctly 1`] = `
+<View
+  style={
+    {
+      "width": "100%",
+    }
+  }
+>
+  <View
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "alignItems": "center",
+        "backgroundColor": "#FFFFFF",
+        "borderBottomWidth": 1,
+        "borderColor": "#DCDDDF",
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "opacity": 1,
+        "paddingVertical": 12,
+      }
+    }
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#4F4F4F",
+            "fontFamily": "Montserrat",
+            "fontWeight": "400",
+          },
+          {
+            "fontSize": 16,
+            "lineHeight": 22,
+          },
+          undefined,
+          {},
+        ]
+      }
+    >
+      Select an option
+    </Text>
+    <Text
+      style={
+        [
+          {
+            "color": "#4F4F4F",
+            "fontFamily": "Montserrat",
+            "fontWeight": "400",
+          },
+          {
+            "fontSize": 18,
+            "lineHeight": 20,
+          },
+          undefined,
+          {},
+        ]
+      }
+    >
+      ▼
+    </Text>
+  </View>
+</View>
+`;

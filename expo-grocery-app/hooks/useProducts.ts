@@ -34,7 +34,7 @@ export const useFetchProductsByStoreId = (id: string) => {
     queryKey: [ENDPOINTS.STORES + 'products'],
     queryFn: () =>
       get(`${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}?storeId=${id}`),
-    initialData: [],
+    initialData: INIT_PRODUCT,
   });
 };
 

@@ -1,0 +1,2538 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductList Component renders in grid layout when isGrid is true 1`] = `
+<RCTScrollView
+  data={
+    [
+      {
+        "categoryId": 0,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis cras placerat diam ipsum ut. Nisi vel adipiscing massa bibendum diam. Suspendisse mattis dui maecenas duis mattis. Mattis aliquam at arcu, semper nunc, venenatis et pellentesque eu. Id tristique maecenas tristique habitasse eu elementum sed. Aliquam eget lacus, arcu, adipiscing eget feugiat in dolor sagittis.",
+        "discount": 20,
+        "id": "np01",
+        "images": [
+          "https://i.ibb.co/p2gcrFp/Rectangle.png",
+        ],
+        "name": "Coca-Cola",
+        "newPrice": 50,
+        "oldPrice": 25,
+        "storeId": "dasfsf",
+        "storeName": "Tradly",
+      },
+      {
+        "categoryId": 0,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis cras placerat diam ipsum ut. Nisi vel adipiscing massa bibendum diam. Suspendisse mattis dui maecenas duis mattis. Mattis aliquam at arcu, semper nunc, venenatis et pellentesque eu. Id tristique maecenas tristique habitasse eu elementum sed. Aliquam eget lacus, arcu, adipiscing eget feugiat in dolor sagittis.",
+        "discount": 20,
+        "id": "np02",
+        "images": [
+          "https://i.ibb.co/p2gcrFp/Rectangle.png",
+        ],
+        "name": "dghdfertt",
+        "newPrice": 50,
+        "oldPrice": 25,
+        "storeId": "dasfsf",
+        "storeName": "Tradly",
+      },
+      {
+        "categoryId": 0,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis cras placerat diam ipsum ut. Nisi vel adipiscing massa bibendum diam. Suspendisse mattis dui maecenas duis mattis. Mattis aliquam at arcu, semper nunc, venenatis et pellentesque eu. Id tristique maecenas tristique habitasse eu elementum sed. Aliquam eget lacus, arcu, adipiscing eget feugiat in dolor sagittis.",
+        "discount": 20,
+        "id": "np03",
+        "images": [
+          "https://i.ibb.co/p2gcrFp/Rectangle.png",
+        ],
+        "name": "fghdvbser",
+        "newPrice": 50,
+        "oldPrice": 25,
+        "storeId": "dasfsf",
+        "storeName": "Tradly",
+      },
+    ]
+  }
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={false}
+  initialNumToRender={6}
+  keyExtractor={[Function]}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={0.0001}
+  showsHorizontalScrollIndicator={false}
+  stickyHeaderIndices={[]}
+  viewabilityConfigCallbackPairs={[]}
+>
+  <View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          [
+            {
+              "flexDirection": "row",
+            },
+            {
+              "paddingBottom": 10,
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 10,
+              "elevation": 1,
+              "marginRight": 8,
+              "opacity": 1,
+              "overflow": "hidden",
+              "shadowOpacity": 0.1,
+              "shadowRadius": 4,
+              "width": 160,
+            }
+          }
+          testID="product-card"
+        >
+          <View
+            style={
+              {
+                "position": "relative",
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoImage
+              containerViewRef={"[React.ref]"}
+              contentFit="cover"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height={160}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              source={
+                [
+                  {
+                    "uri": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 160,
+                  "width": "100%",
+                }
+              }
+              transition={null}
+              width="100%"
+            />
+          </View>
+          <View
+            style={
+              {
+                "padding": 12,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat-Medium",
+                    "fontWeight": "500",
+                  },
+                  {
+                    "fontSize": 14,
+                    "lineHeight": 14,
+                  },
+                  undefined,
+                  {},
+                ]
+              }
+            >
+              Coca-Cola
+            </Text>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "marginTop": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "gap": 8,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#33907C",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "justifyContent": "center",
+                      "width": 24,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Montserrat-Bold",
+                          "fontWeight": "700",
+                        },
+                        {
+                          "fontSize": 18,
+                          "lineHeight": 20,
+                        },
+                        undefined,
+                        {},
+                      ]
+                    }
+                  >
+                    T
+                  </Text>
+                </View>
+                <Text
+                  numberOfLines={1}
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 14,
+                        "lineHeight": 14,
+                      },
+                      {
+                        "opacity": 0.5,
+                        "overflow": "visible",
+                        "width": 40,
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  Tradly
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "gap": 8,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      {
+                        "fontSize": 10,
+                        "textDecorationLine": "line-through",
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  $
+                  25
+                </Text>
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 14,
+                        "lineHeight": 14,
+                      },
+                      {
+                        "color": "#33907C",
+                        "fontFamily": "Montserrat-SemiBold",
+                        "fontWeight": "600",
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  $
+                  50
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 10,
+              "elevation": 1,
+              "marginRight": 8,
+              "opacity": 1,
+              "overflow": "hidden",
+              "shadowOpacity": 0.1,
+              "shadowRadius": 4,
+              "width": 160,
+            }
+          }
+          testID="product-card"
+        >
+          <View
+            style={
+              {
+                "position": "relative",
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoImage
+              containerViewRef={"[React.ref]"}
+              contentFit="cover"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height={160}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              source={
+                [
+                  {
+                    "uri": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 160,
+                  "width": "100%",
+                }
+              }
+              transition={null}
+              width="100%"
+            />
+          </View>
+          <View
+            style={
+              {
+                "padding": 12,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat-Medium",
+                    "fontWeight": "500",
+                  },
+                  {
+                    "fontSize": 14,
+                    "lineHeight": 14,
+                  },
+                  undefined,
+                  {},
+                ]
+              }
+            >
+              dghdfertt
+            </Text>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "marginTop": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "gap": 8,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#33907C",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "justifyContent": "center",
+                      "width": 24,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Montserrat-Bold",
+                          "fontWeight": "700",
+                        },
+                        {
+                          "fontSize": 18,
+                          "lineHeight": 20,
+                        },
+                        undefined,
+                        {},
+                      ]
+                    }
+                  >
+                    T
+                  </Text>
+                </View>
+                <Text
+                  numberOfLines={1}
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 14,
+                        "lineHeight": 14,
+                      },
+                      {
+                        "opacity": 0.5,
+                        "overflow": "visible",
+                        "width": 40,
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  Tradly
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "gap": 8,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      {
+                        "fontSize": 10,
+                        "textDecorationLine": "line-through",
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  $
+                  25
+                </Text>
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 14,
+                        "lineHeight": 14,
+                      },
+                      {
+                        "color": "#33907C",
+                        "fontFamily": "Montserrat-SemiBold",
+                        "fontWeight": "600",
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  $
+                  50
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          [
+            {
+              "flexDirection": "row",
+            },
+            {
+              "paddingBottom": 10,
+            },
+          ]
+        }
+      >
+        <View
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessibilityValue={
+            {
+              "max": undefined,
+              "min": undefined,
+              "now": undefined,
+              "text": undefined,
+            }
+          }
+          accessible={true}
+          collapsable={false}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "backgroundColor": "#FFFFFF",
+              "borderRadius": 10,
+              "elevation": 1,
+              "marginRight": 8,
+              "opacity": 1,
+              "overflow": "hidden",
+              "shadowOpacity": 0.1,
+              "shadowRadius": 4,
+              "width": 160,
+            }
+          }
+          testID="product-card"
+        >
+          <View
+            style={
+              {
+                "position": "relative",
+              }
+            }
+          >
+            <ViewManagerAdapter_ExpoImage
+              containerViewRef={"[React.ref]"}
+              contentFit="cover"
+              contentPosition={
+                {
+                  "left": "50%",
+                  "top": "50%",
+                }
+              }
+              height={160}
+              nativeViewRef={"[React.ref]"}
+              onError={[Function]}
+              onLoad={[Function]}
+              onLoadStart={[Function]}
+              onProgress={[Function]}
+              placeholder={[]}
+              source={
+                [
+                  {
+                    "uri": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 160,
+                  "width": "100%",
+                }
+              }
+              transition={null}
+              width="100%"
+            />
+          </View>
+          <View
+            style={
+              {
+                "padding": 12,
+              }
+            }
+          >
+            <Text
+              style={
+                [
+                  {
+                    "color": "#4A4A4A",
+                    "fontFamily": "Montserrat-Medium",
+                    "fontWeight": "500",
+                  },
+                  {
+                    "fontSize": 14,
+                    "lineHeight": 14,
+                  },
+                  undefined,
+                  {},
+                ]
+              }
+            >
+              fghdvbser
+            </Text>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "justifyContent": "space-between",
+                  "marginTop": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "gap": 8,
+                  }
+                }
+              >
+                <View
+                  style={
+                    {
+                      "alignItems": "center",
+                      "backgroundColor": "#33907C",
+                      "borderRadius": 12,
+                      "height": 24,
+                      "justifyContent": "center",
+                      "width": 24,
+                    }
+                  }
+                >
+                  <Text
+                    style={
+                      [
+                        {
+                          "color": "#FFFFFF",
+                          "fontFamily": "Montserrat-Bold",
+                          "fontWeight": "700",
+                        },
+                        {
+                          "fontSize": 18,
+                          "lineHeight": 20,
+                        },
+                        undefined,
+                        {},
+                      ]
+                    }
+                  >
+                    T
+                  </Text>
+                </View>
+                <Text
+                  numberOfLines={1}
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 14,
+                        "lineHeight": 14,
+                      },
+                      {
+                        "opacity": 0.5,
+                        "overflow": "visible",
+                        "width": 40,
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  Tradly
+                </Text>
+              </View>
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "flexDirection": "row",
+                    "gap": 8,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      {
+                        "fontSize": 10,
+                        "textDecorationLine": "line-through",
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  $
+                  25
+                </Text>
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#4F4F4F",
+                        "fontFamily": "Montserrat",
+                        "fontWeight": "400",
+                      },
+                      {
+                        "fontSize": 14,
+                        "lineHeight": 14,
+                      },
+                      {
+                        "color": "#33907C",
+                        "fontFamily": "Montserrat-SemiBold",
+                        "fontWeight": "600",
+                      },
+                      {},
+                    ]
+                  }
+                >
+                  $
+                  50
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`ProductList Component renders in horizontal layout when isGrid is false 1`] = `
+<RCTScrollView
+  data={
+    [
+      {
+        "categoryId": 0,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis cras placerat diam ipsum ut. Nisi vel adipiscing massa bibendum diam. Suspendisse mattis dui maecenas duis mattis. Mattis aliquam at arcu, semper nunc, venenatis et pellentesque eu. Id tristique maecenas tristique habitasse eu elementum sed. Aliquam eget lacus, arcu, adipiscing eget feugiat in dolor sagittis.",
+        "discount": 20,
+        "id": "np01",
+        "images": [
+          "https://i.ibb.co/p2gcrFp/Rectangle.png",
+        ],
+        "name": "Coca-Cola",
+        "newPrice": 50,
+        "oldPrice": 25,
+        "storeId": "dasfsf",
+        "storeName": "Tradly",
+      },
+      {
+        "categoryId": 0,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis cras placerat diam ipsum ut. Nisi vel adipiscing massa bibendum diam. Suspendisse mattis dui maecenas duis mattis. Mattis aliquam at arcu, semper nunc, venenatis et pellentesque eu. Id tristique maecenas tristique habitasse eu elementum sed. Aliquam eget lacus, arcu, adipiscing eget feugiat in dolor sagittis.",
+        "discount": 20,
+        "id": "np02",
+        "images": [
+          "https://i.ibb.co/p2gcrFp/Rectangle.png",
+        ],
+        "name": "dghdfertt",
+        "newPrice": 50,
+        "oldPrice": 25,
+        "storeId": "dasfsf",
+        "storeName": "Tradly",
+      },
+      {
+        "categoryId": 0,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis cras placerat diam ipsum ut. Nisi vel adipiscing massa bibendum diam. Suspendisse mattis dui maecenas duis mattis. Mattis aliquam at arcu, semper nunc, venenatis et pellentesque eu. Id tristique maecenas tristique habitasse eu elementum sed. Aliquam eget lacus, arcu, adipiscing eget feugiat in dolor sagittis.",
+        "discount": 20,
+        "id": "np03",
+        "images": [
+          "https://i.ibb.co/p2gcrFp/Rectangle.png",
+        ],
+        "name": "fghdvbser",
+        "newPrice": 50,
+        "oldPrice": 25,
+        "storeId": "dasfsf",
+        "storeName": "Tradly",
+      },
+    ]
+  }
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={true}
+  initialNumToRender={6}
+  keyExtractor={[Function]}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={0.0001}
+  showsHorizontalScrollIndicator={false}
+  stickyHeaderIndices={[]}
+  viewabilityConfigCallbackPairs={[]}
+>
+  <View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "flexDirection": "row",
+          },
+          null,
+        ]
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 10,
+            "elevation": 1,
+            "marginRight": 8,
+            "opacity": 1,
+            "overflow": "hidden",
+            "shadowOpacity": 0.1,
+            "shadowRadius": 4,
+            "width": 160,
+          }
+        }
+        testID="product-card"
+      >
+        <View
+          style={
+            {
+              "position": "relative",
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={160}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 160,
+                "width": "100%",
+              }
+            }
+            transition={null}
+            width="100%"
+          />
+        </View>
+        <View
+          style={
+            {
+              "padding": 12,
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#4A4A4A",
+                  "fontFamily": "Montserrat-Medium",
+                  "fontWeight": "500",
+                },
+                {
+                  "fontSize": 14,
+                  "lineHeight": 14,
+                },
+                undefined,
+                {},
+              ]
+            }
+          >
+            Coca-Cola
+          </Text>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginTop": 8,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#33907C",
+                    "borderRadius": 12,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Montserrat-Bold",
+                        "fontWeight": "700",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  T
+                </Text>
+              </View>
+              <Text
+                numberOfLines={1}
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "opacity": 0.5,
+                      "overflow": "visible",
+                      "width": 40,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Tradly
+              </Text>
+            </View>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                    },
+                    {
+                      "fontSize": 10,
+                      "textDecorationLine": "line-through",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                25
+              </Text>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "color": "#33907C",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontWeight": "600",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                50
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "flexDirection": "row",
+          },
+          null,
+        ]
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 10,
+            "elevation": 1,
+            "marginRight": 8,
+            "opacity": 1,
+            "overflow": "hidden",
+            "shadowOpacity": 0.1,
+            "shadowRadius": 4,
+            "width": 160,
+          }
+        }
+        testID="product-card"
+      >
+        <View
+          style={
+            {
+              "position": "relative",
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={160}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 160,
+                "width": "100%",
+              }
+            }
+            transition={null}
+            width="100%"
+          />
+        </View>
+        <View
+          style={
+            {
+              "padding": 12,
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#4A4A4A",
+                  "fontFamily": "Montserrat-Medium",
+                  "fontWeight": "500",
+                },
+                {
+                  "fontSize": 14,
+                  "lineHeight": 14,
+                },
+                undefined,
+                {},
+              ]
+            }
+          >
+            dghdfertt
+          </Text>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginTop": 8,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#33907C",
+                    "borderRadius": 12,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Montserrat-Bold",
+                        "fontWeight": "700",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  T
+                </Text>
+              </View>
+              <Text
+                numberOfLines={1}
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "opacity": 0.5,
+                      "overflow": "visible",
+                      "width": 40,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Tradly
+              </Text>
+            </View>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                    },
+                    {
+                      "fontSize": 10,
+                      "textDecorationLine": "line-through",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                25
+              </Text>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "color": "#33907C",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontWeight": "600",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                50
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "flexDirection": "row",
+          },
+          null,
+        ]
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 10,
+            "elevation": 1,
+            "marginRight": 8,
+            "opacity": 1,
+            "overflow": "hidden",
+            "shadowOpacity": 0.1,
+            "shadowRadius": 4,
+            "width": 160,
+          }
+        }
+        testID="product-card"
+      >
+        <View
+          style={
+            {
+              "position": "relative",
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={160}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 160,
+                "width": "100%",
+              }
+            }
+            transition={null}
+            width="100%"
+          />
+        </View>
+        <View
+          style={
+            {
+              "padding": 12,
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#4A4A4A",
+                  "fontFamily": "Montserrat-Medium",
+                  "fontWeight": "500",
+                },
+                {
+                  "fontSize": 14,
+                  "lineHeight": 14,
+                },
+                undefined,
+                {},
+              ]
+            }
+          >
+            fghdvbser
+          </Text>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginTop": 8,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#33907C",
+                    "borderRadius": 12,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Montserrat-Bold",
+                        "fontWeight": "700",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  T
+                </Text>
+              </View>
+              <Text
+                numberOfLines={1}
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "opacity": 0.5,
+                      "overflow": "visible",
+                      "width": 40,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Tradly
+              </Text>
+            </View>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                    },
+                    {
+                      "fontSize": 10,
+                      "textDecorationLine": "line-through",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                25
+              </Text>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "color": "#33907C",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontWeight": "600",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                50
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;
+
+exports[`ProductList Component renders the correctly 1`] = `
+<RCTScrollView
+  data={
+    [
+      {
+        "categoryId": 0,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis cras placerat diam ipsum ut. Nisi vel adipiscing massa bibendum diam. Suspendisse mattis dui maecenas duis mattis. Mattis aliquam at arcu, semper nunc, venenatis et pellentesque eu. Id tristique maecenas tristique habitasse eu elementum sed. Aliquam eget lacus, arcu, adipiscing eget feugiat in dolor sagittis.",
+        "discount": 20,
+        "id": "np01",
+        "images": [
+          "https://i.ibb.co/p2gcrFp/Rectangle.png",
+        ],
+        "name": "Coca-Cola",
+        "newPrice": 50,
+        "oldPrice": 25,
+        "storeId": "dasfsf",
+        "storeName": "Tradly",
+      },
+      {
+        "categoryId": 0,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis cras placerat diam ipsum ut. Nisi vel adipiscing massa bibendum diam. Suspendisse mattis dui maecenas duis mattis. Mattis aliquam at arcu, semper nunc, venenatis et pellentesque eu. Id tristique maecenas tristique habitasse eu elementum sed. Aliquam eget lacus, arcu, adipiscing eget feugiat in dolor sagittis.",
+        "discount": 20,
+        "id": "np02",
+        "images": [
+          "https://i.ibb.co/p2gcrFp/Rectangle.png",
+        ],
+        "name": "dghdfertt",
+        "newPrice": 50,
+        "oldPrice": 25,
+        "storeId": "dasfsf",
+        "storeName": "Tradly",
+      },
+      {
+        "categoryId": 0,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lobortis cras placerat diam ipsum ut. Nisi vel adipiscing massa bibendum diam. Suspendisse mattis dui maecenas duis mattis. Mattis aliquam at arcu, semper nunc, venenatis et pellentesque eu. Id tristique maecenas tristique habitasse eu elementum sed. Aliquam eget lacus, arcu, adipiscing eget feugiat in dolor sagittis.",
+        "discount": 20,
+        "id": "np03",
+        "images": [
+          "https://i.ibb.co/p2gcrFp/Rectangle.png",
+        ],
+        "name": "fghdvbser",
+        "newPrice": 50,
+        "oldPrice": 25,
+        "storeId": "dasfsf",
+        "storeName": "Tradly",
+      },
+    ]
+  }
+  getItem={[Function]}
+  getItemCount={[Function]}
+  horizontal={true}
+  initialNumToRender={6}
+  keyExtractor={[Function]}
+  onContentSizeChange={[Function]}
+  onLayout={[Function]}
+  onMomentumScrollBegin={[Function]}
+  onMomentumScrollEnd={[Function]}
+  onScroll={[Function]}
+  onScrollBeginDrag={[Function]}
+  onScrollEndDrag={[Function]}
+  removeClippedSubviews={false}
+  renderItem={[Function]}
+  scrollEventThrottle={0.0001}
+  showsHorizontalScrollIndicator={false}
+  stickyHeaderIndices={[]}
+  viewabilityConfigCallbackPairs={[]}
+>
+  <View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "flexDirection": "row",
+          },
+          null,
+        ]
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 10,
+            "elevation": 1,
+            "marginRight": 8,
+            "opacity": 1,
+            "overflow": "hidden",
+            "shadowOpacity": 0.1,
+            "shadowRadius": 4,
+            "width": 160,
+          }
+        }
+        testID="product-card"
+      >
+        <View
+          style={
+            {
+              "position": "relative",
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={160}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 160,
+                "width": "100%",
+              }
+            }
+            transition={null}
+            width="100%"
+          />
+        </View>
+        <View
+          style={
+            {
+              "padding": 12,
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#4A4A4A",
+                  "fontFamily": "Montserrat-Medium",
+                  "fontWeight": "500",
+                },
+                {
+                  "fontSize": 14,
+                  "lineHeight": 14,
+                },
+                undefined,
+                {},
+              ]
+            }
+          >
+            Coca-Cola
+          </Text>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginTop": 8,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#33907C",
+                    "borderRadius": 12,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Montserrat-Bold",
+                        "fontWeight": "700",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  T
+                </Text>
+              </View>
+              <Text
+                numberOfLines={1}
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "opacity": 0.5,
+                      "overflow": "visible",
+                      "width": 40,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Tradly
+              </Text>
+            </View>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                    },
+                    {
+                      "fontSize": 10,
+                      "textDecorationLine": "line-through",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                25
+              </Text>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "color": "#33907C",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontWeight": "600",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                50
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "flexDirection": "row",
+          },
+          null,
+        ]
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 10,
+            "elevation": 1,
+            "marginRight": 8,
+            "opacity": 1,
+            "overflow": "hidden",
+            "shadowOpacity": 0.1,
+            "shadowRadius": 4,
+            "width": 160,
+          }
+        }
+        testID="product-card"
+      >
+        <View
+          style={
+            {
+              "position": "relative",
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={160}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 160,
+                "width": "100%",
+              }
+            }
+            transition={null}
+            width="100%"
+          />
+        </View>
+        <View
+          style={
+            {
+              "padding": 12,
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#4A4A4A",
+                  "fontFamily": "Montserrat-Medium",
+                  "fontWeight": "500",
+                },
+                {
+                  "fontSize": 14,
+                  "lineHeight": 14,
+                },
+                undefined,
+                {},
+              ]
+            }
+          >
+            dghdfertt
+          </Text>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginTop": 8,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#33907C",
+                    "borderRadius": 12,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Montserrat-Bold",
+                        "fontWeight": "700",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  T
+                </Text>
+              </View>
+              <Text
+                numberOfLines={1}
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "opacity": 0.5,
+                      "overflow": "visible",
+                      "width": 40,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Tradly
+              </Text>
+            </View>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                    },
+                    {
+                      "fontSize": 10,
+                      "textDecorationLine": "line-through",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                25
+              </Text>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "color": "#33907C",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontWeight": "600",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                50
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+    <View
+      onFocusCapture={[Function]}
+      onLayout={[Function]}
+      style={
+        [
+          {
+            "flexDirection": "row",
+          },
+          null,
+        ]
+      }
+    >
+      <View
+        accessibilityState={
+          {
+            "busy": undefined,
+            "checked": undefined,
+            "disabled": undefined,
+            "expanded": undefined,
+            "selected": undefined,
+          }
+        }
+        accessibilityValue={
+          {
+            "max": undefined,
+            "min": undefined,
+            "now": undefined,
+            "text": undefined,
+          }
+        }
+        accessible={true}
+        collapsable={false}
+        focusable={true}
+        onClick={[Function]}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          {
+            "backgroundColor": "#FFFFFF",
+            "borderRadius": 10,
+            "elevation": 1,
+            "marginRight": 8,
+            "opacity": 1,
+            "overflow": "hidden",
+            "shadowOpacity": 0.1,
+            "shadowRadius": 4,
+            "width": 160,
+          }
+        }
+        testID="product-card"
+      >
+        <View
+          style={
+            {
+              "position": "relative",
+            }
+          }
+        >
+          <ViewManagerAdapter_ExpoImage
+            containerViewRef={"[React.ref]"}
+            contentFit="cover"
+            contentPosition={
+              {
+                "left": "50%",
+                "top": "50%",
+              }
+            }
+            height={160}
+            nativeViewRef={"[React.ref]"}
+            onError={[Function]}
+            onLoad={[Function]}
+            onLoadStart={[Function]}
+            onProgress={[Function]}
+            placeholder={[]}
+            source={
+              [
+                {
+                  "uri": "https://i.ibb.co/p2gcrFp/Rectangle.png",
+                },
+              ]
+            }
+            style={
+              {
+                "height": 160,
+                "width": "100%",
+              }
+            }
+            transition={null}
+            width="100%"
+          />
+        </View>
+        <View
+          style={
+            {
+              "padding": 12,
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "color": "#4A4A4A",
+                  "fontFamily": "Montserrat-Medium",
+                  "fontWeight": "500",
+                },
+                {
+                  "fontSize": 14,
+                  "lineHeight": 14,
+                },
+                undefined,
+                {},
+              ]
+            }
+          >
+            fghdvbser
+          </Text>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "flexDirection": "row",
+                "justifyContent": "space-between",
+                "marginTop": 8,
+              }
+            }
+          >
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <View
+                style={
+                  {
+                    "alignItems": "center",
+                    "backgroundColor": "#33907C",
+                    "borderRadius": 12,
+                    "height": 24,
+                    "justifyContent": "center",
+                    "width": 24,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    [
+                      {
+                        "color": "#FFFFFF",
+                        "fontFamily": "Montserrat-Bold",
+                        "fontWeight": "700",
+                      },
+                      {
+                        "fontSize": 18,
+                        "lineHeight": 20,
+                      },
+                      undefined,
+                      {},
+                    ]
+                  }
+                >
+                  T
+                </Text>
+              </View>
+              <Text
+                numberOfLines={1}
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "opacity": 0.5,
+                      "overflow": "visible",
+                      "width": 40,
+                    },
+                    {},
+                  ]
+                }
+              >
+                Tradly
+              </Text>
+            </View>
+            <View
+              style={
+                {
+                  "alignItems": "center",
+                  "flexDirection": "row",
+                  "gap": 8,
+                }
+              }
+            >
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 18,
+                      "lineHeight": 20,
+                    },
+                    {
+                      "fontSize": 10,
+                      "textDecorationLine": "line-through",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                25
+              </Text>
+              <Text
+                style={
+                  [
+                    {
+                      "color": "#4F4F4F",
+                      "fontFamily": "Montserrat",
+                      "fontWeight": "400",
+                    },
+                    {
+                      "fontSize": 14,
+                      "lineHeight": 14,
+                    },
+                    {
+                      "color": "#33907C",
+                      "fontFamily": "Montserrat-SemiBold",
+                      "fontWeight": "600",
+                    },
+                    {},
+                  ]
+                }
+              >
+                $
+                50
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</RCTScrollView>
+`;

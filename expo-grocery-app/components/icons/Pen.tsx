@@ -3,6 +3,7 @@ import { IconProps } from '@/interfaces';
 
 const PenIcon = ({ width = 16, height = 16, color = '#FFFFFF' }: IconProps) => (
   <Svg
+    testID="pen-icon"
     width={width}
     height={height}
     viewBox={`0 0 ${width} ${height}`}

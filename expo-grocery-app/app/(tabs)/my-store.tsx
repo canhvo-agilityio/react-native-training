@@ -4,6 +4,7 @@ import { useDeleteProduct, useFetchProductsByStoreId } from '@/hooks';
 import { useAuthStore } from '@/stores';
 import { colors, fontsFamily, fontWeights, spacing } from '@/themes';
 import { router } from 'expo-router';
+import { useCallback } from 'react';
 import {
   View,
   StyleSheet,
@@ -28,6 +29,10 @@ export default function MyStore() {
     router.push(ROUTES.ADD_PRODUCT);
   };
 
+  const handlePressProduct = (id: string) => {
+    router.push(ROUTES.PRODUCT_DETAILS(id));
+  };
+
   const handlePressEditIcon = (id: string) => {
     router.push({
       pathname: ROUTES.EDIT_PRODUCT,
@@ -35,21 +40,24 @@ export default function MyStore() {
     });
   };
 
-  const handleDeleteProduct = (id: string) => {
-    deleteProduct(id, {
-      onSuccess: () => {
-        router.push(ROUTES.MY_STORE);
-        Toast.show({ type: 'success', text1: 'Product is deleted' });
-      },
-      onError: (error) => {
-        Toast.show({
-          type: 'error',
-          text1: 'Delete fail failed',
-          text2: error.message,
-        });
-      },
-    });
-  };
+  const handleDeleteProduct = useCallback(
+    (id: string) => {
+      deleteProduct(id, {
+        onSuccess: () => {
+          router.push(ROUTES.MY_STORE);
+          Toast.show({ type: 'success', text1: 'Product is deleted' });
+        },
+        onError: (error) => {
+          Toast.show({
+            type: 'error',
+            text1: 'Delete fail failed',
+            text2: error.message,
+          });
+        },
+      });
+    },
+    [deleteProduct],
+  );
 
   const handlePressDeleteIcon = (id: string) => {
     Alert.alert(
@@ -122,6 +130,7 @@ export default function MyStore() {
             data={productsData}
             isEditing
             isGrid
+            onPress={handlePressProduct}
             onEdit={handlePressEditIcon}
             onDelete={handlePressDeleteIcon}
           />

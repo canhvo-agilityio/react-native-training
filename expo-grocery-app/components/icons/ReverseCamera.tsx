@@ -1,12 +1,4 @@
-import Svg, {
-  Path,
-  Mask,
-  G,
-  Rect,
-  Defs,
-  ClipPath,
-  Circle,
-} from 'react-native-svg';
+import Svg, { Path, G } from 'react-native-svg';
 import { IconProps } from '@/interfaces';
 
 const ReverseCameraIcon = ({
@@ -14,7 +6,13 @@ const ReverseCameraIcon = ({
   height = 32,
   color = '#FFFFFF',
 }: IconProps) => (
-  <Svg width={width} height={height} viewBox="0 0 368.553 368.553" fill="none">
+  <Svg
+    testID="reverse-camera-icon"
+    width={width}
+    height={height}
+    viewBox="0 0 368.553 368.553"
+    fill="none"
+  >
     <G>
       <Path
         d="M302.333,94.332l-41.874-54.176H108.095L66.22,94.332H0v234.066h368.553V94.332H302.333z M353.553,313.398H15V109.332h58.584l41.875-54.176h137.635l41.874,54.176h58.585L353.553,313.398L353.553,313.398z"
