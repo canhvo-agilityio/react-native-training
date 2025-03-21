@@ -59,7 +59,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="my-store"
         options={{
-          title: 'Store ',
+          title: 'Store',
           tabBarIcon: ({ color }) => <StoreIcon color={color} />,
         }}
       />
@@ -73,7 +73,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'profile',
+          title: 'Profile',
           tabBarIcon: ({ color }) => <UserIcon color={color} />,
         }}
       />

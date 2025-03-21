@@ -2,7 +2,7 @@ import { colors } from '@/themes';
 import * as Font from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { ClickOutsideProvider } from 'react-native-click-outside';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,6 +14,18 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
+  const queryClient = useMemo(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            staleTime: 5 * 60 * 1000,
+            retry: 2,
+          },
+        },
+      }),
+    [],
+  );
 
   useEffect(() => {
     async function prepare() {
@@ -43,8 +55,6 @@ export default function RootLayout() {
   if (!appIsReady) {
     return null;
   }
-
-  const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>

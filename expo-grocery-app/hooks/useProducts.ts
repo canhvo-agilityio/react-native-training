@@ -8,7 +8,6 @@ export const useFetchProducts = (endpoint: string) => {
   return useQuery<Product[]>({
     queryKey: [endpoint],
     queryFn: () => get(`${API_URL.BASE_URL}${endpoint}`),
-    initialData: INIT_PRODUCT,
   });
 };
 
@@ -17,7 +16,8 @@ export const useFetchProductsByCategoryId = (id: string) => {
     queryKey: [ENDPOINTS.PRODUCTS],
     queryFn: () =>
       get(`${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}?categoryId=${id}`),
-    initialData: INIT_PRODUCT,
+    placeholderData: (previousData) => previousData ?? INIT_PRODUCT,
+    retry: 2,
   });
 };
 
@@ -25,7 +25,8 @@ export const useFetchProductDetail = (id: string) => {
   return useQuery<ProductDetails>({
     queryKey: [ENDPOINTS.PRODUCTS + 'details'],
     queryFn: () => get(`${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}/${id}`),
-    initialData: INIT_PRODUCT[0],
+    placeholderData: (previousData) => previousData ?? INIT_PRODUCT[0],
+    retry: 2,
   });
 };
 
@@ -34,7 +35,8 @@ export const useFetchProductsByStoreId = (id: string) => {
     queryKey: [ENDPOINTS.STORES + 'products'],
     queryFn: () =>
       get(`${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}?storeId=${id}`),
-    initialData: INIT_PRODUCT,
+    placeholderData: (previousData) => previousData ?? INIT_PRODUCT,
+    retry: 2,
   });
 };
 

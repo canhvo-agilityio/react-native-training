@@ -48,8 +48,8 @@ export default function HomeScreen() {
   };
 
   return (
-    <ScrollView style={styles.wrapper}>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <ScrollView style={styles.wrapper}>
         {/* Header */}
         <View style={styles.header}>
           <View style={styles.logo}>
@@ -86,7 +86,10 @@ export default function HomeScreen() {
           {isLoadingNewProduct ? (
             <ActivityIndicator />
           ) : (
-            <ProductList data={newProductData} onPress={handlePressProduct} />
+            <ProductList
+              data={newProductData || []}
+              onPress={handlePressProduct}
+            />
           )}
         </View>
         {/* Popular products */}
@@ -102,7 +105,7 @@ export default function HomeScreen() {
             <ActivityIndicator />
           ) : (
             <ProductList
-              data={popularProductData}
+              data={popularProductData || []}
               onPress={handlePressProduct}
             />
           )}
@@ -117,8 +120,8 @@ export default function HomeScreen() {
         <View style={styles.storeList}>
           <StoreList data={STORES} />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
