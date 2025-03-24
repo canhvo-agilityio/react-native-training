@@ -13,7 +13,7 @@ export const useFetchProducts = (endpoint: string) => {
 
 export const useFetchProductsByCategoryId = (id: string) => {
   return useQuery<Product[]>({
-    queryKey: [ENDPOINTS.PRODUCTS],
+    queryKey: [ENDPOINTS.PRODUCTS, id],
     queryFn: () =>
       get(`${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}?categoryId=${id}`),
     placeholderData: (previousData) => previousData ?? INIT_PRODUCT,
@@ -23,7 +23,7 @@ export const useFetchProductsByCategoryId = (id: string) => {
 
 export const useFetchProductDetail = (id: string) => {
   return useQuery<ProductDetails>({
-    queryKey: [ENDPOINTS.PRODUCTS + 'details'],
+    queryKey: [ENDPOINTS.PRODUCTS + 'details' + id],
     queryFn: () => get(`${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}/${id}`),
     placeholderData: (previousData) => previousData ?? INIT_PRODUCT[0],
     retry: 2,
