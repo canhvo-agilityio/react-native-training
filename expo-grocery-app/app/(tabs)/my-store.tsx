@@ -114,7 +114,7 @@ export default function MyStore() {
 
       {isLoadingProducts ? (
         <ActivityIndicator />
-      ) : productsData.length > 0 ? (
+      ) : productsData && productsData.length > 0 ? (
         <View style={styles.productContainer}>
           <View style={styles.productHeading}>
             <Text variant="title" size="xl">

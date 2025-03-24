@@ -75,7 +75,7 @@ export default function HomeScreen() {
         {/* Categories */}
         <CategoryList data={CATEGORIES} onPress={handlePressCategoryItem} />
         {/* New Products */}
-        {/* <View style={styles.product}>
+        <View style={styles.product}>
           <View style={styles.productHeading}>
             <Text variant="title" style={styles.productTitle}>
               New Product
@@ -91,9 +91,9 @@ export default function HomeScreen() {
               onPress={handlePressProduct}
             />
           )}
-        </View> */}
+        </View>
         {/* Popular products */}
-        {/* <View style={styles.product}>
+        <View style={styles.product}>
           <View style={styles.productHeading}>
             <Text variant="title" style={styles.productTitle}>
               New Product
@@ -109,7 +109,7 @@ export default function HomeScreen() {
               onPress={handlePressProduct}
             />
           )}
-        </View> */}
+        </View>
         {/* Stores */}
         <View style={styles.storesHeading}>
           <Text variant="title" style={styles.storesTitle}>
@@ -131,7 +131,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    paddingBottom: spacing[5],
   },
   header: {
     backgroundColor: colors.background.primary,
@@ -179,7 +178,6 @@ const styles = StyleSheet.create({
     height: 184,
   },
   storeList: {
-    // position: 'absolute',
     bottom: 130,
     paddingHorizontal: spacing[5],
   },
