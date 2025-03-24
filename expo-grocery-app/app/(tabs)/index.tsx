@@ -49,25 +49,25 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.wrapper}>
-        {/* Header */}
-        <View style={styles.header}>
-          <View style={styles.logo}>
-            <Text variant="heading" size="xl">
-              Groceries
-            </Text>
-            <View style={styles.iconGroup}>
-              <HeartIcon />
-              <CartIcon />
-            </View>
+      {/* Header */}
+      <View style={styles.header}>
+        <View style={styles.logo}>
+          <Text variant="heading" size="xl">
+            Groceries
+          </Text>
+          <View style={styles.iconGroup}>
+            <HeartIcon />
+            <CartIcon />
           </View>
-          <Input
-            value={searchValue}
-            placeholder="Search Product"
-            leftIcon={<SearchIcon color={colors.primary} />}
-            onChangeText={handleChangeSearchInput}
-          />
         </View>
+        <Input
+          value={searchValue}
+          placeholder="Search Product"
+          leftIcon={<SearchIcon color={colors.primary} />}
+          onChangeText={handleChangeSearchInput}
+        />
+      </View>
+      <ScrollView style={styles.wrapper}>
         {/* Banner */}
         <View style={styles.banner}>
           <BannerList data={BANNERS} />
@@ -75,7 +75,7 @@ export default function HomeScreen() {
         {/* Categories */}
         <CategoryList data={CATEGORIES} onPress={handlePressCategoryItem} />
         {/* New Products */}
-        <View style={styles.product}>
+        {/* <View style={styles.product}>
           <View style={styles.productHeading}>
             <Text variant="title" style={styles.productTitle}>
               New Product
@@ -91,9 +91,9 @@ export default function HomeScreen() {
               onPress={handlePressProduct}
             />
           )}
-        </View>
+        </View> */}
         {/* Popular products */}
-        <View style={styles.product}>
+        {/* <View style={styles.product}>
           <View style={styles.productHeading}>
             <Text variant="title" style={styles.productTitle}>
               New Product
@@ -109,7 +109,7 @@ export default function HomeScreen() {
               onPress={handlePressProduct}
             />
           )}
-        </View>
+        </View> */}
         {/* Stores */}
         <View style={styles.storesHeading}>
           <Text variant="title" style={styles.storesTitle}>
@@ -130,8 +130,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background.tertiary,
   },
   container: {
-    gap: spacing[3],
-    paddingBottom: 180,
+    flex: 1,
+    paddingBottom: spacing[5],
   },
   header: {
     backgroundColor: colors.background.primary,
@@ -179,8 +179,8 @@ const styles = StyleSheet.create({
     height: 184,
   },
   storeList: {
-    position: 'absolute',
-    bottom: spacing[20],
+    // position: 'absolute',
+    bottom: 130,
     paddingHorizontal: spacing[5],
   },
 });

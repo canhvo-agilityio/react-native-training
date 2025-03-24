@@ -79,3 +79,5 @@ export const PRODUCT_FORM_FIELDS = [
     rules: { required: ERROR_MESSAGES.FIELD_REQUIRED },
   },
 ];
+
+export const PRODUCT_CARD_HEIGHT = 200;

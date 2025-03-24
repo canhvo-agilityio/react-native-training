@@ -4,6 +4,7 @@ import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
 import isEqual from 'react-fast-compare';
 import ProductCard from '../ProductCard';
 import { spacing } from '@/themes';
+import { PRODUCT_CARD_HEIGHT } from '@/constants';
 
 interface ProductListProps {
   data: Product[];
@@ -45,11 +46,20 @@ const ProductList = ({
       data={data}
       keyExtractor={getKeyExtractor}
       renderItem={renderItem}
-      initialNumToRender={6}
+      initialNumToRender={10}
       horizontal={!isGrid}
       numColumns={isGrid ? 2 : 1}
       columnWrapperStyle={isGrid ? styles.columnProduct : undefined}
       showsHorizontalScrollIndicator={false}
+      maxToRenderPerBatch={10}
+      windowSize={5}
+      updateCellsBatchingPeriod={50}
+      removeClippedSubviews={true}
+      getItemLayout={(_, index) => ({
+        length: PRODUCT_CARD_HEIGHT,
+        offset: PRODUCT_CARD_HEIGHT * index,
+        index,
+      })}
     />
   );
 };
