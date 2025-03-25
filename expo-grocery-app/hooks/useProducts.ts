@@ -23,7 +23,7 @@ export const useFetchProductsByCategoryId = (id: string) => {
 
 export const useFetchProductDetail = (id: string) => {
   return useQuery<ProductDetails>({
-    queryKey: [ENDPOINTS.PRODUCTS + 'details' + id],
+    queryKey: [ENDPOINTS.PRODUCTS + 'details', id],
     queryFn: () => get(`${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}/${id}`),
     placeholderData: (previousData) => previousData ?? INIT_PRODUCT[0],
     retry: 2,
@@ -32,7 +32,7 @@ export const useFetchProductDetail = (id: string) => {
 
 export const useFetchProductsByStoreId = (id: string) => {
   return useQuery<Product[]>({
-    queryKey: [ENDPOINTS.STORES + 'products'],
+    queryKey: [ENDPOINTS.STORES, 'my-store'],
     queryFn: () =>
       get(`${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}?storeId=${id}`),
     placeholderData: (previousData) => previousData ?? INIT_PRODUCT,
@@ -52,7 +52,7 @@ export const useAddProduct = () => {
     },
     onSuccess: (newProduct) => {
       queryClient.setQueryData<Product[]>(
-        [ENDPOINTS.STORES + 'products'],
+        [ENDPOINTS.STORES, 'my-store'],
         (oldData) => {
           if (!oldData) return [newProduct];
           return [newProduct, ...oldData];
@@ -78,7 +78,7 @@ export const useUpdateProduct = () => {
     },
     onSuccess: (updatedProduct) => {
       queryClient.setQueryData<Product[]>(
-        [ENDPOINTS.STORES + 'products'],
+        [ENDPOINTS.STORES, 'my-store'],
         (oldData) => {
           if (!oldData) return oldData;
           return oldData.map((product) =>
@@ -90,7 +90,7 @@ export const useUpdateProduct = () => {
       );
 
       queryClient.setQueryData<ProductDetails>(
-        [ENDPOINTS.PRODUCTS + 'details', { id: updatedProduct.id }],
+        [ENDPOINTS.PRODUCTS + 'details', updatedProduct.id],
         updatedProduct,
       );
     },
@@ -106,7 +106,7 @@ export const useDeleteProduct = () => {
     },
     onSuccess: (_, id) => {
       queryClient.setQueryData<Product[]>(
-        [ENDPOINTS.STORES + 'products'],
+        [ENDPOINTS.STORES, 'my-store'],
         (oldData) => {
           if (!oldData) return oldData;
           return oldData.filter((product) => product.id !== id);

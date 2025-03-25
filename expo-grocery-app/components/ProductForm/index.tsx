@@ -1,3 +1,4 @@
+import React, { useCallback, useMemo } from 'react';
 import { useState } from 'react';
 import {
   FlatList,
@@ -87,7 +88,7 @@ const ProductForm = ({
     { ...data, images: data.images },
   );
 
-  const handlePressAddProduct = () => {
+  const handlePressAddProduct = useCallback(() => {
     Alert.alert(
       'Choose photo',
       'Do you want to take a photo or choose from the library?',
@@ -103,119 +104,140 @@ const ProductForm = ({
         { text: 'Cancel', style: 'cancel' },
       ],
     );
-  };
+  }, [openCamera, pickImage]);
 
-  const handleSubmitProductForm = (formData: ProductFormType) => {
-    if (!images.length) {
-      setError('Please add at least one image');
-      return;
-    }
-    onSubmit({ ...formData, images });
-  };
-
-  const renderItem = () => (
-    <View style={styles.container}>
-      {/* Image Upload Section */}
-      <View style={styles.imageSection}>
-        {images.length < 4 && (
-          <TouchableOpacity
-            testID="add-photo-button"
-            style={styles.addPhoto}
-            onPress={handlePressAddProduct}
-          >
-            <PlushIcon />
-            <Text style={styles.addPhotoText}>Add photos</Text>
-            <Text style={styles.photoHint}>1600 x 1200 for hi res</Text>
-          </TouchableOpacity>
-        )}
-        {images.map((item) => (
-          <View key={item} style={styles.imageWrapper}>
-            <Image source={{ uri: item }} style={styles.image} />
-            <TouchableOpacity
-              testID={`remove-image-button-${item}`}
-              style={styles.removeIcon}
-              onPress={() => removeImage(item)}
-            >
-              <CloseIcon width={12} height={12} />
-            </TouchableOpacity>
-          </View>
-        ))}
-        {error && (
-          <Text variant="error" size="base" style={styles.errorMessage}>
-            {error}
-          </Text>
-        )}
-      </View>
-
-      {/* Form Field Section */}
-      <View style={styles.formField}>
-        {PRODUCT_FORM_FIELDS.map((field) =>
-          field.option ? (
-            <Controller
-              key={field.key}
-              control={control}
-              name={field.name as keyof ProductFormType}
-              rules={field.rules}
-              render={({
-                field: { value, onChange },
-                fieldState: { error },
-              }) => (
-                <Select
-                  value={String(value)}
-                  data={field.option}
-                  placeholder={field.label}
-                  errorMessage={error?.message}
-                  onSelect={(data) => {
-                    clearErrors(field.name as keyof ProductFormType);
-                    onChange(data);
-                  }}
-                />
-              )}
-            />
-          ) : (
-            <Controller
-              key={field.key}
-              control={control}
-              name={field.name as keyof ProductFormType}
-              rules={field.rules}
-              render={({
-                field: { value, onChange },
-                fieldState: { error },
-              }) => (
-                <Input
-                  testID={field.label}
-                  label={field.label}
-                  variant="flushed"
-                  value={String(value)}
-                  disabled={isLoading}
-                  keyboardType={
-                    field.key === 'price' || field.name === 'offerPrice'
-                      ? 'numeric'
-                      : 'default'
-                  }
-                  errorMessage={error?.message}
-                  onChangeText={(data) => {
-                    clearErrors(field.name as keyof ProductFormType);
-                    onChange(data);
-                  }}
-                />
-              )}
-            />
-          ),
-        )}
-      </View>
-
-      <View style={styles.addBtn}>
-        <Button
-          testID="submit-button"
-          title={isEdit ? 'Edit Product' : 'Add Product'}
-          isLoading={isLoading}
-          disabled={isUnchanged}
-          onPress={handleSubmit(handleSubmitProductForm)}
-        />
-      </View>
-    </View>
+  const handleSubmitProductForm = useCallback(
+    (formData: ProductFormType) => {
+      if (!images.length) {
+        setError('Please add at least one image');
+        return;
+      }
+      onSubmit({ ...formData, images });
+    },
+    [images, onSubmit],
   );
+
+  const renderItem = useCallback(
+    () => (
+      <View style={styles.container}>
+        {/* Image Upload Section */}
+        <View style={styles.imageSection}>
+          {images.length < 4 && (
+            <TouchableOpacity
+              testID="add-photo-button"
+              style={styles.addPhoto}
+              onPress={handlePressAddProduct}
+            >
+              <PlushIcon />
+              <Text style={styles.addPhotoText}>Add photos</Text>
+              <Text style={styles.photoHint}>1600 x 1200 for hi res</Text>
+            </TouchableOpacity>
+          )}
+          {images.map((item) => (
+            <View key={item} style={styles.imageWrapper}>
+              <Image source={{ uri: item }} style={styles.image} />
+              <TouchableOpacity
+                testID={`remove-image-button-${item}`}
+                style={styles.removeIcon}
+                onPress={() => removeImage(item)}
+              >
+                <CloseIcon width={12} height={12} />
+              </TouchableOpacity>
+            </View>
+          ))}
+          {error && (
+            <Text variant="error" size="base" style={styles.errorMessage}>
+              {error}
+            </Text>
+          )}
+        </View>
+
+        {/* Form Field Section */}
+        <View style={styles.formField}>
+          {PRODUCT_FORM_FIELDS.map((field) =>
+            field.option ? (
+              <Controller
+                key={field.key}
+                control={control}
+                name={field.name as keyof ProductFormType}
+                rules={field.rules}
+                render={({
+                  field: { value, onChange },
+                  fieldState: { error },
+                }) => (
+                  <Select
+                    value={String(value)}
+                    data={field.option}
+                    placeholder={field.label}
+                    errorMessage={error?.message}
+                    onSelect={(data) => {
+                      clearErrors(field.name as keyof ProductFormType);
+                      onChange(data);
+                    }}
+                  />
+                )}
+              />
+            ) : (
+              <Controller
+                key={field.key}
+                control={control}
+                name={field.name as keyof ProductFormType}
+                rules={field.rules}
+                render={({
+                  field: { value, onChange },
+                  fieldState: { error },
+                }) => (
+                  <Input
+                    testID={field.label}
+                    label={field.label}
+                    variant="flushed"
+                    value={String(value)}
+                    disabled={isLoading}
+                    keyboardType={
+                      field.key === 'price' || field.name === 'offerPrice'
+                        ? 'numeric'
+                        : 'default'
+                    }
+                    errorMessage={error?.message}
+                    onChangeText={(data) => {
+                      clearErrors(field.name as keyof ProductFormType);
+                      onChange(data);
+                    }}
+                  />
+                )}
+              />
+            ),
+          )}
+        </View>
+
+        <View style={styles.addBtn}>
+          <Button
+            testID="submit-button"
+            title={isEdit ? 'Edit Product' : 'Add Product'}
+            isLoading={isLoading}
+            disabled={isUnchanged}
+            onPress={handleSubmit(handleSubmitProductForm)}
+          />
+        </View>
+      </View>
+    ),
+    [
+      images,
+      handlePressAddProduct,
+      error,
+      isEdit,
+      isLoading,
+      isUnchanged,
+      handleSubmit,
+      handleSubmitProductForm,
+      removeImage,
+      control,
+      clearErrors,
+    ],
+  );
+
+  const flatListData = useMemo(() => [{ key: 'form' }], []);
+  const getKeyExtractor = useCallback((item: { key: string }) => item.key, []);
 
   return (
     <>
@@ -226,9 +248,9 @@ const ProductForm = ({
         <FlatList
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={true}
-          data={[{ key: 'form' }]}
+          data={flatListData}
           renderItem={renderItem}
-          keyExtractor={(item) => item.key}
+          keyExtractor={getKeyExtractor}
         />
       </KeyboardAvoidingView>
       {showCamera && (

@@ -20,6 +20,7 @@ import { ENDPOINTS, ROUTES } from '@/constants';
 
 export default function HomeScreen() {
   const [searchValue, setSearchValue] = useState<string>('');
+
   const {
     data: newProductData,
     isFetching: isLoadingNewProduct,
@@ -32,20 +33,17 @@ export default function HomeScreen() {
     error: popularProductError,
   } = useFetchProducts(ENDPOINTS.POPULAR_PRODUCTS);
 
-  const handleChangeSearchInput = useCallback(
-    () => (value: string) => {
-      setSearchValue(value);
-    },
-    [],
-  );
+  const handleChangeSearchInput = useCallback((value: string) => {
+    setSearchValue(value);
+  }, []);
 
-  const handlePressCategoryItem = (id: number) => {
+  const handlePressCategoryItem = useCallback((id: number) => {
     router.push(ROUTES.CATEGORY(id));
-  };
+  }, []);
 
-  const handlePressProduct = (id: string) => {
+  const handlePressProduct = useCallback((id: string) => {
     router.push(ROUTES.PRODUCT_DETAILS(id));
-  };
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -96,7 +94,7 @@ export default function HomeScreen() {
         <View style={styles.product}>
           <View style={styles.productHeading}>
             <Text variant="title" style={styles.productTitle}>
-              New Product
+              Popular Product
             </Text>
             <Button title="See All" size="sm" />
           </View>

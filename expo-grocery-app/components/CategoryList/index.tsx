@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import Text from '../Text';
+import { memo } from 'react';
+import isEqual from 'react-fast-compare';
 
 interface CategoryItem {
   id: number;
@@ -80,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CategoryList;
+export default memo(CategoryList, isEqual);

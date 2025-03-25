@@ -39,7 +39,12 @@ export default function ProductDetails() {
 
   const renderItem = ({ item }: { item: string }) => {
     return (
-      <Image source={{ uri: item }} style={styles.image} contentFit="contain" />
+      <Image
+        source={{ uri: item }}
+        style={styles.image}
+        contentFit="contain"
+        cachePolicy="memory-disk"
+      />
     );
   };
 
@@ -82,7 +87,7 @@ export default function ProductDetails() {
 
         {/* Indicator */}
         <View style={styles.indicatorContainer}>
-          {images.map((_, index) => (
+          {images?.map((_, index) => (
             <View
               key={index}
               style={[styles.dot, currentIndex === index && styles.activeDot]}
@@ -98,13 +103,15 @@ export default function ProductDetails() {
           <Text variant="heading" style={styles.newPrice}>
             ${newPrice}
           </Text>
-          {oldPrice ? <Text>{`$${oldPrice} ${discount}% off`}</Text> : null}
+          {oldPrice ? (
+            <Text>{`$${oldPrice} ${newPrice ? (newPrice * 100) / oldPrice : 0}% off`}</Text>
+          ) : null}
         </View>
       </View>
       <View style={styles.store}>
         <View style={styles.storeGroup}>
           <View style={styles.storeLogo}>
-            <Text variant="heading">{storeName.charAt(0).toUpperCase()}</Text>
+            <Text variant="heading">{storeName?.charAt(0).toUpperCase()}</Text>
           </View>
           <Text>{storeName}</Text>
         </View>

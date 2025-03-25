@@ -1,31 +1,31 @@
+import '../wdyr.ts';
 import { colors } from '@/themes';
 import * as Font from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { ClickOutsideProvider } from 'react-native-click-outside';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Toast from 'react-native-toast-message';
+import { useReactQueryDevTools } from '@dev-plugins/react-query';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000,
+      retry: 2,
+    },
+  },
+});
+
 export default function RootLayout() {
+  useReactQueryDevTools(queryClient);
   const [appIsReady, setAppIsReady] = useState(false);
-  const queryClient = useMemo(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: 5 * 60 * 1000,
-            retry: 2,
-          },
-        },
-      }),
-    [],
-  );
 
   useEffect(() => {
     async function prepare() {
