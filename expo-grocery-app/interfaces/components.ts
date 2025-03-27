@@ -17,3 +17,9 @@ export type ButtonSizes = 'full' | 'sm' | 'md' | 'lg';
 
 //Input
 export type InputVariants = 'filled' | 'outlined' | 'flushed';
+
+// Select
+export interface SelectOption {
+  title: string;
+  value: string;
+}

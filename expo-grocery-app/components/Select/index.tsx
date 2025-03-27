@@ -11,9 +11,11 @@ import {
 } from 'react-native';
 
 import { Text } from '@/components';
+import { SelectOption } from '@/interfaces';
+import React from 'react';
 
 interface DropdownProps {
-  data: { title: string; value: string }[];
+  data: SelectOption[];
   value?: string;
   placeholder?: string;
   errorMessage?: string;

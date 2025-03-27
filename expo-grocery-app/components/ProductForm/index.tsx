@@ -1,11 +1,10 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { useState } from 'react';
 import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
   View,
-  Alert,
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
@@ -13,7 +12,8 @@ import { Image } from 'expo-image';
 import { CameraView } from 'expo-camera';
 import { Controller, useForm } from 'react-hook-form';
 import { colors, fontsFamily, fontWeights, spacing } from '@/themes';
-// import isEqual from '';
+import { useActionSheet } from '@expo/react-native-action-sheet';
+
 import {
   Button,
   CloseIcon,
@@ -22,6 +22,7 @@ import {
   Text,
   Input,
   Select,
+  AlbumEntry,
 } from '@/components';
 import { PRODUCT_FORM_FIELDS } from '@/constants';
 import { useImageHandler } from '@/hooks';
@@ -64,6 +65,7 @@ const ProductForm = ({
   data = INIT_FORM_VALUES,
   onSubmit,
 }: ProductFormProps) => {
+  const { showActionSheetWithOptions } = useActionSheet();
   const [error, setError] = useState<string | null>(null);
   const { control, clearErrors, handleSubmit, watch } =
     useForm<ProductFormType>({
@@ -81,6 +83,11 @@ const ProductForm = ({
     removeImage,
     toggleCamera,
     toggleCameraFacing,
+    openAlbums,
+    albums,
+    showAlbums,
+    handleHideAlbums,
+    mediaImagesId,
   } = useImageHandler(data.images);
 
   const isUnchanged = isEqual(
@@ -88,23 +95,29 @@ const ProductForm = ({
     { ...data, images: data.images },
   );
 
-  const handlePressAddProduct = useCallback(() => {
-    Alert.alert(
-      'Choose photo',
-      'Do you want to take a photo or choose from the library?',
-      [
-        {
-          text: 'Take a photo',
-          onPress: openCamera,
-        },
-        {
-          text: 'Choose photo from library',
-          onPress: pickImage,
-        },
-        { text: 'Cancel', style: 'cancel' },
-      ],
+  const handlePressAddPhotos = useCallback(() => {
+    handleHideAlbums();
+    showActionSheetWithOptions(
+      {
+        options: ['Take a photo', 'Choose photo from library', 'Cancel'],
+        cancelButtonIndex: 2,
+        destructiveButtonIndex: 0,
+      },
+      (selectedIndex) => {
+        switch (selectedIndex) {
+          case 0:
+            openCamera();
+            break;
+          case 1:
+            openAlbums();
+            break;
+          case 2:
+            // Cancel
+            break;
+        }
+      },
     );
-  }, [openCamera, pickImage]);
+  }, [handleHideAlbums, showActionSheetWithOptions, openCamera, openAlbums]);
 
   const handleSubmitProductForm = useCallback(
     (formData: ProductFormType) => {
@@ -126,7 +139,7 @@ const ProductForm = ({
             <TouchableOpacity
               testID="add-photo-button"
               style={styles.addPhoto}
-              onPress={handlePressAddProduct}
+              onPress={handlePressAddPhotos}
             >
               <PlushIcon />
               <Text style={styles.addPhotoText}>Add photos</Text>
@@ -223,7 +236,7 @@ const ProductForm = ({
     ),
     [
       images,
-      handlePressAddProduct,
+      handlePressAddPhotos,
       error,
       isEdit,
       isLoading,
@@ -268,6 +281,15 @@ const ProductForm = ({
             style={styles.captureButton}
           />
         </CameraView>
+      )}
+      {albums && albums.length > 0 && showAlbums && (
+        <AlbumEntry
+          albums={albums}
+          maxSelection={4 - images.length}
+          imagesSelected={mediaImagesId}
+          onSelect={pickImage}
+          onClose={handleHideAlbums}
+        />
       )}
     </>
   );

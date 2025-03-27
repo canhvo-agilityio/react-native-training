@@ -1,34 +1,51 @@
 import { useState, useRef } from 'react';
-import * as ImagePicker from 'expo-image-picker';
 import { CameraType, CameraView, useCameraPermissions } from 'expo-camera';
 import { useMutation } from '@tanstack/react-query';
 import { Alert, Platform } from 'react-native';
 import { IMAGE_SERVICE_KEY } from '@/constants';
 import * as Linking from 'expo-linking';
+import { useActionSheet } from '@expo/react-native-action-sheet';
+import {
+  Album,
+  getAlbumsAsync,
+  getAssetInfoAsync,
+  usePermissions,
+} from 'expo-media-library';
 
 export const useImageHandler = (data: string[]) => {
   const [images, setImages] = useState<string[]>(data);
+  const [mediaImagesId, setMediaImagesId] = useState<string[]>([]);
+  const [albums, setAlbums] = useState<Album[]>([]);
   const [facing, setFacing] = useState<CameraType>('back');
   const [showCamera, setShowCamera] = useState(false);
+  const [showAlbums, setShowAlbums] = useState(false);
   const cameraRef = useRef<CameraView>(null);
-
+  const { showActionSheetWithOptions } = useActionSheet();
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
+  const [mediaPermission, requestMediaPermission] = usePermissions();
 
   const openCamera = async () => {
     if (!cameraPermission?.granted) {
       const { granted } = await requestCameraPermission();
 
       if (!granted) {
-        Alert.alert(
-          'You have not granted camera access',
-          'Please go to Settings to re-grant permissions.',
-          [
-            { text: 'Cancel', style: 'cancel' },
-            {
-              text: 'Open Settings',
-              onPress: () => Linking.openSettings(),
-            },
-          ],
+        showActionSheetWithOptions(
+          {
+            title:
+              'You have not granted camera access, please go to Settings to re-grant permissions.',
+            options: ['Open Settings', 'Cancel'],
+            cancelButtonIndex: 1,
+            destructiveButtonIndex: 0,
+          },
+          (selectedIndex) => {
+            switch (selectedIndex) {
+              case 0:
+                Linking.openSettings();
+                break;
+              case 1:
+                break;
+            }
+          },
         );
         return;
       }
@@ -47,20 +64,60 @@ export const useImageHandler = (data: string[]) => {
     }
   };
 
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images'],
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
+  const openAlbums = async () => {
+    if (!mediaPermission?.granted) {
+      const { granted } = await requestMediaPermission();
 
-    if (!result.canceled) {
-      setImages((prev) => [
-        ...prev,
-        ...result.assets.map((asset) => asset.uri),
-      ]);
+      if (!granted) {
+        showActionSheetWithOptions(
+          {
+            title:
+              'You have not granted  access, please go to Settings to re-grant permissions.',
+            options: ['Open Settings', 'Cancel'],
+            cancelButtonIndex: 1,
+            destructiveButtonIndex: 0,
+          },
+          (selectedIndex) => {
+            switch (selectedIndex) {
+              case 0:
+                Linking.openSettings();
+                break;
+              case 1:
+                break;
+            }
+          },
+        );
+        return;
+      }
     }
+    const fetchedAlbums = await getAlbumsAsync({
+      includeSmartAlbums: true,
+    });
+    setAlbums(fetchedAlbums);
+    setShowAlbums(true);
+  };
+
+  const handleHideAlbums = () => {
+    setShowAlbums(false);
+  };
+
+  const resolveAssetUri = async (uri: string) => {
+    try {
+      const asset = await getAssetInfoAsync(uri);
+      return asset.localUri || uri;
+    } catch (error) {
+      console.error('Error resolving asset URI:', error);
+      return uri;
+    }
+  };
+
+  const pickImage = async (ids: string[]) => {
+    const resolvedUris = await Promise.all(ids.map(resolveAssetUri));
+    setMediaImagesId(ids);
+    setImages((prev) => {
+      const uniqueUris = resolvedUris.filter((uri) => !prev.includes(uri));
+      return [...prev, ...uniqueUris];
+    });
   };
 
   const removeImage = (uri: string) => {
@@ -86,6 +143,11 @@ export const useImageHandler = (data: string[]) => {
     removeImage,
     toggleCameraFacing,
     toggleCamera,
+    openAlbums,
+    albums,
+    showAlbums,
+    handleHideAlbums,
+    mediaImagesId,
   };
 };
 

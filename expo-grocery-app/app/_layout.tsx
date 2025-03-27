@@ -1,4 +1,4 @@
-import '../wdyr.ts';
+// import '../wdyr.ts';
 import { colors } from '@/themes';
 import * as Font from 'expo-font';
 import { Stack } from 'expo-router';
@@ -10,6 +10,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Toast from 'react-native-toast-message';
 import { useReactQueryDevTools } from '@dev-plugins/react-query';
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -59,22 +60,24 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <ClickOutsideProvider>
-        <SafeAreaView
-          style={{ flex: 1, backgroundColor: colors.primary }}
-          onLayout={onLayoutRootView}
-        >
-          <StatusBar
-            backgroundColor={colors.primary}
-            barStyle="light-content"
-            translucent
-          />
-          <Stack
-            screenOptions={{
-              headerShown: false,
-            }}
-          />
-          <Toast />
-        </SafeAreaView>
+        <ActionSheetProvider>
+          <SafeAreaView
+            style={{ flex: 1, backgroundColor: colors.primary }}
+            onLayout={onLayoutRootView}
+          >
+            <StatusBar
+              backgroundColor={colors.primary}
+              barStyle="light-content"
+              translucent
+            />
+            <Stack
+              screenOptions={{
+                headerShown: false,
+              }}
+            />
+            <Toast />
+          </SafeAreaView>
+        </ActionSheetProvider>
       </ClickOutsideProvider>
     </QueryClientProvider>
   );

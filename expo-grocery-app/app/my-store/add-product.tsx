@@ -25,6 +25,7 @@ export default function AddProduct() {
   };
 
   const handleSubmit = async (data: ProductFormType) => {
+
     await checkAndRequestNotificationPermission();
     uploadImages(data.images, {
       onSuccess: (uploadedUrls) => {
