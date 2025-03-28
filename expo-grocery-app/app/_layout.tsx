@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Toast from 'react-native-toast-message';
 import { useReactQueryDevTools } from '@dev-plugins/react-query';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+import { NetworkProvider } from '@/providers';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -20,6 +21,8 @@ const queryClient = new QueryClient({
     queries: {
       staleTime: 5 * 60 * 1000,
       retry: 2,
+      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
+      networkMode: 'always',
     },
   },
 });
@@ -59,26 +62,28 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ClickOutsideProvider>
-        <ActionSheetProvider>
-          <SafeAreaView
-            style={{ flex: 1, backgroundColor: colors.primary }}
-            onLayout={onLayoutRootView}
-          >
-            <StatusBar
-              backgroundColor={colors.primary}
-              barStyle="light-content"
-              translucent
-            />
-            <Stack
-              screenOptions={{
-                headerShown: false,
-              }}
-            />
-            <Toast />
-          </SafeAreaView>
-        </ActionSheetProvider>
-      </ClickOutsideProvider>
+      <NetworkProvider queryClient={queryClient}>
+        <ClickOutsideProvider>
+          <ActionSheetProvider>
+            <SafeAreaView
+              style={{ flex: 1, backgroundColor: colors.primary }}
+              onLayout={onLayoutRootView}
+            >
+              <StatusBar
+                backgroundColor={colors.primary}
+                barStyle="light-content"
+                translucent
+              />
+              <Stack
+                screenOptions={{
+                  headerShown: false,
+                }}
+              />
+              <Toast />
+            </SafeAreaView>
+          </ActionSheetProvider>
+        </ClickOutsideProvider>
+      </NetworkProvider>
     </QueryClientProvider>
   );
 }

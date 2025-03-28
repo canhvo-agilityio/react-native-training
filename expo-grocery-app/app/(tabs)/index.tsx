@@ -81,14 +81,14 @@ export default function HomeScreen() {
             <Button title="See All" size="sm" />
           </View>
           {newProductError && <Text>Error when load new products</Text>}
-          {isLoadingNewProduct ? (
+          {/* {isLoadingNewProduct ? (
             <ActivityIndicator />
           ) : (
             <ProductList
               data={newProductData || []}
               onPress={handlePressProduct}
             />
-          )}
+          )} */}
         </View>
         {/* Popular products */}
         <View style={styles.product}>
@@ -99,14 +99,14 @@ export default function HomeScreen() {
             <Button title="See All" size="sm" />
           </View>
           {popularProductError && <Text>Error when load popular products</Text>}
-          {isLoadingPopularProduct ? (
+          {/* {isLoadingPopularProduct ? (
             <ActivityIndicator />
           ) : (
             <ProductList
               data={popularProductData || []}
               onPress={handlePressProduct}
             />
-          )}
+          )} */}
         </View>
         {/* Stores */}
         <View style={styles.storesHeading}>

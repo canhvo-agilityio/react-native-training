@@ -10,7 +10,8 @@ import { useFetchProductDetail } from '@/hooks';
 import { colors, spacing } from '@/themes';
 import { router, useLocalSearchParams } from 'expo-router';
 import { Image } from 'expo-image';
-import { useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import {
   View,
   FlatList,
@@ -19,15 +20,19 @@ import {
   Dimensions,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const { width } = Dimensions.get('window');
 
 export default function ProductDetails() {
   const { id } = useLocalSearchParams();
   const productId = Array.isArray(id) ? id[0] : id;
-  const { data, isFetching, error } = useFetchProductDetail(productId);
-  const { name, images, description, newPrice, oldPrice, discount, storeName } =
+  const { data, isFetching, error, refetch, isRefetching } =
+    useFetchProductDetail(productId);
+  const { name, images, description, newPrice, oldPrice, storeName } =
     data || {};
   const flatListRef = useRef<FlatList>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -52,78 +57,104 @@ export default function ProductDetails() {
     router.back();
   };
 
+  const handleRefresh = useCallback(() => {
+    refetch();
+  }, [refetch]);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <View style={styles.overlay} />
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ScrollView
+        style={styles.container}
+        refreshControl={
+          <RefreshControl refreshing={isRefetching} onRefresh={handleRefresh} />
+        }
+      >
+        {error && <Text>Error when load product</Text>}
+        {isFetching ? (
+          <ActivityIndicator />
+        ) : (
+          <>
+            <View style={styles.imageContainer}>
+              <View style={styles.overlay} />
 
-        <FlatList
-          ref={flatListRef}
-          data={images}
-          keyExtractor={(item) => item}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onScroll={handleScroll}
-          renderItem={renderItem}
-        />
+              <FlatList
+                ref={flatListRef}
+                data={images}
+                keyExtractor={(item) => item}
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                onScroll={handleScroll}
+                renderItem={renderItem}
+              />
 
-        <View style={styles.topBar}>
-          <TouchableOpacity style={styles.iconButton} onPress={handlePressBack}>
-            <ChevronLeftIcon />
-          </TouchableOpacity>
-          <View style={styles.iconGroup}>
-            <TouchableOpacity style={styles.iconButton}>
-              <ShareIcon />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconButton}>
-              <HeartOutlineIcon />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.iconButton}>
-              <MoreIcon />
-            </TouchableOpacity>
-          </View>
-        </View>
+              <View style={styles.topBar}>
+                <TouchableOpacity
+                  style={styles.iconButton}
+                  onPress={handlePressBack}
+                >
+                  <ChevronLeftIcon />
+                </TouchableOpacity>
+                <View style={styles.iconGroup}>
+                  <TouchableOpacity style={styles.iconButton}>
+                    <ShareIcon />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.iconButton}>
+                    <HeartOutlineIcon />
+                  </TouchableOpacity>
+                  <TouchableOpacity style={styles.iconButton}>
+                    <MoreIcon />
+                  </TouchableOpacity>
+                </View>
+              </View>
 
-        {/* Indicator */}
-        <View style={styles.indicatorContainer}>
-          {images?.map((_, index) => (
-            <View
-              key={index}
-              style={[styles.dot, currentIndex === index && styles.activeDot]}
-            />
-          ))}
-        </View>
-      </View>
-      <View style={styles.nameGroup}>
-        <Text variant="heading" style={styles.name}>
-          {name}
-        </Text>
-        <View style={styles.priceGroup}>
-          <Text variant="heading" style={styles.newPrice}>
-            ${newPrice}
-          </Text>
-          {oldPrice ? (
-            <Text>{`$${oldPrice} ${newPrice ? (newPrice * 100) / oldPrice : 0}% off`}</Text>
-          ) : null}
-        </View>
-      </View>
-      <View style={styles.store}>
-        <View style={styles.storeGroup}>
-          <View style={styles.storeLogo}>
-            <Text variant="heading">{storeName?.charAt(0).toUpperCase()}</Text>
-          </View>
-          <Text>{storeName}</Text>
-        </View>
-        <Button title="Follow" size="sm" />
-      </View>
-      <View style={styles.description}>
-        <Text size="xs">{description}</Text>
-      </View>
-      <View style={styles.addToCartBtn}>
-        <Button title="Add Product" />
-      </View>
-    </View>
+              {/* Indicator */}
+              <View style={styles.indicatorContainer}>
+                {images?.map((_, index) => (
+                  <View
+                    key={index}
+                    style={[
+                      styles.dot,
+                      currentIndex === index && styles.activeDot,
+                    ]}
+                  />
+                ))}
+              </View>
+            </View>
+            <View style={styles.nameGroup}>
+              <Text variant="heading" style={styles.name}>
+                {name}
+              </Text>
+              <View style={styles.priceGroup}>
+                <Text variant="heading" style={styles.newPrice}>
+                  ${newPrice}
+                </Text>
+                {oldPrice ? (
+                  <Text>{`$${oldPrice} ${newPrice ? (newPrice * 100) / oldPrice : 0}% off`}</Text>
+                ) : null}
+              </View>
+            </View>
+            <View style={styles.store}>
+              <View style={styles.storeGroup}>
+                <View style={styles.storeLogo}>
+                  <Text variant="heading">
+                    {storeName?.charAt(0).toUpperCase()}
+                  </Text>
+                </View>
+                <Text>{storeName}</Text>
+              </View>
+              <Button title="Follow" size="sm" />
+            </View>
+            <View style={styles.description}>
+              <Text size="xs">{description}</Text>
+            </View>
+            <View style={styles.addToCartBtn}>
+              <Button title="Add Product" />
+            </View>
+          </>
+        )}
+      </ScrollView>
+    </GestureHandlerRootView>
   );
 }
 

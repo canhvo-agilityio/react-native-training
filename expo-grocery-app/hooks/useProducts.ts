@@ -1,4 +1,9 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+  useInfiniteQuery,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query';
 import { get, patch, post, remove } from '@/utils';
 import { API_URL, ENDPOINTS } from '@/constants';
 import { Product, ProductDetails, ProductRequest } from '@/interfaces';
@@ -13,12 +18,38 @@ export const useFetchProducts = (endpoint: string) => {
 
 export const useFetchProductsByCategoryId = (id: string) => {
   return useQuery<Product[]>({
-    queryKey: [ENDPOINTS.PRODUCTS, id],
+    queryKey: [ENDPOINTS.PRODUCTS, id, 'page 1'],
     queryFn: () =>
-      get(`${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}?categoryId=${id}`),
+      get(
+        `${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}?categoryId=${id}&_page=${1}&_limit=${10}`,
+      ),
     placeholderData: (previousData) => previousData ?? INIT_PRODUCT,
     retry: 2,
   });
+};
+
+export const useInfiniteByCategoryId = (id: string, limit: number) => {
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, ...rest } =
+    useInfiniteQuery<Product[]>({
+      queryKey: [ENDPOINTS.PRODUCTS, id, 'another page'],
+      queryFn: ({ pageParam = 2 }) =>
+        get(
+          `${API_URL.BASE_URL}${ENDPOINTS.PRODUCTS}?categoryId=${id}&_page=${pageParam}&_limit=${limit}`,
+        ),
+      initialPageParam: 1,
+      getNextPageParam: (lastPage, allPages) => {
+        return lastPage.length === limit ? allPages.length + 1 : undefined;
+      },
+      retry: 2,
+      gcTime: 0,
+    });
+  return {
+    data: data?.pages.flatMap((page) => page) ?? [],
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    ...rest,
+  };
 };
 
 export const useFetchProductDetail = (id: string) => {

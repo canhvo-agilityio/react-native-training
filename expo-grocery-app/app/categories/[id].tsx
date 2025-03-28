@@ -15,21 +15,64 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { colors, spacing } from '@/themes';
-import { CATEGORIES } from '@/constants';
-import { useFetchProductsByCategoryId } from '@/hooks';
+import { CATEGORIES, ROUTES } from '@/constants';
+import { useFetchProductsByCategoryId, useInfiniteByCategoryId } from '@/hooks';
+import { useCallback, useMemo, useState, useEffect } from 'react';
+import { Product } from '@/interfaces';
 
 export default function ProductsByCategory() {
   const { id } = useLocalSearchParams();
   const categoryId = Array.isArray(id) ? id[0] : id;
-  const { data, isFetching, error } = useFetchProductsByCategoryId(categoryId);
+  const { data: initialData, isLoading: isInitialLoading } =
+    useFetchProductsByCategoryId(categoryId);
+  const {
+    data: infiniteData,
+    fetchNextPage,
+    hasNextPage,
+    isLoading: infiniteLoading,
+    isFetchingNextPage,
+    refetch,
+    isRefetching,
+    error,
+    hasPreviousPage,
+  } = useInfiniteByCategoryId(categoryId, 10);
 
-  const handlePressProduct = (id: string) => {
-    //TODO
-  };
+  const [combinedData, setCombinedData] = useState<Product[]>([]);
+
+  useEffect(() => {
+    if (initialData) {
+      setCombinedData(initialData);
+    }
+  }, [initialData]);
+
+  const handlePressProduct = useCallback((id: string) => {
+    router.push(ROUTES.PRODUCT_DETAILS(id));
+  }, []);
 
   const handlePressBackIcon = () => {
     router.back();
   };
+
+  const handleRefresh = useCallback(() => {
+    refetch();
+  }, [refetch]);
+
+  const handleEndReached = useCallback(() => {
+    if (!hasPreviousPage && !infiniteLoading) {
+      setCombinedData((prevData) => [...prevData, ...infiniteData]);
+    }
+    if (hasNextPage && !infiniteLoading && !isFetchingNextPage) {
+      fetchNextPage();
+      setCombinedData((prevData) => [...prevData, ...infiniteData]);
+    }
+  }, [
+    hasPreviousPage,
+    infiniteLoading,
+    hasNextPage,
+    isFetchingNextPage,
+    infiniteData,
+    fetchNextPage,
+  ]);
 
   return (
     <View style={styles.wrapper}>
@@ -63,12 +106,20 @@ export default function ProductsByCategory() {
           />
         </View>
       </View>
-      {isFetching ? (
+      {isInitialLoading && !isRefetching ? (
         <ActivityIndicator />
       ) : (
         <View style={styles.list}>
           {error && <Text>Error when load products</Text>}
-          <ProductList data={data} onPress={handlePressProduct} isGrid />
+          <ProductList
+            data={combinedData}
+            onPress={handlePressProduct}
+            isFetchingMore={isFetchingNextPage}
+            isGrid
+            isRefreshing={isRefetching}
+            onRefresh={handleRefresh}
+            onEndReached={handleEndReached}
+          />
         </View>
       )}
     </View>

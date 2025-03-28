@@ -1,6 +1,11 @@
 import { Product } from '@/interfaces';
 import { memo, useCallback } from 'react';
-import { FlatList, ListRenderItemInfo, StyleSheet } from 'react-native';
+import {
+  ActivityIndicator,
+  FlatList,
+  ListRenderItemInfo,
+  StyleSheet,
+} from 'react-native';
 import isEqual from 'react-fast-compare';
 import ProductCard from '../ProductCard';
 import { spacing } from '@/themes';
@@ -10,18 +15,26 @@ interface ProductListProps {
   data: Product[];
   isGrid?: boolean;
   isEditing?: boolean;
+  isRefreshing?: boolean;
+  isFetchingMore?: boolean;
   onPress: (id: string) => void;
   onEdit?: (id: string) => void;
   onDelete?: (id: string) => void;
+  onRefresh?: () => void;
+  onEndReached?: () => void;
 }
 
 const ProductList = ({
   data,
   isGrid = false,
   isEditing = false,
+  isFetchingMore = false,
+  isRefreshing = false,
   onPress,
   onEdit,
   onDelete,
+  onRefresh,
+  onEndReached,
 }: ProductListProps) => {
   const getKeyExtractor = useCallback((item: Product) => item.id, []);
   const renderItem = useCallback(
@@ -55,11 +68,21 @@ const ProductList = ({
       windowSize={5}
       updateCellsBatchingPeriod={50}
       removeClippedSubviews={true}
+      onEndReachedThreshold={0.2}
       getItemLayout={(_, index) => ({
         length: PRODUCT_CARD_HEIGHT,
         offset: PRODUCT_CARD_HEIGHT * index,
         index,
       })}
+      onRefresh={onRefresh}
+      refreshing={isRefreshing}
+      ListFooterComponent={
+        isFetchingMore ? (
+          <ActivityIndicator size="small" style={styles.loader} />
+        ) : null
+      }
+      onEndReached={onEndReached}
+      contentContainerStyle={isGrid ? styles.listContainer : undefined}
     />
   );
 };
@@ -67,6 +90,12 @@ const ProductList = ({
 const styles = StyleSheet.create({
   columnProduct: {
     paddingBottom: spacing[2.5],
+  },
+  loader: {
+    marginVertical: 20,
+  },
+  listContainer: {
+    paddingBottom: 200,
   },
 });
 

@@ -21,6 +21,8 @@ export default function MyStore() {
     data: productsData,
     isFetching: isLoadingProducts,
     error: fetchProductsError,
+    refetch,
+    isRefetching,
   } = useFetchProductsByStoreId(storeId);
   const { mutate: deleteProduct, isPending: deletingProduct } =
     useDeleteProduct();
@@ -58,6 +60,10 @@ export default function MyStore() {
     },
     [deleteProduct],
   );
+
+  const handleRefresh = useCallback(() => {
+    refetch();
+  }, [refetch]);
 
   const handlePressDeleteIcon = (id: string) => {
     Alert.alert(
@@ -130,6 +136,8 @@ export default function MyStore() {
             data={productsData}
             isEditing
             isGrid
+            isRefreshing={isRefetching}
+            onRefresh={handleRefresh}
             onPress={handlePressProduct}
             onEdit={handlePressEditIcon}
             onDelete={handlePressDeleteIcon}
