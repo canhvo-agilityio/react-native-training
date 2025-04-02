@@ -36,7 +36,7 @@ const ProductCard = ({
     onDelete && onDelete(id);
   };
 
-  // console.log('ProductCard render');
+  console.log('render product: ', id);
 
   return (
     <TouchableOpacity
@@ -49,7 +49,6 @@ const ProductCard = ({
           source={{ uri: imageUrl }}
           style={styles.image}
           contentFit="cover"
-          cachePolicy="memory-disk"
         />
         {isEditing && (
           <View style={styles.iconContainer}>

@@ -3,15 +3,24 @@ import { colors } from '@/themes';
 import * as Font from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { useCallback, useEffect, useState } from 'react';
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { ClickOutsideProvider } from 'react-native-click-outside';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Toast from 'react-native-toast-message';
 import { useReactQueryDevTools } from '@dev-plugins/react-query';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { NetworkProvider } from '@/providers';
+
+import { useAuthStore } from '@/stores';
+import { API_URL, ENDPOINTS } from '@/constants';
+import { get } from '@/utils';
+
+const LazyToast = lazy(() => import('react-native-toast-message'));
+
+const PerformanceProfiler = __DEV__
+  ? require('@shopify/react-native-performance').PerformanceProfiler
+  : null;
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -20,9 +29,6 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: 5 * 60 * 1000,
-      retry: 2,
-      retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
-      networkMode: 'always',
     },
   },
 });
@@ -30,6 +36,13 @@ const queryClient = new QueryClient({
 export default function RootLayout() {
   useReactQueryDevTools(queryClient);
   const [appIsReady, setAppIsReady] = useState(false);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  const onReportPrepared = useCallback((report: any) => {
+    if (__DEV__) {
+      console.log(report);
+    }
+  }, []);
 
   useEffect(() => {
     async function prepare() {
@@ -40,6 +53,13 @@ export default function RootLayout() {
           'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
           'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
         });
+
+        if (isAuthenticated) {
+          await queryClient.prefetchQuery({
+            queryKey: [ENDPOINTS.NEW_PRODUCTS],
+            queryFn: () => get(`${API_URL.BASE_URL}${ENDPOINTS.NEW_PRODUCTS}`),
+          });
+        }
       } catch (e) {
         console.warn(e);
       } finally {
@@ -48,19 +68,19 @@ export default function RootLayout() {
     }
 
     prepare();
-  }, []);
+  }, [isAuthenticated]);
 
-  const onLayoutRootView = useCallback(async () => {
+  const onLayoutRootView = async () => {
     if (appIsReady) {
       await SplashScreen.hideAsync();
     }
-  }, [appIsReady]);
+  };
 
   if (!appIsReady) {
     return null;
   }
 
-  return (
+  const appContent = (
     <QueryClientProvider client={queryClient}>
       <NetworkProvider queryClient={queryClient}>
         <ClickOutsideProvider>
@@ -79,11 +99,21 @@ export default function RootLayout() {
                   headerShown: false,
                 }}
               />
-              <Toast />
+              <Suspense fallback={null}>
+                <LazyToast />
+              </Suspense>
             </SafeAreaView>
           </ActionSheetProvider>
         </ClickOutsideProvider>
       </NetworkProvider>
     </QueryClientProvider>
+  );
+
+  return __DEV__ ? (
+    <PerformanceProfiler onReportPrepared={onReportPrepared}>
+      {appContent}
+    </PerformanceProfiler>
+  ) : (
+    appContent
   );
 }

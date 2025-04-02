@@ -16,34 +16,22 @@ import {
 } from 'react-native';
 import { colors, spacing } from '@/themes';
 import { CATEGORIES, ROUTES } from '@/constants';
-import { useFetchProductsByCategoryId, useInfiniteByCategoryId } from '@/hooks';
-import { useCallback, useMemo, useState, useEffect } from 'react';
-import { Product } from '@/interfaces';
+import { useInfiniteByCategoryId } from '@/hooks';
+import { useCallback } from 'react';
 
 export default function ProductsByCategory() {
   const { id } = useLocalSearchParams();
   const categoryId = Array.isArray(id) ? id[0] : id;
-  const { data: initialData, isLoading: isInitialLoading } =
-    useFetchProductsByCategoryId(categoryId);
   const {
-    data: infiniteData,
+    data,
     fetchNextPage,
     hasNextPage,
-    isLoading: infiniteLoading,
+    isLoading,
     isFetchingNextPage,
     refetch,
     isRefetching,
     error,
-    hasPreviousPage,
   } = useInfiniteByCategoryId(categoryId, 10);
-
-  const [combinedData, setCombinedData] = useState<Product[]>([]);
-
-  useEffect(() => {
-    if (initialData) {
-      setCombinedData(initialData);
-    }
-  }, [initialData]);
 
   const handlePressProduct = useCallback((id: string) => {
     router.push(ROUTES.PRODUCT_DETAILS(id));
@@ -58,21 +46,12 @@ export default function ProductsByCategory() {
   }, [refetch]);
 
   const handleEndReached = useCallback(() => {
-    if (!hasPreviousPage && !infiniteLoading) {
-      setCombinedData((prevData) => [...prevData, ...infiniteData]);
-    }
-    if (hasNextPage && !infiniteLoading && !isFetchingNextPage) {
+    if (hasNextPage && !isFetchingNextPage) {
+      console.log('abc');
+
       fetchNextPage();
-      setCombinedData((prevData) => [...prevData, ...infiniteData]);
     }
-  }, [
-    hasPreviousPage,
-    infiniteLoading,
-    hasNextPage,
-    isFetchingNextPage,
-    infiniteData,
-    fetchNextPage,
-  ]);
+  }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   return (
     <View style={styles.wrapper}>
@@ -106,13 +85,13 @@ export default function ProductsByCategory() {
           />
         </View>
       </View>
-      {isInitialLoading && !isRefetching ? (
+      {isLoading && !isRefetching ? (
         <ActivityIndicator />
       ) : (
         <View style={styles.list}>
           {error && <Text>Error when load products</Text>}
           <ProductList
-            data={combinedData}
+            data={data}
             onPress={handlePressProduct}
             isFetchingMore={isFetchingNextPage}
             isGrid

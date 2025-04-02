@@ -4,13 +4,16 @@ import { colors, spacing } from '@/themes';
 import { useAuthStore } from '@/stores';
 import { router } from 'expo-router';
 import { ROUTES } from '@/constants';
+import { useQueryClient } from '@tanstack/react-query';
 
 export default function ProfileScreen() {
   const { logout } = useAuthStore();
+  const queryClient = useQueryClient();
 
   const handleLogout = () => {
     logout();
     router.push(ROUTES.LOGIN);
+    queryClient.clear();
   };
 
   const menuItems = [

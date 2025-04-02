@@ -1,29 +1,37 @@
-import * as Device from 'expo-device';
-import * as Notifications from 'expo-notifications';
+import { isDevice } from 'expo-device';
+import {
+  requestPermissionsAsync,
+  setNotificationChannelAsync,
+  setNotificationHandler,
+  getPermissionsAsync,
+  scheduleNotificationAsync,
+  AndroidImportance,
+  SchedulableTriggerInputTypes,
+} from 'expo-notifications';
 import { Alert, Platform } from 'react-native';
-import * as Linking from 'expo-linking';
+import { openSettings } from 'expo-linking';
 
 export const registerForPushNotificationsAsync = async () => {
   if (Platform.OS === 'android') {
-    await Notifications.requestPermissionsAsync();
-    await Notifications.setNotificationChannelAsync('myNotificationChannel', {
+    await requestPermissionsAsync();
+    await setNotificationChannelAsync('myNotificationChannel', {
       name: 'A channel is needed for the permissions prompt to appear',
-      importance: Notifications.AndroidImportance.MAX,
+      importance: AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
       lightColor: '#FF231F7C',
     });
   }
 
-  if (!Device.isDevice) return;
+  if (!isDevice) return;
 
-  const { status: existingStatus } = await Notifications.getPermissionsAsync();
+  const { status: existingStatus } = await getPermissionsAsync();
   if (existingStatus !== 'granted') {
-    await Notifications.requestPermissionsAsync();
+    await requestPermissionsAsync();
   }
 };
 
 export const setupNotificationHandler = () => {
-  Notifications.setNotificationHandler({
+  setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
       shouldPlaySound: true,
@@ -39,7 +47,7 @@ export async function scheduleNotification(
   actionData?: any,
   delaySeconds?: number,
 ) {
-  await Notifications.scheduleNotificationAsync({
+  await scheduleNotificationAsync({
     content: {
       title,
       body,
@@ -49,14 +57,14 @@ export async function scheduleNotification(
       },
     },
     trigger: {
-      type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+      type: SchedulableTriggerInputTypes.TIME_INTERVAL,
       seconds: delaySeconds || 2,
     },
   });
 }
 
 export const checkAndRequestNotificationPermission = async () => {
-  const { status } = await Notifications.getPermissionsAsync();
+  const { status } = await getPermissionsAsync();
 
   if (status !== 'granted') {
     return new Promise((resolve) => {
@@ -68,7 +76,7 @@ export const checkAndRequestNotificationPermission = async () => {
           {
             text: 'Open Settings',
             onPress: () => {
-              Linking.openSettings();
+              openSettings();
               resolve(false);
             },
           },

@@ -8,15 +8,17 @@ import {
   Input,
   ProductList,
   SearchIcon,
-  StoreList,
   Text,
 } from '@/components';
-import { useCallback, useState } from 'react';
+import { lazy, Suspense, useCallback, useState } from 'react';
 import { colors, fontsFamily, fontWeights, spacing } from '@/themes';
 import { router } from 'expo-router';
 import { BANNERS, CATEGORIES, STORES } from '@/mocks';
 import { useFetchProducts } from '@/hooks';
 import { ENDPOINTS, ROUTES } from '@/constants';
+import { PerformanceMeasureView } from '@shopify/react-native-performance';
+
+const StoreList = lazy(() => import('@/components/StoreList'));
 
 export default function HomeScreen() {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -81,14 +83,14 @@ export default function HomeScreen() {
             <Button title="See All" size="sm" />
           </View>
           {newProductError && <Text>Error when load new products</Text>}
-          {/* {isLoadingNewProduct ? (
+          {isLoadingNewProduct ? (
             <ActivityIndicator />
           ) : (
             <ProductList
               data={newProductData || []}
               onPress={handlePressProduct}
             />
-          )} */}
+          )}
         </View>
         {/* Popular products */}
         <View style={styles.product}>
@@ -99,14 +101,14 @@ export default function HomeScreen() {
             <Button title="See All" size="sm" />
           </View>
           {popularProductError && <Text>Error when load popular products</Text>}
-          {/* {isLoadingPopularProduct ? (
+          {isLoadingPopularProduct ? (
             <ActivityIndicator />
           ) : (
             <ProductList
               data={popularProductData || []}
               onPress={handlePressProduct}
             />
-          )} */}
+          )}
         </View>
         {/* Stores */}
         <View style={styles.storesHeading}>
@@ -116,7 +118,9 @@ export default function HomeScreen() {
           <Button title="See All" size="sm" variant="secondary" />
         </View>
         <View style={styles.storeList}>
-          <StoreList data={STORES} />
+          <Suspense fallback={<ActivityIndicator />}>
+            <StoreList data={STORES} />
+          </Suspense>
         </View>
       </ScrollView>
     </View>

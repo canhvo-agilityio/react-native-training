@@ -9,7 +9,6 @@ import {
 import isEqual from 'react-fast-compare';
 import ProductCard from '../ProductCard';
 import { spacing } from '@/themes';
-import { PRODUCT_CARD_HEIGHT } from '@/constants';
 
 interface ProductListProps {
   data: Product[];
@@ -54,6 +53,7 @@ const ProductList = ({
     ),
     [isEditing, onDelete, onEdit, onPress],
   );
+
   return (
     <FlatList
       data={data}
@@ -64,22 +64,15 @@ const ProductList = ({
       numColumns={isGrid ? 2 : 1}
       columnWrapperStyle={isGrid ? styles.columnProduct : undefined}
       showsHorizontalScrollIndicator={false}
-      maxToRenderPerBatch={10}
-      windowSize={5}
-      updateCellsBatchingPeriod={50}
+      maxToRenderPerBatch={6}
+      windowSize={6}
+      updateCellsBatchingPeriod={100}
       removeClippedSubviews={true}
-      onEndReachedThreshold={0.2}
-      getItemLayout={(_, index) => ({
-        length: PRODUCT_CARD_HEIGHT,
-        offset: PRODUCT_CARD_HEIGHT * index,
-        index,
-      })}
+      onEndReachedThreshold={0.3}
       onRefresh={onRefresh}
       refreshing={isRefreshing}
       ListFooterComponent={
-        isFetchingMore ? (
-          <ActivityIndicator size="small" style={styles.loader} />
-        ) : null
+        isFetchingMore ? <ActivityIndicator size="small" /> : null
       }
       onEndReached={onEndReached}
       contentContainerStyle={isGrid ? styles.listContainer : undefined}
@@ -90,9 +83,6 @@ const ProductList = ({
 const styles = StyleSheet.create({
   columnProduct: {
     paddingBottom: spacing[2.5],
-  },
-  loader: {
-    marginVertical: 20,
   },
   listContainer: {
     paddingBottom: 200,
