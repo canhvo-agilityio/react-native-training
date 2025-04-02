@@ -1,20 +1,16 @@
-// import '../wdyr.ts';
 import { colors } from '@/themes';
-import * as Font from 'expo-font';
+import { loadAsync } from 'expo-font';
 import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
+import { preventAutoHideAsync, hideAsync } from 'expo-splash-screen';
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
 import { ClickOutsideProvider } from 'react-native-click-outside';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useReactQueryDevTools } from '@dev-plugins/react-query';
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 import { NetworkProvider } from '@/providers';
 
 import { useAuthStore } from '@/stores';
-import { API_URL, ENDPOINTS } from '@/constants';
-import { get } from '@/utils';
 
 const LazyToast = lazy(() => import('react-native-toast-message'));
 
@@ -22,8 +18,12 @@ const PerformanceProfiler = __DEV__
   ? require('@shopify/react-native-performance').PerformanceProfiler
   : null;
 
+const useReactQueryDevTools = __DEV__
+  ? require('@dev-plugins/react-query').useReactQueryDevTools
+  : null;
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+preventAutoHideAsync();
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -47,19 +47,12 @@ export default function RootLayout() {
   useEffect(() => {
     async function prepare() {
       try {
-        await Font.loadAsync({
+        await loadAsync({
           Montserrat: require('../assets/fonts/Montserrat-Regular.ttf'),
           'Montserrat-Medium': require('../assets/fonts/Montserrat-Medium.ttf'),
           'Montserrat-SemiBold': require('../assets/fonts/Montserrat-SemiBold.ttf'),
           'Montserrat-Bold': require('../assets/fonts/Montserrat-Bold.ttf'),
         });
-
-        if (isAuthenticated) {
-          await queryClient.prefetchQuery({
-            queryKey: [ENDPOINTS.NEW_PRODUCTS],
-            queryFn: () => get(`${API_URL.BASE_URL}${ENDPOINTS.NEW_PRODUCTS}`),
-          });
-        }
       } catch (e) {
         console.warn(e);
       } finally {
@@ -72,7 +65,7 @@ export default function RootLayout() {
 
   const onLayoutRootView = async () => {
     if (appIsReady) {
-      await SplashScreen.hideAsync();
+      await hideAsync();
     }
   };
 

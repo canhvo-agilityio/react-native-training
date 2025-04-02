@@ -8,17 +8,16 @@ import {
   Input,
   ProductList,
   SearchIcon,
+  StoreList,
   Text,
 } from '@/components';
-import { lazy, Suspense, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { colors, fontsFamily, fontWeights, spacing } from '@/themes';
 import { router } from 'expo-router';
 import { BANNERS, CATEGORIES, STORES } from '@/mocks';
 import { useFetchProducts } from '@/hooks';
 import { ENDPOINTS, ROUTES } from '@/constants';
-import { PerformanceMeasureView } from '@shopify/react-native-performance';
-
-const StoreList = lazy(() => import('@/components/StoreList'));
+import { withPerformanceMeasure } from '@/hocs';
 
 export default function HomeScreen() {
   const [searchValue, setSearchValue] = useState<string>('');
@@ -47,84 +46,88 @@ export default function HomeScreen() {
     router.push(ROUTES.PRODUCT_DETAILS(id));
   }, []);
 
-  return (
-    <View style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.logo}>
-          <Text variant="heading" size="xl">
-            Groceries
-          </Text>
-          <View style={styles.iconGroup}>
-            <HeartIcon />
-            <CartIcon />
-          </View>
-        </View>
-        <Input
-          value={searchValue}
-          placeholder="Search Product"
-          leftIcon={<SearchIcon color={colors.primary} />}
-          onChangeText={handleChangeSearchInput}
-        />
-      </View>
-      <ScrollView style={styles.wrapper}>
-        {/* Banner */}
-        <View style={styles.banner}>
-          <BannerList data={BANNERS} />
-        </View>
-        {/* Categories */}
-        <CategoryList data={CATEGORIES} onPress={handlePressCategoryItem} />
-        {/* New Products */}
-        <View style={styles.product}>
-          <View style={styles.productHeading}>
-            <Text variant="title" style={styles.productTitle}>
-              New Product
+  return withPerformanceMeasure({
+    screenName: 'HomeScreen',
+    interactive: true,
+    children: (
+      <View style={styles.container}>
+        {/* Header */}
+        <View style={styles.header}>
+          <View style={styles.logo}>
+            <Text variant="heading" size="xl">
+              Groceries
             </Text>
-            <Button title="See All" size="sm" />
+            <View style={styles.iconGroup}>
+              <HeartIcon />
+              <CartIcon />
+            </View>
           </View>
-          {newProductError && <Text>Error when load new products</Text>}
-          {isLoadingNewProduct ? (
-            <ActivityIndicator />
-          ) : (
-            <ProductList
-              data={newProductData || []}
-              onPress={handlePressProduct}
-            />
-          )}
+          <Input
+            value={searchValue}
+            placeholder="Search Product"
+            leftIcon={<SearchIcon color={colors.primary} />}
+            onChangeText={handleChangeSearchInput}
+          />
         </View>
-        {/* Popular products */}
-        <View style={styles.product}>
-          <View style={styles.productHeading}>
-            <Text variant="title" style={styles.productTitle}>
-              Popular Product
+        <ScrollView style={styles.wrapper}>
+          {/* Banner */}
+          <View style={styles.banner}>
+            <BannerList data={BANNERS} />
+          </View>
+          {/* Categories */}
+          <CategoryList data={CATEGORIES} onPress={handlePressCategoryItem} />
+          {/* New Products */}
+          <View style={styles.product}>
+            <View style={styles.productHeading}>
+              <Text variant="title" style={styles.productTitle}>
+                New Product
+              </Text>
+              <Button title="See All" size="sm" />
+            </View>
+            {newProductError && <Text>Error when load new products</Text>}
+            {isLoadingNewProduct ? (
+              <ActivityIndicator />
+            ) : (
+              <ProductList
+                data={newProductData || []}
+                onPress={handlePressProduct}
+              />
+            )}
+          </View>
+          {/* Popular products */}
+          <View style={styles.product}>
+            <View style={styles.productHeading}>
+              <Text variant="title" style={styles.productTitle}>
+                Popular Product
+              </Text>
+              <Button title="See All" size="sm" />
+            </View>
+            {popularProductError && (
+              <Text>Error when load popular products</Text>
+            )}
+            {isLoadingPopularProduct ? (
+              <ActivityIndicator />
+            ) : (
+              <ProductList
+                data={popularProductData || []}
+                onPress={handlePressProduct}
+              />
+            )}
+          </View>
+          {/* Stores */}
+          <View style={styles.storesHeading}>
+            <Text variant="title" style={styles.storesTitle}>
+              Store to follow
             </Text>
-            <Button title="See All" size="sm" />
+            <Button title="See All" size="sm" variant="secondary" />
           </View>
-          {popularProductError && <Text>Error when load popular products</Text>}
-          {isLoadingPopularProduct ? (
-            <ActivityIndicator />
-          ) : (
-            <ProductList
-              data={popularProductData || []}
-              onPress={handlePressProduct}
-            />
-          )}
-        </View>
-        {/* Stores */}
-        <View style={styles.storesHeading}>
-          <Text variant="title" style={styles.storesTitle}>
-            Store to follow
-          </Text>
-          <Button title="See All" size="sm" variant="secondary" />
-        </View>
-        <View style={styles.storeList}>
-          <Suspense fallback={<ActivityIndicator />}>
+          <View style={styles.storeList}>
             <StoreList data={STORES} />
-          </Suspense>
-        </View>
-      </ScrollView>
-    </View>
-  );
+          </View>
+        </ScrollView>
+      </View>
+    ),
+  });
 }
 
 const styles = StyleSheet.create({

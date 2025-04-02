@@ -1,16 +1,11 @@
 import { useState, useRef } from 'react';
 import { CameraType, CameraView, useCameraPermissions } from 'expo-camera';
 import { useMutation } from '@tanstack/react-query';
-import { Alert, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import { IMAGE_SERVICE_KEY } from '@/constants';
 import * as Linking from 'expo-linking';
 import { useActionSheet } from '@expo/react-native-action-sheet';
-import {
-  Album,
-  getAlbumsAsync,
-  getAssetInfoAsync,
-  usePermissions,
-} from 'expo-media-library';
+import { Album, getAlbumsAsync, usePermissions } from 'expo-media-library';
 
 export const useImageHandler = (data: string[]) => {
   const [images, setImages] = useState<string[]>(data);
@@ -101,21 +96,10 @@ export const useImageHandler = (data: string[]) => {
     setShowAlbums(false);
   };
 
-  const resolveAssetUri = async (uri: string) => {
-    try {
-      const asset = await getAssetInfoAsync(uri);
-      return asset.localUri || uri;
-    } catch (error) {
-      console.error('Error resolving asset URI:', error);
-      return uri;
-    }
-  };
-
-  const pickImage = async (ids: string[]) => {
-    const resolvedUris = await Promise.all(ids.map(resolveAssetUri));
-    setMediaImagesId(ids);
+  const pickImage = async (uris: string[]) => {
+    setMediaImagesId(uris);
     setImages((prev) => {
-      const uniqueUris = resolvedUris.filter((uri) => !prev.includes(uri));
+      const uniqueUris = uris.filter((uri) => !prev.includes(uri));
       return [...prev, ...uniqueUris];
     });
   };

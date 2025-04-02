@@ -1,12 +1,11 @@
 import { Product } from '@/interfaces';
-import { memo, useCallback } from 'react';
+import { useCallback } from 'react';
 import {
   ActivityIndicator,
   FlatList,
   ListRenderItemInfo,
   StyleSheet,
 } from 'react-native';
-import isEqual from 'react-fast-compare';
 import ProductCard from '../ProductCard';
 import { spacing } from '@/themes';
 
@@ -35,6 +34,9 @@ const ProductList = ({
   onRefresh,
   onEndReached,
 }: ProductListProps) => {
+  const handlePress = useCallback((id: string) => onPress(id), [onPress]);
+  const handleEdit = useCallback((id: string) => onEdit?.(id), [onEdit]);
+  const handleDelete = useCallback((id: string) => onDelete?.(id), [onDelete]);
   const getKeyExtractor = useCallback((item: Product) => item.id, []);
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<Product>) => (
@@ -46,12 +48,12 @@ const ProductList = ({
         storeName={item.storeName}
         oldPrice={item.oldPrice}
         isEditing={isEditing}
-        onEdit={onEdit}
-        onDelete={onDelete}
-        onPress={onPress}
+        onEdit={handleEdit}
+        onDelete={handleDelete}
+        onPress={handlePress}
       />
     ),
-    [isEditing, onDelete, onEdit, onPress],
+    [handleDelete, handleEdit, handlePress, isEditing],
   );
 
   return (
@@ -59,16 +61,13 @@ const ProductList = ({
       data={data}
       keyExtractor={getKeyExtractor}
       renderItem={renderItem}
-      initialNumToRender={10}
       horizontal={!isGrid}
       numColumns={isGrid ? 2 : 1}
       columnWrapperStyle={isGrid ? styles.columnProduct : undefined}
       showsHorizontalScrollIndicator={false}
-      maxToRenderPerBatch={6}
-      windowSize={6}
-      updateCellsBatchingPeriod={100}
+      windowSize={3}
       removeClippedSubviews={true}
-      onEndReachedThreshold={0.3}
+      onEndReachedThreshold={0.1}
       onRefresh={onRefresh}
       refreshing={isRefreshing}
       ListFooterComponent={
@@ -89,4 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(ProductList, isEqual);
+export default ProductList;

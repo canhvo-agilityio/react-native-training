@@ -36,8 +36,6 @@ const ProductCard = ({
     onDelete && onDelete(id);
   };
 
-  console.log('render product: ', id);
-
   return (
     <TouchableOpacity
       style={styles.card}

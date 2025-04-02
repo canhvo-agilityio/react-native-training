@@ -8,17 +8,13 @@ import {
 } from '@/components';
 import { colors } from '@/themes';
 import { useEffect } from 'react';
-import {
-  registerForPushNotificationsAsync,
-  setupNotificationHandler,
-} from '@/utils';
+import { setupNotificationHandler } from '@/utils';
 import * as Notifications from 'expo-notifications';
 import { NOTIFICATION_ACTION_KEYS } from '@/constants';
 
 export default function TabLayout() {
   useEffect(() => {
     setupNotificationHandler();
-    registerForPushNotificationsAsync();
 
     const subscription = Notifications.addNotificationResponseReceivedListener(
       (response) => {

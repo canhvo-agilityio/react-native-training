@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { lazy, Suspense, useCallback, useMemo } from 'react';
 import { useState } from 'react';
 import {
   FlatList,
@@ -9,7 +9,6 @@ import {
   Platform,
 } from 'react-native';
 import { Image } from 'expo-image';
-import { CameraView } from 'expo-camera';
 import { Controller, useForm } from 'react-hook-form';
 import { colors, fontsFamily, fontWeights, spacing } from '@/themes';
 import { useActionSheet } from '@expo/react-native-action-sheet';
@@ -22,11 +21,15 @@ import {
   Text,
   Input,
   Select,
-  AlbumEntry,
 } from '@/components';
 import { PRODUCT_FORM_FIELDS } from '@/constants';
 import { useImageHandler } from '@/hooks';
 import isEqual from 'react-fast-compare';
+
+const LazyCameraView = lazy(() =>
+  import('expo-camera').then((mod) => ({ default: mod.CameraView })),
+);
+const LazyAlbumEntry = lazy(() => import('@/components/AlbumEntry'));
 
 export interface ProductFormType {
   name: string;
@@ -267,29 +270,34 @@ const ProductForm = ({
         />
       </KeyboardAvoidingView>
       {showCamera && (
-        <CameraView style={styles.camera} facing={facing} ref={cameraRef}>
-          <View style={styles.cameraIconGroup}>
-            <TouchableOpacity onPress={toggleCamera}>
-              <CloseIcon />
-            </TouchableOpacity>
-            <TouchableOpacity onPress={toggleCameraFacing}>
-              <ReverseCameraIcon />
-            </TouchableOpacity>
-          </View>
-          <TouchableOpacity
-            onPress={takePicture}
-            style={styles.captureButton}
-          />
-        </CameraView>
+        <Suspense fallback={null}>
+          <LazyCameraView style={styles.camera} facing={facing} ref={cameraRef}>
+            <View style={styles.cameraIconGroup}>
+              <TouchableOpacity onPress={toggleCamera}>
+                <CloseIcon />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={toggleCameraFacing}>
+                <ReverseCameraIcon />
+              </TouchableOpacity>
+            </View>
+            <TouchableOpacity
+              onPress={takePicture}
+              style={styles.captureButton}
+            />
+          </LazyCameraView>
+        </Suspense>
       )}
+
       {albums && albums.length > 0 && showAlbums && (
-        <AlbumEntry
-          albums={albums}
-          maxSelection={4 - images.length}
-          imagesSelected={mediaImagesId}
-          onSelect={pickImage}
-          onClose={handleHideAlbums}
-        />
+        <Suspense fallback={null}>
+          <LazyAlbumEntry
+            albums={albums}
+            maxSelection={4 - images.length}
+            imagesSelected={mediaImagesId}
+            onSelect={pickImage}
+            onClose={handleHideAlbums}
+          />
+        </Suspense>
       )}
     </>
   );

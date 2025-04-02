@@ -105,14 +105,14 @@ const AlbumEntry = ({
     opacity: opacity.value,
   }));
 
-  const handleSelectImage = (id: string) => {
+  const handleSelectImage = (uri: string) => {
     setSelectedAssets((prev) => {
-      const index = prev.indexOf(id);
+      const index = prev.indexOf(uri);
       if (index > -1) {
-        return prev.filter((item) => item !== id);
+        return prev.filter((item) => item !== uri);
       }
       if (maxSelection && prev.length >= maxSelection) return prev;
-      return [...prev, id];
+      return [...prev, uri];
     });
   };
 
@@ -151,7 +151,7 @@ const AlbumEntry = ({
                   !!maxSelection &&
                   selectedAssets.length >= maxSelection &&
                   selectedIndex === -1;
-                const handlePressImage = () => handleSelectImage(item.id);
+                const handlePressImage = () => handleSelectImage(item.uri);
                 return (
                   <Pressable
                     onPress={handlePressImage}

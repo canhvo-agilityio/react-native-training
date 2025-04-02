@@ -47,8 +47,6 @@ export default function ProductsByCategory() {
 
   const handleEndReached = useCallback(() => {
     if (hasNextPage && !isFetchingNextPage) {
-      console.log('abc');
-
       fetchNextPage();
     }
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);

@@ -80,4 +80,4 @@ export const PRODUCT_FORM_FIELDS = [
   },
 ];
 
-export const PRODUCT_CARD_HEIGHT = 230;
+export const PRODUCT_CARD_HEIGHT = 240;
