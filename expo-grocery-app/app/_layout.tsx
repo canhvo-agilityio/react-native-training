@@ -4,15 +4,32 @@ import { Stack } from 'expo-router';
 import { preventAutoHideAsync, hideAsync } from 'expo-splash-screen';
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
 import { StatusBar } from 'react-native';
-import { ClickOutsideProvider } from 'react-native-click-outside';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ActionSheetProvider } from '@expo/react-native-action-sheet';
-import { NetworkProvider } from '@/providers';
 
 import { useAuthStore } from '@/stores';
 
 const LazyToast = lazy(() => import('react-native-toast-message'));
+
+const PerformanceProfiler = __DEV__
+  ? require('@shopify/react-native-performance').PerformanceProfiler
+  : null;
+
+const LazyActionSheetProvider = lazy(() =>
+  import('@expo/react-native-action-sheet').then((module) => ({
+    default: module.ActionSheetProvider,
+  })),
+);
+
+const LazyClickOutsideProvider = lazy(() =>
+  import('react-native-click-outside').then((module) => ({
+    default: module.ClickOutsideProvider,
+  })),
+);
+
+const LazyNetworkProvider = lazy(() =>
+  import('@/providers').then((module) => ({ default: module.NetworkProvider })),
+);
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 preventAutoHideAsync();
@@ -28,6 +45,12 @@ const queryClient = new QueryClient({
 export default function RootLayout() {
   const [appIsReady, setAppIsReady] = useState(false);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  const onReportPrepared = useCallback((report: any) => {
+    if (__DEV__) {
+      console.log(report);
+    }
+  }, []);
 
   useEffect(() => {
     async function prepare() {
@@ -48,42 +71,52 @@ export default function RootLayout() {
     prepare();
   }, [isAuthenticated]);
 
-  const onLayoutRootView = async () => {
+  const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
       await hideAsync();
     }
-  };
+  }, [appIsReady]);
 
-  if (!appIsReady) {
-    return null;
-  }
+  useEffect(() => {
+    if (appIsReady) {
+      onLayoutRootView();
+    }
+  }, [appIsReady, onLayoutRootView]);
 
-  return (
+  const appContent = (
     <QueryClientProvider client={queryClient}>
-      <NetworkProvider queryClient={queryClient}>
-        <ClickOutsideProvider>
-          <ActionSheetProvider>
-            <SafeAreaView
-              style={{ flex: 1, backgroundColor: colors.primary }}
-              onLayout={onLayoutRootView}
-            >
-              <StatusBar
-                backgroundColor={colors.primary}
-                barStyle="light-content"
-                translucent
-              />
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                }}
-              />
-              <Suspense fallback={null}>
+      <Suspense fallback={null}>
+        <LazyNetworkProvider queryClient={queryClient}>
+          <LazyClickOutsideProvider>
+            <LazyActionSheetProvider>
+              <SafeAreaView
+                style={{ flex: 1, backgroundColor: colors.primary }}
+                onLayout={onLayoutRootView}
+              >
+                <StatusBar
+                  backgroundColor={colors.primary}
+                  barStyle="light-content"
+                  translucent
+                />
+                <Stack
+                  screenOptions={{
+                    headerShown: false,
+                  }}
+                />
                 <LazyToast />
-              </Suspense>
-            </SafeAreaView>
-          </ActionSheetProvider>
-        </ClickOutsideProvider>
-      </NetworkProvider>
+              </SafeAreaView>
+            </LazyActionSheetProvider>
+          </LazyClickOutsideProvider>
+        </LazyNetworkProvider>
+      </Suspense>
     </QueryClientProvider>
+  );
+
+  return __DEV__ ? (
+    <PerformanceProfiler onReportPrepared={onReportPrepared}>
+      {appContent}
+    </PerformanceProfiler>
+  ) : (
+    appContent
   );
 }

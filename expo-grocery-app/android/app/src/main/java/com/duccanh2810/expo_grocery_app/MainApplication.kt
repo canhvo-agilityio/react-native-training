@@ -12,6 +12,7 @@ import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint.load
 import com.facebook.react.defaults.DefaultReactNativeHost
 import com.facebook.react.soloader.OpenSourceMergedSoMapping
 import com.facebook.soloader.SoLoader
+import com.shopify.reactnativeperformance.ReactNativePerformance;
 
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper
@@ -41,6 +42,7 @@ class MainApplication : Application(), ReactApplication {
     get() = ReactNativeHostWrapper.createReactHost(applicationContext, reactNativeHost)
 
   override fun onCreate() {
+    ReactNativePerformance.onAppStarted();
     super.onCreate()
     SoLoader.init(this, OpenSourceMergedSoMapping)
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {

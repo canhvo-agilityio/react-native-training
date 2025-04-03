@@ -18,6 +18,10 @@ import { BANNERS, CATEGORIES, STORES } from '@/mocks';
 import { useFetchProducts } from '@/hooks';
 import { ENDPOINTS, ROUTES } from '@/constants';
 
+const PerformanceMeasureView = __DEV__
+  ? require('@shopify/react-native-performance').PerformanceMeasureView
+  : null;
+
 export default function HomeScreen() {
   const [searchValue, setSearchValue] = useState<string>('');
 
@@ -45,7 +49,7 @@ export default function HomeScreen() {
     router.push(ROUTES.PRODUCT_DETAILS(id));
   }, []);
 
-  return (
+  const homeView = (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
@@ -120,6 +124,14 @@ export default function HomeScreen() {
         </View>
       </ScrollView>
     </View>
+  );
+
+  return __DEV__ ? (
+    <PerformanceMeasureView interactive={true} screenName="HomeScreen">
+      {homeView}
+    </PerformanceMeasureView>
+  ) : (
+    homeView
   );
 }
 
