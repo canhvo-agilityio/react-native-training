@@ -25,7 +25,6 @@ export default function AddProduct() {
   };
 
   const handleSubmit = async (data: ProductFormType) => {
-    await checkAndRequestNotificationPermission();
     uploadImages(data.images, {
       onSuccess: (uploadedUrls) => {
         const dataConvert: ProductRequest = {
@@ -48,7 +47,8 @@ export default function AddProduct() {
         };
 
         addProduct(dataConvert, {
-          onSuccess: (product) => {
+          onSuccess: async (product) => {
+            await checkAndRequestNotificationPermission();
             router.push(ROUTES.MY_STORE);
             scheduleNotification(
               'Add product successfully',

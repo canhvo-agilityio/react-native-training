@@ -146,7 +146,7 @@ const AlbumEntry = ({
               numColumns={3}
               contentContainerStyle={styles.assetList}
               renderItem={({ item }) => {
-                const selectedIndex = selectedAssets.indexOf(item.id);
+                const selectedIndex = selectedAssets.indexOf(item.uri);
                 const isDisabled =
                   !!maxSelection &&
                   selectedAssets.length >= maxSelection &&
