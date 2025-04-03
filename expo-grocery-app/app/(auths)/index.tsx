@@ -12,7 +12,6 @@ import { useRouter } from 'expo-router';
 import { Button, Text } from '@/components';
 import { colors, radius, spacing } from '@/themes';
 import { ROUTES } from '@/constants';
-import { withPerformanceMeasure } from '@/hocs';
 
 const { width } = Dimensions.get('window');
 
@@ -74,47 +73,43 @@ const Onboarding = () => {
     </View>
   );
 
-  return withPerformanceMeasure({
-    screenName: 'OnboardingScreen',
-    interactive: true,
-    children: (
-      <View style={styles.container}>
-        <FlatList
-          ref={flatListRef}
-          data={slides}
-          keyExtractor={(item) => item.id}
-          horizontal
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onMomentumScrollEnd={handleMomentumScrollEnd}
-          style={styles.flatList}
-          renderItem={renderItem}
-        />
+  return (
+    <View style={styles.container}>
+      <FlatList
+        ref={flatListRef}
+        data={slides}
+        keyExtractor={(item) => item.id}
+        horizontal
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onMomentumScrollEnd={handleMomentumScrollEnd}
+        style={styles.flatList}
+        renderItem={renderItem}
+      />
 
-        <View style={styles.footer}>
-          <View style={styles.indicatorContainer}>
-            {slides.map((_, index) => (
-              <View
-                key={index}
-                style={[
-                  styles.indicator,
-                  { opacity: index === currentIndex ? 1 : 0.6 },
-                ]}
-              />
-            ))}
-          </View>
-
-          <Button
-            variant="primary"
-            size="full"
-            title={currentIndex === slides.length - 1 ? 'Get Started' : 'Next'}
-            onPress={handleNext}
-            style={styles.button}
-          />
+      <View style={styles.footer}>
+        <View style={styles.indicatorContainer}>
+          {slides.map((_, index) => (
+            <View
+              key={index}
+              style={[
+                styles.indicator,
+                { opacity: index === currentIndex ? 1 : 0.6 },
+              ]}
+            />
+          ))}
         </View>
+
+        <Button
+          variant="primary"
+          size="full"
+          title={currentIndex === slides.length - 1 ? 'Get Started' : 'Next'}
+          onPress={handleNext}
+          style={styles.button}
+        />
       </View>
-    ),
-  });
+    </View>
+  );
 };
 
 export default Onboarding;

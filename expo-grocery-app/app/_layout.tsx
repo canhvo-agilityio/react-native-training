@@ -14,14 +14,6 @@ import { useAuthStore } from '@/stores';
 
 const LazyToast = lazy(() => import('react-native-toast-message'));
 
-const PerformanceProfiler = __DEV__
-  ? require('@shopify/react-native-performance').PerformanceProfiler
-  : null;
-
-const useReactQueryDevTools = __DEV__
-  ? require('@dev-plugins/react-query').useReactQueryDevTools
-  : null;
-
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 preventAutoHideAsync();
 
@@ -34,15 +26,8 @@ const queryClient = new QueryClient({
 });
 
 export default function RootLayout() {
-  useReactQueryDevTools(queryClient);
   const [appIsReady, setAppIsReady] = useState(false);
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-
-  const onReportPrepared = useCallback((report: any) => {
-    if (__DEV__) {
-      console.log(report);
-    }
-  }, []);
 
   useEffect(() => {
     async function prepare() {
@@ -73,7 +58,7 @@ export default function RootLayout() {
     return null;
   }
 
-  const appContent = (
+  return (
     <QueryClientProvider client={queryClient}>
       <NetworkProvider queryClient={queryClient}>
         <ClickOutsideProvider>
@@ -100,13 +85,5 @@ export default function RootLayout() {
         </ClickOutsideProvider>
       </NetworkProvider>
     </QueryClientProvider>
-  );
-
-  return __DEV__ ? (
-    <PerformanceProfiler onReportPrepared={onReportPrepared}>
-      {appContent}
-    </PerformanceProfiler>
-  ) : (
-    appContent
   );
 }
