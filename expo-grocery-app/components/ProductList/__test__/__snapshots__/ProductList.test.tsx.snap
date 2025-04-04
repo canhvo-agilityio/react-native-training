@@ -2,6 +2,12 @@
 
 exports[`ProductList Component renders in grid layout when isGrid is true 1`] = `
 <RCTScrollView
+  ListFooterComponent={null}
+  contentContainerStyle={
+    {
+      "paddingBottom": 200,
+    }
+  }
   data={
     [
       {
@@ -51,21 +57,23 @@ exports[`ProductList Component renders in grid layout when isGrid is true 1`] = 
   getItem={[Function]}
   getItemCount={[Function]}
   horizontal={false}
-  initialNumToRender={6}
   keyExtractor={[Function]}
   onContentSizeChange={[Function]}
+  onEndReachedThreshold={0.1}
   onLayout={[Function]}
   onMomentumScrollBegin={[Function]}
   onMomentumScrollEnd={[Function]}
   onScroll={[Function]}
   onScrollBeginDrag={[Function]}
   onScrollEndDrag={[Function]}
-  removeClippedSubviews={false}
+  refreshing={false}
+  removeClippedSubviews={true}
   renderItem={[Function]}
   scrollEventThrottle={0.0001}
   showsHorizontalScrollIndicator={false}
   stickyHeaderIndices={[]}
   viewabilityConfigCallbackPairs={[]}
+  windowSize={3}
 >
   <View>
     <View
@@ -847,6 +855,7 @@ exports[`ProductList Component renders in grid layout when isGrid is true 1`] = 
 
 exports[`ProductList Component renders in horizontal layout when isGrid is false 1`] = `
 <RCTScrollView
+  ListFooterComponent={null}
   data={
     [
       {
@@ -896,21 +905,23 @@ exports[`ProductList Component renders in horizontal layout when isGrid is false
   getItem={[Function]}
   getItemCount={[Function]}
   horizontal={true}
-  initialNumToRender={6}
   keyExtractor={[Function]}
   onContentSizeChange={[Function]}
+  onEndReachedThreshold={0.1}
   onLayout={[Function]}
   onMomentumScrollBegin={[Function]}
   onMomentumScrollEnd={[Function]}
   onScroll={[Function]}
   onScrollBeginDrag={[Function]}
   onScrollEndDrag={[Function]}
-  removeClippedSubviews={false}
+  refreshing={false}
+  removeClippedSubviews={true}
   renderItem={[Function]}
   scrollEventThrottle={0.0001}
   showsHorizontalScrollIndicator={false}
   stickyHeaderIndices={[]}
   viewabilityConfigCallbackPairs={[]}
+  windowSize={3}
 >
   <View>
     <View
@@ -1693,6 +1704,7 @@ exports[`ProductList Component renders in horizontal layout when isGrid is false
 
 exports[`ProductList Component renders the correctly 1`] = `
 <RCTScrollView
+  ListFooterComponent={null}
   data={
     [
       {
@@ -1742,21 +1754,23 @@ exports[`ProductList Component renders the correctly 1`] = `
   getItem={[Function]}
   getItemCount={[Function]}
   horizontal={true}
-  initialNumToRender={6}
   keyExtractor={[Function]}
   onContentSizeChange={[Function]}
+  onEndReachedThreshold={0.1}
   onLayout={[Function]}
   onMomentumScrollBegin={[Function]}
   onMomentumScrollEnd={[Function]}
   onScroll={[Function]}
   onScrollBeginDrag={[Function]}
   onScrollEndDrag={[Function]}
-  removeClippedSubviews={false}
+  refreshing={false}
+  removeClippedSubviews={true}
   renderItem={[Function]}
   scrollEventThrottle={0.0001}
   showsHorizontalScrollIndicator={false}
   stickyHeaderIndices={[]}
   viewabilityConfigCallbackPairs={[]}
+  windowSize={3}
 >
   <View>
     <View

@@ -35,7 +35,7 @@ export default function HomeScreen() {
   });
 
   const { signIn, isLoading } = useAuth();
-  const { setUser } = useAuthStore();
+  const setUser = useAuthStore((state) => state.setUser);
 
   const handleToggleShowPassword = () => {
     setIsShowPassword((prev) => !prev);
@@ -55,7 +55,7 @@ export default function HomeScreen() {
       {
         onSuccess: (user) => {
           setUser(user);
-          router.push(ROUTES.HOME);
+          router.replace(ROUTES.HOME);
         },
         onError: (err) => {
           Toast.show({
