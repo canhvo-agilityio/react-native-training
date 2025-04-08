@@ -17,7 +17,6 @@ import { useAuthStore } from '@/stores';
 export default function AddProduct() {
   const { user } = useAuthStore();
   const { storeId, storeName } = user || {};
-  const { mutate: uploadImages, isPending: isUploading } = useUploadToImgBB();
   const { mutate: addProduct, error, isPending } = useAddProduct();
 
   const handlePressBackIcon = () => {
@@ -25,51 +24,40 @@ export default function AddProduct() {
   };
 
   const handleSubmit = async (data: ProductFormType) => {
-    uploadImages(data.images, {
-      onSuccess: (uploadedUrls) => {
-        const dataConvert: ProductRequest = {
-          name: data.name,
-          oldPrice: Number(data.price),
-          newPrice: Number(data.offerPrice),
-          images: uploadedUrls,
-          description: data.description,
-          storeName: storeName,
-          storeId: storeId,
-          categoryId:
-            Number(
-              Object.keys(CATEGORIES).find(
-                (key) => CATEGORIES[Number(key)] === data.category,
-              ),
-            ) ?? -1,
-          location: data.location,
-          additionalDetails: data.additionalDetails,
-          priceType: data.priceType,
-        };
+    const dataConvert: ProductRequest = {
+      name: data.name,
+      oldPrice: Number(data.price),
+      newPrice: Number(data.offerPrice),
+      images: data.images,
+      description: data.description,
+      storeName: storeName,
+      storeId: storeId,
+      categoryId:
+        Number(
+          Object.keys(CATEGORIES).find(
+            (key) => CATEGORIES[Number(key)] === data.category,
+          ),
+        ) ?? -1,
+      location: data.location,
+      additionalDetails: data.additionalDetails,
+      priceType: data.priceType,
+    };
 
-        addProduct(dataConvert, {
-          onSuccess: async (product) => {
-            await checkAndRequestNotificationPermission();
-            router.push(ROUTES.MY_STORE);
-            scheduleNotification(
-              'Add product successfully',
-              `Click to see product details: ${product.name}`,
-              NOTIFICATION_ACTION_KEYS.HANDLE_DEEPLINKING,
-              { url: `products/${product.id}` },
-            );
-          },
-          onError: () => {
-            Toast.show({
-              type: 'error',
-              text1: 'Add product failed',
-            });
-          },
-        });
+    addProduct(dataConvert, {
+      onSuccess: async (product) => {
+        await checkAndRequestNotificationPermission();
+        router.push(ROUTES.MY_STORE);
+        scheduleNotification(
+          'Add product successfully',
+          `Click to see product details: ${product.name}`,
+          NOTIFICATION_ACTION_KEYS.HANDLE_DEEPLINKING,
+          { url: `products/${product.id}` },
+        );
       },
       onError: () => {
         Toast.show({
           type: 'error',
           text1: 'Add product failed',
-          text2: 'Error when upload product images',
         });
       },
     });
@@ -89,10 +77,7 @@ export default function AddProduct() {
       </View>
       {error && <Text>{error.message}</Text>}
       {/* Form field */}
-      <ProductForm
-        onSubmit={handleSubmit}
-        isLoading={isPending || isUploading}
-      />
+      <ProductForm onSubmit={handleSubmit} isLoading={isPending} />
     </View>
   );
 }

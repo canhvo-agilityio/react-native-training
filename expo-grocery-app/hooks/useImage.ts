@@ -9,7 +9,6 @@ import { Album, getAlbumsAsync, usePermissions } from 'expo-media-library';
 
 export const useImageHandler = (data: string[]) => {
   const [images, setImages] = useState<string[]>(data);
-  const [mediaImagesId, setMediaImagesId] = useState<string[]>([]);
   const [albums, setAlbums] = useState<Album[]>([]);
   const [facing, setFacing] = useState<CameraType>('back');
   const [showCamera, setShowCamera] = useState(false);
@@ -97,7 +96,6 @@ export const useImageHandler = (data: string[]) => {
   };
 
   const pickImage = async (uris: string[]) => {
-    setMediaImagesId(uris);
     setImages((prev) => {
       const uniqueUris = uris.filter((uri) => !prev.includes(uri));
       return [...prev, ...uniqueUris];
@@ -131,7 +129,6 @@ export const useImageHandler = (data: string[]) => {
     albums,
     showAlbums,
     handleHideAlbums,
-    mediaImagesId,
   };
 };
 

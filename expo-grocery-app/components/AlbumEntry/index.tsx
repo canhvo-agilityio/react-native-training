@@ -26,9 +26,9 @@ import {
 import { Text } from '@/components';
 
 interface AlbumEntryProps {
+  isLoading?: boolean;
   maxSelection?: number;
   albums: Album[];
-  imagesSelected: string[];
   onSelect: (uris: string[]) => void;
   onClose: () => void;
 }
@@ -36,9 +36,9 @@ interface AlbumEntryProps {
 const { height } = Dimensions.get('window');
 
 const AlbumEntry = ({
+  isLoading = false,
   albums,
   maxSelection,
-  imagesSelected,
   onSelect,
   onClose,
 }: AlbumEntryProps) => {
@@ -51,8 +51,7 @@ const AlbumEntry = ({
     useState<string>(defaultAlbumId);
   const [assets, setAssets] = useState<Asset[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [selectedAssets, setSelectedAssets] =
-    useState<string[]>(imagesSelected);
+  const [selectedAssets, setSelectedAssets] = useState<string[]>([]);
 
   const options: SelectOption[] = albums.map((album) => ({
     title: album.title,
@@ -151,6 +150,7 @@ const AlbumEntry = ({
                   !!maxSelection &&
                   selectedAssets.length >= maxSelection &&
                   selectedIndex === -1;
+
                 const handlePressImage = () => handleSelectImage(item.uri);
                 return (
                   <Pressable
@@ -176,6 +176,7 @@ const AlbumEntry = ({
             <Button
               title="Add Photos"
               size="lg"
+              isLoading={isLoading}
               style={styles.button}
               onPress={handleAddPhotos}
             />

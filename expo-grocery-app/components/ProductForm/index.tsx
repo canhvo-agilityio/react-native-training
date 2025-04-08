@@ -23,8 +23,10 @@ import {
   Select,
 } from '@/components';
 import { PRODUCT_FORM_FIELDS } from '@/constants';
-import { useImageHandler } from '@/hooks';
+import { useImageHandler, useUploadToImgBB } from '@/hooks';
 import isEqual from 'react-fast-compare';
+import { formatDecimalInput, unformatDecimalInput } from '@/utils';
+import Toast from 'react-native-toast-message';
 
 const LazyCameraView = lazy(() =>
   import('expo-camera').then((mod) => ({ default: mod.CameraView })),
@@ -90,8 +92,9 @@ const ProductForm = ({
     albums,
     showAlbums,
     handleHideAlbums,
-    mediaImagesId,
   } = useImageHandler(data.images);
+
+  const { mutate: uploadImages, isPending: isUploading } = useUploadToImgBB();
 
   const isUnchanged = isEqual(
     { ...watch(), images },
@@ -128,9 +131,48 @@ const ProductForm = ({
         setError('Please add at least one image');
         return;
       }
-      onSubmit({ ...formData, images });
+      onSubmit({
+        ...formData,
+        images,
+        price: unformatDecimalInput(formData.price),
+        offerPrice: unformatDecimalInput(formData.offerPrice),
+      });
     },
     [images, onSubmit],
+  );
+
+  const handleUploadImages = useCallback(
+    (uris: string[]) => {
+      uploadImages(uris, {
+        onSuccess: (uploadedUrls) => {
+          pickImage(uploadedUrls);
+        },
+        onError: () => {
+          Toast.show({
+            type: 'error',
+            text1: 'Upload image failed',
+            text2: 'Error when upload product images',
+          });
+        },
+      });
+    },
+    [pickImage, uploadImages],
+  );
+
+  const renderImageItem = useCallback(
+    ({ item }: { item: string }) => (
+      <View style={styles.imageWrapper}>
+        <Image source={{ uri: item }} style={styles.image} />
+        <TouchableOpacity
+          testID={`remove-image-button-${item}`}
+          style={styles.removeIcon}
+          onPress={() => removeImage(item)}
+        >
+          <CloseIcon width={12} height={12} />
+        </TouchableOpacity>
+      </View>
+    ),
+    [removeImage],
   );
 
   const renderItem = useCallback(
@@ -149,18 +191,13 @@ const ProductForm = ({
               <Text style={styles.photoHint}>1600 x 1200 for hi res</Text>
             </TouchableOpacity>
           )}
-          {images.map((item) => (
-            <View key={item} style={styles.imageWrapper}>
-              <Image source={{ uri: item }} style={styles.image} />
-              <TouchableOpacity
-                testID={`remove-image-button-${item}`}
-                style={styles.removeIcon}
-                onPress={() => removeImage(item)}
-              >
-                <CloseIcon width={12} height={12} />
-              </TouchableOpacity>
-            </View>
-          ))}
+          <FlatList
+            data={images}
+            keyExtractor={(item) => item}
+            horizontal
+            renderItem={renderImageItem}
+          />
+
           {error && (
             <Text variant="error" size="base" style={styles.errorMessage}>
               {error}
@@ -207,7 +244,11 @@ const ProductForm = ({
                     testID={field.label}
                     label={field.label}
                     variant="flushed"
-                    value={String(value)}
+                    value={
+                      field.key === 'price' || field.name === 'offerPrice'
+                        ? formatDecimalInput(String(value))
+                        : String(value)
+                    }
                     disabled={isLoading}
                     keyboardType={
                       field.key === 'price' || field.name === 'offerPrice'
@@ -240,13 +281,13 @@ const ProductForm = ({
     [
       images,
       handlePressAddPhotos,
+      renderImageItem,
       error,
       isEdit,
       isLoading,
       isUnchanged,
       handleSubmit,
       handleSubmitProductForm,
-      removeImage,
       control,
       clearErrors,
     ],
@@ -293,8 +334,8 @@ const ProductForm = ({
           <LazyAlbumEntry
             albums={albums}
             maxSelection={4 - images.length}
-            imagesSelected={mediaImagesId}
-            onSelect={pickImage}
+            isLoading={isUploading}
+            onSelect={handleUploadImages}
             onClose={handleHideAlbums}
           />
         </Suspense>
@@ -342,6 +383,7 @@ const styles = StyleSheet.create({
   },
   imageWrapper: {
     position: 'relative',
+    marginRight: spacing[2],
   },
   image: {
     width: 140,
@@ -350,7 +392,6 @@ const styles = StyleSheet.create({
   },
   removeIcon: {
     position: 'absolute',
-    top: -5,
     right: -5,
     backgroundColor: colors.gray2,
     padding: spacing[1],
