@@ -72,6 +72,7 @@ const ProductForm = ({
 }: ProductFormProps) => {
   const { showActionSheetWithOptions } = useActionSheet();
   const [error, setError] = useState<string | null>(null);
+  const [localImages, setLocalImages] = useState<string[]>([]);
   const { control, clearErrors, handleSubmit, watch } =
     useForm<ProductFormType>({
       defaultValues: data,
@@ -146,6 +147,10 @@ const ProductForm = ({
       uploadImages(uris, {
         onSuccess: (uploadedUrls) => {
           pickImage(uploadedUrls);
+          setLocalImages((prev) => {
+            const uniqueUris = uris.filter((uri) => !prev.includes(uri));
+            return [...prev, ...uniqueUris];
+          });
         },
         onError: () => {
           Toast.show({
@@ -192,7 +197,7 @@ const ProductForm = ({
             </TouchableOpacity>
           )}
           <FlatList
-            data={images}
+            data={localImages}
             keyExtractor={(item) => item}
             horizontal
             renderItem={renderImageItem}
@@ -333,7 +338,7 @@ const ProductForm = ({
         <Suspense fallback={null}>
           <LazyAlbumEntry
             albums={albums}
-            maxSelection={4 - images.length}
+            maxSelection={4 - localImages.length}
             isLoading={isUploading}
             onSelect={handleUploadImages}
             onClose={handleHideAlbums}

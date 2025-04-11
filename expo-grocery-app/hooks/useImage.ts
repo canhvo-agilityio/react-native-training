@@ -6,6 +6,7 @@ import { IMAGE_SERVICE_KEY } from '@/constants';
 import * as Linking from 'expo-linking';
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { Album, getAlbumsAsync, usePermissions } from 'expo-media-library';
+import Toast from 'react-native-toast-message';
 
 export const useImageHandler = (data: string[]) => {
   const [images, setImages] = useState<string[]>(data);
@@ -17,12 +18,11 @@ export const useImageHandler = (data: string[]) => {
   const { showActionSheetWithOptions } = useActionSheet();
   const [cameraPermission, requestCameraPermission] = useCameraPermissions();
   const [mediaPermission, requestMediaPermission] = usePermissions();
+  const { mutate: uploadImages } = useUploadToImgBB();
 
   const openCamera = async () => {
     if (!cameraPermission?.granted) {
-      const { granted } = await requestCameraPermission();
-
-      if (!granted) {
+      if (cameraPermission?.status === 'denied') {
         showActionSheetWithOptions(
           {
             title:
@@ -42,6 +42,30 @@ export const useImageHandler = (data: string[]) => {
           },
         );
         return;
+      } else {
+        const { granted } = await requestCameraPermission();
+
+        if (!granted) {
+          showActionSheetWithOptions(
+            {
+              title:
+                'You have not granted camera access, please go to Settings to re-grant permissions.',
+              options: ['Open Settings', 'Cancel'],
+              cancelButtonIndex: 1,
+              destructiveButtonIndex: 0,
+            },
+            (selectedIndex) => {
+              switch (selectedIndex) {
+                case 0:
+                  Linking.openSettings();
+                  break;
+                case 1:
+                  break;
+              }
+            },
+          );
+          return;
+        }
       }
     }
 
@@ -51,18 +75,28 @@ export const useImageHandler = (data: string[]) => {
   const takePicture = async () => {
     if (cameraRef.current) {
       const photo = await cameraRef.current.takePictureAsync();
+
       if (photo) {
-        setImages((prev) => [...prev, photo.uri]);
         setShowCamera(false);
+        uploadImages([photo.uri], {
+          onSuccess: (uploadedUrls) => {
+            setImages((prev) => [...prev, ...uploadedUrls]);
+          },
+          onError: () => {
+            Toast.show({
+              type: 'error',
+              text1: 'Upload image failed',
+              text2: 'Error when upload product images',
+            });
+          },
+        });
       }
     }
   };
 
   const openAlbums = async () => {
     if (!mediaPermission?.granted) {
-      const { granted } = await requestMediaPermission();
-
-      if (!granted) {
+      if (cameraPermission?.status === 'denied') {
         showActionSheetWithOptions(
           {
             title:
@@ -82,6 +116,30 @@ export const useImageHandler = (data: string[]) => {
           },
         );
         return;
+      } else {
+        const { granted } = await requestMediaPermission();
+
+        if (!granted) {
+          showActionSheetWithOptions(
+            {
+              title:
+                'You have not granted  access, please go to Settings to re-grant permissions.',
+              options: ['Open Settings', 'Cancel'],
+              cancelButtonIndex: 1,
+              destructiveButtonIndex: 0,
+            },
+            (selectedIndex) => {
+              switch (selectedIndex) {
+                case 0:
+                  Linking.openSettings();
+                  break;
+                case 1:
+                  break;
+              }
+            },
+          );
+          return;
+        }
       }
     }
     const fetchedAlbums = await getAlbumsAsync({

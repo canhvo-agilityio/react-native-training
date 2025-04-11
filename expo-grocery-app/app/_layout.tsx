@@ -1,3 +1,4 @@
+import 'wdyr';
 import { colors } from '@/themes';
 import { loadAsync } from 'expo-font';
 import { Stack } from 'expo-router';

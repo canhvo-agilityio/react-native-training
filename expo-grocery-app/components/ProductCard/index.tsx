@@ -162,4 +162,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(ProductCard);
+const lazyProductCard = memo(ProductCard);
+// lazyProductCard.whyDidYouRender = true;
+export default lazyProductCard;
