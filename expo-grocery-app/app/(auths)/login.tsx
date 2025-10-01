@@ -76,7 +76,7 @@ export default function HomeScreen() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <Text variant="title" size="xl" style={styles.title}>
-            Welcome to tradly
+            Test Update
           </Text>
           <Text size="sm" style={styles.description}>
             Login to your account

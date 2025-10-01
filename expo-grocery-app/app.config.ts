@@ -17,6 +17,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       NSCameraUsageDescription:
         'This app uses the camera to scan barcodes on event tickets.',
     },
+    runtimeVersion: {
+      policy: 'appVersion',
+    },
   },
   android: {
     adaptiveIcon: {
@@ -24,6 +27,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       backgroundColor: '#FFFFFF',
     },
     package: 'com.duccanh2810.expo_grocery_app',
+    runtimeVersion: '1.0.1',
   },
   web: {
     bundler: 'metro',
@@ -59,6 +63,9 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   ],
   experiments: {
     typedRoutes: true,
+  },
+  updates: {
+    url: 'https://u.expo.dev/ce9c3a05-4740-4611-9d82-a95f8594d29b', // 👈 thêm theo gợi ý
   },
   extra: {
     eas: {
