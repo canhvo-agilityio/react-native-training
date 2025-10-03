@@ -17,19 +17,22 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 24.x
 
       - name: Authenticate with Expo
         uses: expo/expo-github-action@v8
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
-        working-directory: expo-grocery-app
 
       - name: Install dependencies
         run: npm ci
         working-directory: expo-grocery-app
 
-      - name: EAS Build (Android + iOS)
+      - name: EAS Update
+        run: eas update --branch preview --non-interactive
+        working-directory: expo-grocery-app
+
+      - name: EAS Build
         run: eas build --platform android --profile preview --non-interactive
         working-directory: expo-grocery-app
