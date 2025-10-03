@@ -30,7 +30,7 @@ jobs:
         working-directory: expo-grocery-app
 
       - name: EAS Update
-        run: eas update --branch preview --non-interactive
+        run: eas update --branch preview --auto --non-interactive
         working-directory: expo-grocery-app
 
       - name: EAS Build
