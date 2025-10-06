@@ -76,7 +76,7 @@ export default function HomeScreen() {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.container}>
           <Text variant="title" size="xl" style={styles.title}>
-            Test Preview
+            Test Preview ABC
           </Text>
           <Text size="sm" style={styles.description}>
             Login to your account
